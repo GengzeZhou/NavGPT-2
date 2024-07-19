@@ -18,7 +18,7 @@
 
 <div>
     <a href='https://github.com/GengzeZhou/NavGPT-2' target='_blank'><img alt="Static Badge" src="https://img.shields.io/badge/NavGPT-v0.2-blue"></a>
-    <a href='https://arxiv.org/abs/2305.16986' target='_blank'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
+    <a href='https://arxiv.org/abs/2407.12366' target='_blank'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
     <a href="https://github.com/salesforce/LAVIS"><img alt="Static Badge" src="https://img.shields.io/badge/Salesforce-LAVIS-blue?logo=salesforce"></a>
 </div>
