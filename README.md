@@ -61,9 +61,9 @@ pip install -r requirements.txt
 
 #### Docker Environment
 
-    A Dockerfile is provided to build the environment with all dependencies installed. You can choose to pull the Docker image from Docker Hub or build the Docker image from the provided Dockerfile.
+> A Dockerfile is provided to build the environment with all dependencies installed. You can either pull the Docker image directly from Docker Hub or build it yourself using the provided Dockerfile.
 
-1. Pull the Docker image from Docker Hub:
+1. OPTION 1: Pull the Docker image from Docker Hub:
 
 ```bash
 docker pull gengzezhou/mattersim-torch2.2.0cu118:v2
@@ -77,7 +77,7 @@ conda activate
 export PYTHONPATH=/root/Matterport3DSimulator/build
 ```
 
-2. Build the Docker image from the provided Dockerfile:
+2. OPTION 2: Build the Docker image from the provided Dockerfile:
 
 ```bash
 docker build -t navgpt2:v1 .
@@ -177,7 +177,7 @@ python download.py \
 
 ## 🧃 Stage 1: Visual Instruction Tuning of NavGPT-2
 
-    You could skip this stage and directly use the provided pretrained NavGPT-2 Q-former for policy finetuning.
+> You could skip this stage and directly use the provided pretrained NavGPT-2 Q-former for policy finetuning.
 
 Set the cache directory in [defaults.yaml](map_nav_src/models/lavis/configs/default.yaml) as the absolute path to NavGPT-2.
 
@@ -225,6 +225,11 @@ bash scripts/run_r2r_xxl.sh
 bash scripts/run_r2r_vicuna7b.sh
 bash scripts/run_r2r_vicuna13b.sh
 ```
+
+## 🥂 Acknowledgements
+We extend our gratitude to MatterPort 3D for their valuable contributions to the open-source platform and community.
+
+We also acknowledge the significant benefits of using [DUET](https://github.com/cshizhe/VLN-DUET) and [InstructBLIP](https://github.com/salesforce/LAVIS/tree/main/projects/instructblip) in this work. Our thanks go out to the creators of these outstanding projects.
 
 ## 🍺 Citation
 
