@@ -1,0 +1,16 @@
+.ftpignore
+.ftpconfig
+.vscode
+
+# Byte-compiled / optimized / DLL files
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+*$py.class
+*.swp
+
+datasets/*
+!datasets/.gitkeep
+map_nav_src/models/lavis/output
+map_nav_src/models/data
+!map_nav_src/models/data/.gitkeep

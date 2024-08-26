@@ -1,0 +1,16 @@
+datasets:
+  r2r_navgpt: # name of the dataset builder
+    dataset_card: dataset_card/r2r_navgpt.md # path to the dataset card
+    data_type: features # [images|videos|features] we use features in this case for extracted video features
+
+    build_info:
+      # Be careful not to append minus sign (-) before split to avoid itemizing
+      annotations:
+        train:
+          url: datasets/NavGPT-Instruct/NavGPT_train_v1.json
+          storage: datasets/NavGPT-Instruct/NavGPT_train_v1.json
+        val:
+          url: datasets/NavGPT-Instruct/NavGPT_val_v1.json
+          storage: datasets/NavGPT-Instruct/NavGPT_val_v1.json
+      images:
+        storage: datasets/R2R/features/MP3D_eva_clip_g_can.lmdb

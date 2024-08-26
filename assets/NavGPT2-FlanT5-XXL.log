@@ -1,0 +1,1045 @@
+Namespace(accumulate_grad_step=1, act_visited_nodes=False, angle_feat_size=4, anno_dir='../datasets/R2R/annotations', arch='blip2_t5_instruct_nav', attention_probs_dropout_prob=0.1, aug='/data/projects/NavGPT2/datasets/R2R/annotations/prevalent_aug.json', batch_size=2, bert_ckpt_file=None, candidate_file_dir='../datasets/R2R/annotations/scanvp_candidates.json', ckpt_dir='../datasets/R2R/exprs_map/finetune/dagger-eva-clip-g-seed.0-bs2-FlanT5xxl-aug/ckpts', connectivity_dir='../datasets/R2R/connectivity', dataset='r2r', detailed_output=False, dropout=0.5, enc_full_graph=True, entropy_loss_weight=0.01, epsilon=0.1, eval_first=False, expert_policy='spl', expl_max_ratio=0.6, expl_sample=False, feat_dropout=0.4, features='eva-clip-g', feedback='sample', freeze_qformer=True, fusion='global', gamma=0.0, global_cross_attn=True, graph_sprels=True, hidden_dropout_prob=0.1, hidden_size=768, ignoreid=-100, image_feat_size=1408, img_ft_file='../datasets/R2R/features/MP3D_HM3D_eva_clip_g_can.lmdb', iters=200000, layer_norm_eps=1e-12, length_penalty=1.0, llm_ctx_size=4096, llm_token_merge='linear', load_patch_feature=True, local_rank=-1, log_dir='../datasets/R2R/exprs_map/finetune/dagger-eva-clip-g-seed.0-bs2-FlanT5xxl-aug/logs', log_every=2500, lr=1e-05, max_action_steps=15, max_instr_len=200, max_length=256, min_length=1, ml_weight=0.2, model_type='flant5xxl', no_backtrack=False, node_rank=0, normalize_loss='total', num_attention_heads=12, num_beams=5, num_captions=1, num_pano_layers=2, num_x_layers=4, obj_feat_size=0, optim='adamW', output_dir='../datasets/R2R/exprs_map/finetune/dagger-eva-clip-g-seed.0-bs2-FlanT5xxl-aug', output_thought=False, pred_dir='../datasets/R2R/exprs_map/finetune/dagger-eva-clip-g-seed.0-bs2-FlanT5xxl-aug/preds', qformer_ckpt_path='/data/projects/NavGPT2/map_nav_src/models/lavis/output/NavGPT-InstructBLIP-Flant5xxl/20240223093/checkpoint_best.pth', qformer_pos_emb=False, repetition_penalty=1.5, resume_file=None, resume_optimizer=False, root_dir='../datasets', scan_data_dir='../datasets/Matterport3D/v1_unzip_scans', seed=0, single_action_head=False, step_update=False, submit=False, temperature=1.0, test=False, tokenizer='bert', top_p=0.9, train_alg='dagger', use_clip_img_emb=False, use_lang2visn_attn=False, use_nucleus_sampling=False, views=36, weight_decay=0.0, world_size=1)
+
+
+
+[INFO] Listener training starts, start iteration: 0
+
+[INFO] Training: total_actions 1, max_length 1, entropy 146042.1180, IL_loss 14.9949, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 497m 6s (- 39271m 28s) (2500 1%) Iter 2500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl  | nDTW | SDTW | CLS  
+---------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 14.63        | 22.38 | 46.87   | 8.98      | 1.92         | 12.0  | 75.33     | 2.83 | 5.02 | 0.85 | 17.15
+val_unseen     | 14.59        | 24.57 | 48.8    | 9.8       | 2.02         | 14.39 | 74.54     | 3.09 | 3.51 | 1.03 | 15.99
+BEST RESULT TILL NOW
+val_unseen | Iter 2500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl  | nDTW | SDTW | CLS  
+---------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 14.63        | 22.38 | 46.87   | 8.98      | 1.92         | 12.0  | 75.33     | 2.83 | 5.02 | 0.85 | 17.15
+val_unseen     | 14.59        | 24.57 | 48.8    | 9.8       | 2.02         | 14.39 | 74.54     | 3.09 | 3.51 | 1.03 | 15.99
+
+[INFO] Training: total_actions 1, max_length 1, entropy 142582.4397, IL_loss 14.2084, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 981m 47s (- 38290m 8s) (5000 2%) Iter 5000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl  | nDTW | SDTW | CLS  
+---------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 14.45        | 25.17 | 51.34   | 7.9       | 1.48         | 23.33 | 81.33     | 4.63 | 4.29 | 1.22 | 16.75
+val_unseen     | 14.48        | 27.82 | 53.13   | 8.39      | 1.43         | 18.26 | 82.55     | 3.47 | 3.26 | 1.02 | 16.01
+BEST RESULT TILL NOW
+val_unseen | Iter 5000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl  | nDTW | SDTW | CLS  
+---------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 14.45        | 25.17 | 51.34   | 7.9       | 1.48         | 23.33 | 81.33     | 4.63 | 4.29 | 1.22 | 16.75
+val_unseen     | 14.48        | 27.82 | 53.13   | 8.39      | 1.43         | 18.26 | 82.55     | 3.47 | 3.26 | 1.02 | 16.01
+
+[INFO] Training: total_actions 1, max_length 1, entropy 137487.1244, IL_loss 13.6218, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 1450m 30s (- 37229m 44s) (7500 3%) Iter 7500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl  | nDTW  | SDTW | CLS  
+----------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 13.69        | 19.46 | 39.17   | 6.57      | 1.29         | 26.67 | 81.33     | 8.36 | 10.79 | 5.12 | 23.32
+val_unseen     | 13.5         | 20.71 | 39.65   | 7.47      | 1.46         | 26.14 | 83.27     | 8.52 | 10.4  | 5.57 | 23.14
+BEST RESULT TILL NOW
+val_unseen | Iter 7500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl  | nDTW  | SDTW | CLS  
+----------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 13.69        | 19.46 | 39.17   | 6.57      | 1.29         | 26.67 | 81.33     | 8.36 | 10.79 | 5.12 | 23.32
+val_unseen     | 13.5         | 20.71 | 39.65   | 7.47      | 1.46         | 26.14 | 83.27     | 8.52 | 10.4  | 5.57 | 23.14
+
+[INFO] Training: total_actions 1, max_length 1, entropy 132292.6071, IL_loss 13.0006, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 1912m 1s (- 36328m 32s) (10000 5%) Iter 10000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 11.08        | 15.39 | 32.47   | 5.98      | 1.44         | 35.33 | 81.33     | 18.75 | 26.98 | 16.3  | 33.54
+val_unseen     | 10.76        | 15.76 | 30.62   | 5.75      | 1.65         | 40.23 | 80.84     | 21.06 | 29.03 | 19.13 | 34.89
+BEST RESULT TILL NOW
+val_unseen | Iter 10000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 11.08        | 15.39 | 32.47   | 5.98      | 1.44         | 35.33 | 81.33     | 18.75 | 26.98 | 16.3  | 33.54
+val_unseen     | 10.76        | 15.76 | 30.62   | 5.75      | 1.65         | 40.23 | 80.84     | 21.06 | 29.03 | 19.13 | 34.89
+
+[INFO] Training: total_actions 1, max_length 1, entropy 126663.4587, IL_loss 12.4925, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 2373m 24s (- 35601m 0s) (12500 6%) Iter 12500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 12.44        | 19.54 | 40.63   | 4.07      | 0.97         | 50.0  | 90.67     | 20.76 | 21.1  | 16.32 | 28.6 
+val_unseen     | 12.19        | 20.92 | 39.95   | 5.28      | 1.24         | 46.74 | 85.91     | 18.44 | 20.07 | 14.75 | 28.18
+BEST RESULT TILL NOW
+val_unseen | Iter 10000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 11.08        | 15.39 | 32.47   | 5.98      | 1.44         | 35.33 | 81.33     | 18.75 | 26.98 | 16.3  | 33.54
+val_unseen     | 10.76        | 15.76 | 30.62   | 5.75      | 1.65         | 40.23 | 80.84     | 21.06 | 29.03 | 19.13 | 34.89
+
+[INFO] Training: total_actions 1, max_length 1, entropy 124152.1462, IL_loss 12.1528, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 2838m 21s (- 35006m 27s) (15000 7%) Iter 15000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 12.96        | 19.41 | 41.01   | 4.29      | 0.72         | 50.0  | 92.67     | 16.62 | 18.01 | 12.65 | 26.26
+val_unseen     | 12.46        | 19.95 | 38.62   | 5.1       | 1.14         | 48.74 | 86.76     | 18.4  | 20.31 | 14.96 | 28.29
+BEST RESULT TILL NOW
+val_unseen | Iter 10000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 11.08        | 15.39 | 32.47   | 5.98      | 1.44         | 35.33 | 81.33     | 18.75 | 26.98 | 16.3  | 33.54
+val_unseen     | 10.76        | 15.76 | 30.62   | 5.75      | 1.65         | 40.23 | 80.84     | 21.06 | 29.03 | 19.13 | 34.89
+
+[INFO] Training: total_actions 1, max_length 1, entropy 121118.9873, IL_loss 12.0056, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 3292m 59s (- 34341m 13s) (17500 8%) Iter 17500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 11.26        | 15.58 | 32.65   | 3.53      | 0.94         | 59.33 | 91.33     | 29.13 | 31.18 | 25.82 | 36.23
+val_unseen     | 10.82        | 15.7  | 30.59   | 4.73      | 1.38         | 52.79 | 84.67     | 26.94 | 32.32 | 25.01 | 36.73
+BEST RESULT TILL NOW
+val_unseen | Iter 17500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 11.26        | 15.58 | 32.65   | 3.53      | 0.94         | 59.33 | 91.33     | 29.13 | 31.18 | 25.82 | 36.23
+val_unseen     | 10.82        | 15.7  | 30.59   | 4.73      | 1.38         | 52.79 | 84.67     | 26.94 | 32.32 | 25.01 | 36.73
+
+[INFO] Training: total_actions 1, max_length 1, entropy 119244.5634, IL_loss 11.6399, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 3718m 58s (- 33470m 42s) (20000 10%) Iter 20000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.08         | 9.69  | 20.19   | 4.36      | 1.64         | 50.67 | 82.0      | 35.41 | 47.18 | 31.04 | 47.69
+val_unseen     | 7.93         | 9.4   | 18.41   | 5.01      | 2.06         | 52.49 | 77.27     | 37.63 | 48.51 | 36.12 | 49.61
+BEST RESULT TILL NOW
+val_unseen | Iter 20000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.08         | 9.69  | 20.19   | 4.36      | 1.64         | 50.67 | 82.0      | 35.41 | 47.18 | 31.04 | 47.69
+val_unseen     | 7.93         | 9.4   | 18.41   | 5.01      | 2.06         | 52.49 | 77.27     | 37.63 | 48.51 | 36.12 | 49.61
+
+[INFO] Training: total_actions 1, max_length 1, entropy 117775.7619, IL_loss 11.4682, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 4160m 59s (- 32825m 34s) (22500 11%) Iter 22500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 9.85         | 12.78 | 26.72   | 4.44      | 1.27         | 50.67 | 86.67     | 31.57 | 39.56 | 30.47 | 42.05
+val_unseen     | 9.64         | 13.5  | 26.21   | 4.76      | 1.52         | 53.81 | 83.06     | 31.41 | 39.87 | 30.59 | 42.08
+BEST RESULT TILL NOW
+val_unseen | Iter 20000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.08         | 9.69  | 20.19   | 4.36      | 1.64         | 50.67 | 82.0      | 35.41 | 47.18 | 31.04 | 47.69
+val_unseen     | 7.93         | 9.4   | 18.41   | 5.01      | 2.06         | 52.49 | 77.27     | 37.63 | 48.51 | 36.12 | 49.61
+
+[INFO] Training: total_actions 1, max_length 1, entropy 120027.3249, IL_loss 11.7120, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 4614m 5s (- 32298m 38s) (25000 12%) Iter 25000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 11.65        | 16.09 | 33.51   | 4.28      | 0.77         | 51.33 | 92.0      | 24.44 | 29.17 | 20.91 | 35.3 
+val_unseen     | 10.94        | 15.26 | 30.1    | 4.88      | 1.21         | 50.62 | 87.31     | 25.55 | 31.78 | 23.78 | 36.76
+BEST RESULT TILL NOW
+val_unseen | Iter 20000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.08         | 9.69  | 20.19   | 4.36      | 1.64         | 50.67 | 82.0      | 35.41 | 47.18 | 31.04 | 47.69
+val_unseen     | 7.93         | 9.4   | 18.41   | 5.01      | 2.06         | 52.49 | 77.27     | 37.63 | 48.51 | 36.12 | 49.61
+
+[INFO] Training: total_actions 1, max_length 1, entropy 115344.8029, IL_loss 11.3087, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 5059m 14s (- 31735m 17s) (27500 13%) Iter 27500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.81         | 10.26 | 20.62   | 4.96      | 1.74         | 46.67 | 82.67     | 31.25 | 42.49 | 28.31 | 45.31
+val_unseen     | 8.49         | 10.07 | 19.39   | 5.2       | 1.92         | 50.53 | 80.12     | 35.55 | 45.74 | 34.14 | 47.7 
+BEST RESULT TILL NOW
+val_unseen | Iter 20000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.08         | 9.69  | 20.19   | 4.36      | 1.64         | 50.67 | 82.0      | 35.41 | 47.18 | 31.04 | 47.69
+val_unseen     | 7.93         | 9.4   | 18.41   | 5.01      | 2.06         | 52.49 | 77.27     | 37.63 | 48.51 | 36.12 | 49.61
+
+[INFO] Training: total_actions 1, max_length 1, entropy 114826.6801, IL_loss 11.2359, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 5494m 14s (- 31134m 2s) (30000 15%) Iter 30000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.83         | 10.09 | 21.09   | 3.97      | 1.82         | 58.0  | 77.33     | 40.3  | 48.47 | 36.74 | 49.29
+val_unseen     | 7.58         | 10.27 | 20.14   | 4.32      | 1.94         | 60.79 | 78.76     | 43.26 | 52.14 | 42.0  | 51.6 
+BEST RESULT TILL NOW
+val_unseen | Iter 30000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.83         | 10.09 | 21.09   | 3.97      | 1.82         | 58.0  | 77.33     | 40.3  | 48.47 | 36.74 | 49.29
+val_unseen     | 7.58         | 10.27 | 20.14   | 4.32      | 1.94         | 60.79 | 78.76     | 43.26 | 52.14 | 42.0  | 51.6 
+
+[INFO] Training: total_actions 1, max_length 1, entropy 115141.7072, IL_loss 11.2149, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 5951m 52s (- 30675m 3s) (32500 16%) Iter 32500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 11.47        | 15.81 | 33.12   | 4.22      | 1.05         | 49.33 | 88.67     | 24.66 | 29.27 | 21.54 | 35.17
+val_unseen     | 10.26        | 14.6  | 28.64   | 4.86      | 1.32         | 51.38 | 85.91     | 29.7  | 36.96 | 28.53 | 40.64
+BEST RESULT TILL NOW
+val_unseen | Iter 30000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.83         | 10.09 | 21.09   | 3.97      | 1.82         | 58.0  | 77.33     | 40.3  | 48.47 | 36.74 | 49.29
+val_unseen     | 7.58         | 10.27 | 20.14   | 4.32      | 1.94         | 60.79 | 78.76     | 43.26 | 52.14 | 42.0  | 51.6 
+
+[INFO] Training: total_actions 1, max_length 1, entropy 112502.1075, IL_loss 10.9671, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 6399m 8s (- 30167m 24s) (35000 17%) Iter 35000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 9.7          | 15.25 | 32.74   | 3.48      | 0.93         | 60.67 | 89.33     | 33.48 | 39.91 | 31.56 | 41.16
+val_unseen     | 9.28         | 15.19 | 30.06   | 4.29      | 1.34         | 59.17 | 86.8      | 35.04 | 41.7  | 33.62 | 42.77
+BEST RESULT TILL NOW
+val_unseen | Iter 30000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.83         | 10.09 | 21.09   | 3.97      | 1.82         | 58.0  | 77.33     | 40.3  | 48.47 | 36.74 | 49.29
+val_unseen     | 7.58         | 10.27 | 20.14   | 4.32      | 1.94         | 60.79 | 78.76     | 43.26 | 52.14 | 42.0  | 51.6 
+
+[INFO] Training: total_actions 1, max_length 1, entropy 110967.9131, IL_loss 10.8432, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 6844m 53s (- 29661m 12s) (37500 18%) Iter 37500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 9.54         | 13.09 | 27.68   | 3.58      | 1.23         | 59.33 | 85.33     | 31.93 | 40.58 | 29.14 | 42.36
+val_unseen     | 9.04         | 12.75 | 24.7    | 4.28      | 1.33         | 57.26 | 86.16     | 37.13 | 45.35 | 36.06 | 47.01
+BEST RESULT TILL NOW
+val_unseen | Iter 30000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.83         | 10.09 | 21.09   | 3.97      | 1.82         | 58.0  | 77.33     | 40.3  | 48.47 | 36.74 | 49.29
+val_unseen     | 7.58         | 10.27 | 20.14   | 4.32      | 1.94         | 60.79 | 78.76     | 43.26 | 52.14 | 42.0  | 51.6 
+
+[INFO] Training: total_actions 1, max_length 1, entropy 109308.8068, IL_loss 10.7029, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 7271m 6s (- 29084m 26s) (40000 20%) Iter 40000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.31         | 8.75  | 17.82   | 3.42      | 1.8          | 59.33 | 76.0      | 43.35 | 54.25 | 41.18 | 52.98
+val_unseen     | 7.12         | 9.28  | 18.04   | 4.12      | 2.07         | 63.01 | 78.42     | 46.92 | 54.99 | 44.76 | 54.44
+BEST RESULT TILL NOW
+val_unseen | Iter 40000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.31         | 8.75  | 17.82   | 3.42      | 1.8          | 59.33 | 76.0      | 43.35 | 54.25 | 41.18 | 52.98
+val_unseen     | 7.12         | 9.28  | 18.04   | 4.12      | 2.07         | 63.01 | 78.42     | 46.92 | 54.99 | 44.76 | 54.44
+
+[INFO] Training: total_actions 1, max_length 1, entropy 110763.1267, IL_loss 10.8029, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 7693m 53s (- 28512m 38s) (42500 21%) Iter 42500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.32         | 10.73 | 23.41   | 3.59      | 1.49         | 60.0  | 81.33     | 40.41 | 48.12 | 37.21 | 49.36
+val_unseen     | 8.05         | 11.34 | 22.39   | 3.92      | 1.52         | 62.28 | 84.08     | 43.97 | 51.07 | 41.73 | 51.94
+BEST RESULT TILL NOW
+val_unseen | Iter 40000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.31         | 8.75  | 17.82   | 3.42      | 1.8          | 59.33 | 76.0      | 43.35 | 54.25 | 41.18 | 52.98
+val_unseen     | 7.12         | 9.28  | 18.04   | 4.12      | 2.07         | 63.01 | 78.42     | 46.92 | 54.99 | 44.76 | 54.44
+
+[INFO] Training: total_actions 1, max_length 1, entropy 109718.9049, IL_loss 10.6815, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 8119m 38s (- 27967m 37s) (45000 22%) Iter 45000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 9.88         | 13.65 | 28.9    | 3.97      | 1.28         | 52.67 | 85.33     | 32.25 | 37.28 | 29.72 | 41.13
+val_unseen     | 9.32         | 13.33 | 26.36   | 4.11      | 1.21         | 60.58 | 87.95     | 37.72 | 43.36 | 35.71 | 45.75
+BEST RESULT TILL NOW
+val_unseen | Iter 40000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.31         | 8.75  | 17.82   | 3.42      | 1.8          | 59.33 | 76.0      | 43.35 | 54.25 | 41.18 | 52.98
+val_unseen     | 7.12         | 9.28  | 18.04   | 4.12      | 2.07         | 63.01 | 78.42     | 46.92 | 54.99 | 44.76 | 54.44
+
+[INFO] Training: total_actions 1, max_length 1, entropy 106864.1665, IL_loss 10.3888, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 8537m 26s (- 27409m 41s) (47500 23%) Iter 47500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.53         | 10.69 | 22.38   | 3.22      | 1.28         | 64.0  | 84.0      | 41.22 | 47.57 | 39.14 | 48.42
+val_unseen     | 8.21         | 10.96 | 21.36   | 3.98      | 1.49         | 64.15 | 84.97     | 43.67 | 50.86 | 42.29 | 51.11
+BEST RESULT TILL NOW
+val_unseen | Iter 40000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.31         | 8.75  | 17.82   | 3.42      | 1.8          | 59.33 | 76.0      | 43.35 | 54.25 | 41.18 | 52.98
+val_unseen     | 7.12         | 9.28  | 18.04   | 4.12      | 2.07         | 63.01 | 78.42     | 46.92 | 54.99 | 44.76 | 54.44
+
+[INFO] Training: total_actions 1, max_length 1, entropy 105134.3941, IL_loss 10.3112, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 8951m 53s (- 26855m 41s) (50000 25%) Iter 50000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.14         | 10.05 | 20.67   | 3.54      | 1.44         | 59.33 | 80.67     | 42.42 | 50.47 | 38.71 | 51.56
+val_unseen     | 7.73         | 9.94  | 19.23   | 3.93      | 1.65         | 64.54 | 83.7      | 47.51 | 53.82 | 45.27 | 54.3 
+BEST RESULT TILL NOW
+val_unseen | Iter 50000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.14         | 10.05 | 20.67   | 3.54      | 1.44         | 59.33 | 80.67     | 42.42 | 50.47 | 38.71 | 51.56
+val_unseen     | 7.73         | 9.94  | 19.23   | 3.93      | 1.65         | 64.54 | 83.7      | 47.51 | 53.82 | 45.27 | 54.3 
+
+[INFO] Training: total_actions 1, max_length 1, entropy 105781.1063, IL_loss 10.2467, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 9376m 31s (- 26343m 33s) (52500 26%) Iter 52500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 9.35         | 12.49 | 27.01   | 3.38      | 1.03         | 58.0  | 88.0      | 35.73 | 43.42 | 32.77 | 46.09
+val_unseen     | 8.87         | 12.12 | 23.86   | 3.84      | 1.23         | 63.22 | 88.21     | 40.76 | 46.9  | 38.88 | 48.34
+BEST RESULT TILL NOW
+val_unseen | Iter 50000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.14         | 10.05 | 20.67   | 3.54      | 1.44         | 59.33 | 80.67     | 42.42 | 50.47 | 38.71 | 51.56
+val_unseen     | 7.73         | 9.94  | 19.23   | 3.93      | 1.65         | 64.54 | 83.7      | 47.51 | 53.82 | 45.27 | 54.3 
+
+[INFO] Training: total_actions 1, max_length 1, entropy 106591.2657, IL_loss 10.4099, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 9821m 39s (- 25893m 27s) (55000 27%) Iter 55000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 10.2         | 13.75 | 28.85   | 4.05      | 1.02         | 56.0  | 88.0      | 34.03 | 38.35 | 31.87 | 41.99
+val_unseen     | 9.17         | 12.09 | 23.59   | 4.45      | 1.44         | 58.07 | 83.87     | 35.35 | 43.62 | 34.74 | 45.29
+BEST RESULT TILL NOW
+val_unseen | Iter 50000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.14         | 10.05 | 20.67   | 3.54      | 1.44         | 59.33 | 80.67     | 42.42 | 50.47 | 38.71 | 51.56
+val_unseen     | 7.73         | 9.94  | 19.23   | 3.93      | 1.65         | 64.54 | 83.7      | 47.51 | 53.82 | 45.27 | 54.3 
+
+[INFO] Training: total_actions 1, max_length 1, entropy 105064.9653, IL_loss 10.2163, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 10270m 50s (- 25453m 49s) (57500 28%) Iter 57500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 9.95         | 13.91 | 29.26   | 3.25      | 0.99         | 64.0  | 88.0      | 34.85 | 38.55 | 31.49 | 41.49
+val_unseen     | 9.29         | 13.43 | 26.48   | 4.23      | 1.2          | 60.79 | 87.65     | 36.83 | 43.74 | 35.7  | 45.47
+BEST RESULT TILL NOW
+val_unseen | Iter 50000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.14         | 10.05 | 20.67   | 3.54      | 1.44         | 59.33 | 80.67     | 42.42 | 50.47 | 38.71 | 51.56
+val_unseen     | 7.73         | 9.94  | 19.23   | 3.93      | 1.65         | 64.54 | 83.7      | 47.51 | 53.82 | 45.27 | 54.3 
+
+[INFO] Training: total_actions 1, max_length 1, entropy 103799.3370, IL_loss 10.0876, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 10705m 47s (- 24980m 10s) (60000 30%) Iter 60000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.21         | 8.55  | 17.9    | 3.38      | 1.57         | 62.67 | 80.0      | 47.96 | 57.24 | 45.35 | 55.66
+val_unseen     | 7.27         | 9.61  | 18.71   | 3.93      | 1.74         | 65.82 | 82.5      | 50.3  | 56.66 | 47.98 | 56.13
+BEST RESULT TILL NOW
+val_unseen | Iter 60000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.21         | 8.55  | 17.9    | 3.38      | 1.57         | 62.67 | 80.0      | 47.96 | 57.24 | 45.35 | 55.66
+val_unseen     | 7.27         | 9.61  | 18.71   | 3.93      | 1.74         | 65.82 | 82.5      | 50.3  | 56.66 | 47.98 | 56.13
+
+[INFO] Training: total_actions 1, max_length 1, entropy 104055.8439, IL_loss 10.1235, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 11136m 0s (- 24499m 13s) (62500 31%) Iter 62500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.21         | 8.03  | 16.6    | 3.9       | 1.65         | 59.33 | 80.0      | 46.0  | 54.33 | 42.37 | 54.14
+val_unseen     | 7.24         | 8.63  | 16.69   | 4.12      | 1.67         | 61.77 | 81.78     | 47.01 | 56.86 | 45.58 | 56.29
+BEST RESULT TILL NOW
+val_unseen | Iter 60000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.21         | 8.55  | 17.9    | 3.38      | 1.57         | 62.67 | 80.0      | 47.96 | 57.24 | 45.35 | 55.66
+val_unseen     | 7.27         | 9.61  | 18.71   | 3.93      | 1.74         | 65.82 | 82.5      | 50.3  | 56.66 | 47.98 | 56.13
+
+[INFO] Training: total_actions 1, max_length 1, entropy 103841.6911, IL_loss 10.1142, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 11563m 48s (- 24017m 8s) (65000 32%) Iter 65000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.93         | 7.83  | 16.32   | 3.69      | 1.48         | 59.33 | 81.33     | 47.92 | 59.47 | 45.87 | 58.76
+val_unseen     | 7.19         | 8.63  | 16.73   | 4.18      | 1.87         | 64.11 | 81.06     | 49.7  | 56.27 | 47.13 | 56.11
+BEST RESULT TILL NOW
+val_unseen | Iter 60000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.21         | 8.55  | 17.9    | 3.38      | 1.57         | 62.67 | 80.0      | 47.96 | 57.24 | 45.35 | 55.66
+val_unseen     | 7.27         | 9.61  | 18.71   | 3.93      | 1.74         | 65.82 | 82.5      | 50.3  | 56.66 | 47.98 | 56.13
+
+[INFO] Training: total_actions 1, max_length 1, entropy 104126.9839, IL_loss 10.0792, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 11986m 11s (- 23528m 26s) (67500 33%) Iter 67500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.29         | 8.42  | 17.25   | 3.32      | 1.57         | 65.33 | 79.33     | 50.48 | 58.37 | 47.44 | 57.52
+val_unseen     | 7.35         | 8.87  | 17.21   | 3.82      | 1.69         | 67.35 | 83.01     | 51.48 | 57.45 | 48.96 | 57.28
+BEST RESULT TILL NOW
+val_unseen | Iter 67500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.29         | 8.42  | 17.25   | 3.32      | 1.57         | 65.33 | 79.33     | 50.48 | 58.37 | 47.44 | 57.52
+val_unseen     | 7.35         | 8.87  | 17.21   | 3.82      | 1.69         | 67.35 | 83.01     | 51.48 | 57.45 | 48.96 | 57.28
+
+[INFO] Training: total_actions 1, max_length 1, entropy 102779.2180, IL_loss 10.0413, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 12425m 35s (- 23076m 5s) (70000 35%) Iter 70000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.49         | 12.16 | 27.0    | 3.4       | 1.23         | 60.67 | 84.0      | 39.61 | 48.24 | 38.24 | 48.94
+val_unseen     | 8.05         | 12.16 | 24.44   | 3.75      | 1.4          | 65.82 | 85.4      | 45.25 | 50.78 | 42.93 | 50.98
+BEST RESULT TILL NOW
+val_unseen | Iter 67500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.29         | 8.42  | 17.25   | 3.32      | 1.57         | 65.33 | 79.33     | 50.48 | 58.37 | 47.44 | 57.52
+val_unseen     | 7.35         | 8.87  | 17.21   | 3.82      | 1.69         | 67.35 | 83.01     | 51.48 | 57.45 | 48.96 | 57.28
+
+[INFO] Training: total_actions 1, max_length 1, entropy 101387.4325, IL_loss 9.7948, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 12849m 56s (- 22598m 11s) (72500 36%) Iter 72500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.03         | 9.96  | 20.96   | 3.22      | 1.15         | 65.33 | 85.33     | 46.8  | 54.51 | 45.15 | 53.41
+val_unseen     | 7.74         | 9.97  | 19.61   | 3.9       | 1.54         | 64.37 | 83.14     | 46.49 | 54.14 | 45.27 | 53.95
+BEST RESULT TILL NOW
+val_unseen | Iter 67500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.29         | 8.42  | 17.25   | 3.32      | 1.57         | 65.33 | 79.33     | 50.48 | 58.37 | 47.44 | 57.52
+val_unseen     | 7.35         | 8.87  | 17.21   | 3.82      | 1.69         | 67.35 | 83.01     | 51.48 | 57.45 | 48.96 | 57.28
+
+[INFO] Training: total_actions 1, max_length 1, entropy 100721.4493, IL_loss 9.8147, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 13244m 25s (- 22074m 3s) (75000 37%) Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 102327.2580, IL_loss 9.9053, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 13670m 15s (- 21607m 49s) (77500 38%) Iter 77500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.0          | 10.43 | 21.95   | 2.93      | 1.14         | 66.67 | 86.67     | 48.34 | 53.49 | 45.19 | 54.51
+val_unseen     | 7.7          | 10.72 | 21.14   | 3.55      | 1.42         | 68.16 | 85.65     | 49.65 | 55.77 | 47.82 | 55.31
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 100092.2943, IL_loss 9.6608, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 14088m 24s (- 21132m 37s) (80000 40%) Iter 80000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.72         | 9.23  | 19.4    | 3.18      | 1.14         | 63.33 | 86.67     | 47.1  | 55.33 | 44.44 | 54.45
+val_unseen     | 7.4          | 9.04  | 17.69   | 3.83      | 1.54         | 65.94 | 84.25     | 49.43 | 56.85 | 47.85 | 56.31
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 98586.4119, IL_loss 9.5338, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 14535m 14s (- 20701m 42s) (82500 41%) Iter 82500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 9.96         | 13.63 | 29.6    | 3.24      | 0.7          | 58.67 | 94.0      | 36.72 | 42.25 | 34.82 | 45.07
+val_unseen     | 9.76         | 13.87 | 27.86   | 4.13      | 1.02         | 58.62 | 89.06     | 35.02 | 41.78 | 33.95 | 44.07
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 99393.0786, IL_loss 9.6377, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 14977m 33s (- 20263m 45s) (85000 42%) Iter 85000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 9.47         | 13.41 | 29.21   | 3.31      | 1.07         | 62.67 | 85.33     | 38.12 | 44.58 | 36.63 | 45.89
+val_unseen     | 9.03         | 13.8  | 27.82   | 3.66      | 1.16         | 66.92 | 88.25     | 42.43 | 46.65 | 40.5  | 47.65
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 98257.1450, IL_loss 9.5140, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 15404m 59s (- 19806m 25s) (87500 43%) Iter 87500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.39         | 10.67 | 22.16   | 3.17      | 1.05         | 66.67 | 86.0      | 46.61 | 52.48 | 44.21 | 53.69
+val_unseen     | 7.98         | 10.12 | 19.87   | 3.73      | 1.43         | 64.88 | 85.48     | 46.29 | 54.07 | 44.85 | 54.37
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 97014.3427, IL_loss 9.4506, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 15827m 33s (- 19344m 48s) (90000 45%) Iter 90000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.94         | 7.68  | 16.2    | 3.58      | 1.3          | 60.67 | 84.67     | 47.47 | 60.28 | 46.31 | 57.58
+val_unseen     | 7.48         | 9.48  | 18.89   | 3.87      | 1.45         | 62.92 | 84.5      | 46.74 | 56.57 | 45.74 | 55.41
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 97189.6224, IL_loss 9.4191, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 16250m 35s (- 18885m 49s) (92500 46%) Iter 92500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.72         | 8.96  | 18.76   | 3.34      | 1.2          | 65.33 | 84.67     | 47.22 | 54.72 | 45.34 | 55.02
+val_unseen     | 7.31         | 8.81  | 17.56   | 3.66      | 1.45         | 65.77 | 84.29     | 49.1  | 58.17 | 48.26 | 57.28
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 98821.9835, IL_loss 9.6532, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 16676m 12s (- 18431m 35s) (95000 47%) Iter 95000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.63         | 7.36  | 15.59   | 2.74      | 1.47         | 69.33 | 80.67     | 55.89 | 64.74 | 53.89 | 62.02
+val_unseen     | 6.91         | 8.67  | 17.03   | 3.48      | 1.65         | 68.75 | 82.76     | 53.96 | 60.25 | 51.33 | 59.59
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 96686.8999, IL_loss 9.4025, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 17088m 34s (- 17964m 55s) (97500 48%) Iter 97500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.33         | 8.71  | 18.31   | 3.27      | 1.26         | 65.33 | 84.67     | 49.1  | 57.92 | 47.58 | 56.56
+val_unseen     | 6.99         | 8.36  | 16.42   | 3.66      | 1.65         | 67.73 | 83.14     | 52.28 | 59.45 | 50.45 | 58.54
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 97965.3829, IL_loss 9.5084, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 17494m 8s (- 17494m 8s) (100000 50%) Iter 100000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.68         | 8.92  | 18.98   | 3.12      | 1.02         | 63.33 | 88.0      | 47.89 | 56.22 | 45.76 | 56.27
+val_unseen     | 7.5          | 8.97  | 17.79   | 3.7       | 1.43         | 66.71 | 85.36     | 50.58 | 57.83 | 49.08 | 57.31
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 95673.2654, IL_loss 9.2412, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 17887m 56s (- 17015m 22s) (102500 51%) Iter 102500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.09         | 10.13 | 21.54   | 3.72      | 1.1          | 57.33 | 86.67     | 40.73 | 50.89 | 38.22 | 51.39
+val_unseen     | 7.97         | 10.54 | 20.78   | 3.89      | 1.26         | 61.64 | 86.42     | 43.29 | 53.68 | 42.3  | 53.3 
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 93587.8144, IL_loss 9.1232, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 18275m 13s (- 16534m 43s) (105000 52%) Iter 105000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.13         | 7.9   | 16.01   | 3.18      | 1.29         | 66.0  | 83.33     | 51.46 | 61.8  | 50.0  | 59.46
+val_unseen     | 6.91         | 7.74  | 15.15   | 3.82      | 1.68         | 64.88 | 82.5      | 50.22 | 59.69 | 48.99 | 58.0 
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 96524.7913, IL_loss 9.4067, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 18676m 39s (- 16070m 37s) (107500 53%) Iter 107500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.96         | 8.06  | 16.59   | 2.91      | 1.24         | 66.67 | 82.67     | 49.87 | 60.75 | 47.55 | 59.62
+val_unseen     | 6.7          | 7.87  | 15.35   | 3.65      | 1.75         | 68.33 | 81.95     | 53.4  | 61.14 | 52.07 | 59.24
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 94164.6981, IL_loss 9.1831, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 19080m 13s (- 15611m 5s) (110000 55%) Iter 110000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.49         | 7.46  | 15.98   | 3.19      | 1.31         | 64.0  | 84.0      | 51.37 | 62.77 | 48.8  | 60.16
+val_unseen     | 6.72         | 8.16  | 16.35   | 3.56      | 1.63         | 69.09 | 83.57     | 53.74 | 61.15 | 52.36 | 59.06
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 95422.9569, IL_loss 9.2911, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 19482m 30s (- 15153m 3s) (112500 56%) Iter 112500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.58         | 7.31  | 15.67   | 2.85      | 1.23         | 66.0  | 84.0      | 52.71 | 64.39 | 51.02 | 61.48
+val_unseen     | 6.92         | 8.44  | 17.19   | 3.41      | 1.45         | 69.43 | 85.53     | 52.98 | 60.93 | 51.69 | 58.42
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 94619.4010, IL_loss 9.1370, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 19894m 14s (- 14704m 26s) (115000 57%) Iter 115000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.79         | 10.33 | 22.74   | 2.56      | 1.16         | 72.67 | 85.33     | 51.5  | 56.05 | 48.59 | 55.45
+val_unseen     | 7.46         | 10.27 | 20.79   | 3.4       | 1.48         | 69.31 | 85.4      | 51.38 | 56.2  | 48.36 | 56.1 
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 91998.4720, IL_loss 8.9580, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 20295m 41s (- 14250m 9s) (117500 58%) Iter 117500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.64         | 8.95  | 19.28   | 3.21      | 1.01         | 62.67 | 87.33     | 46.12 | 56.59 | 43.44 | 57.47
+val_unseen     | 7.42         | 9.16  | 18.4    | 3.76      | 1.47         | 65.05 | 84.42     | 48.99 | 56.8  | 47.36 | 56.36
+BEST RESULT TILL NOW
+val_unseen | Iter 75000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.47         | 6.04  | 12.29   | 3.26      | 2.16         | 59.33 | 67.33     | 54.26 | 68.7  | 50.68 | 65.89
+val_unseen     | 5.47         | 6.17  | 12.01   | 3.87      | 2.55         | 64.28 | 70.58     | 55.93 | 65.11 | 52.2  | 63.09
+
+[INFO] Training: total_actions 1, max_length 1, entropy 91613.4170, IL_loss 8.9489, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 20691m 48s (- 13794m 32s) (120000 60%) Iter 120000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.79         | 7.79  | 15.95   | 2.61      | 1.13         | 74.0  | 87.33     | 58.99 | 65.35 | 55.11 | 64.34
+val_unseen     | 6.87         | 8.39  | 16.35   | 3.29      | 1.57         | 71.78 | 84.89     | 56.8  | 62.08 | 54.07 | 61.17
+BEST RESULT TILL NOW
+val_unseen | Iter 120000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.79         | 7.79  | 15.95   | 2.61      | 1.13         | 74.0  | 87.33     | 58.99 | 65.35 | 55.11 | 64.34
+val_unseen     | 6.87         | 8.39  | 16.35   | 3.29      | 1.57         | 71.78 | 84.89     | 56.8  | 62.08 | 54.07 | 61.17
+
+[INFO] Training: total_actions 1, max_length 1, entropy 92841.0990, IL_loss 9.0095, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 21091m 5s (- 13343m 20s) (122500 61%) Iter 122500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.93         | 7.87  | 16.84   | 2.62      | 1.05         | 72.0  | 86.67     | 58.57 | 65.04 | 56.1  | 63.25
+val_unseen     | 6.67         | 7.72  | 15.31   | 3.47      | 1.7          | 68.67 | 82.16     | 55.05 | 61.97 | 52.67 | 60.99
+BEST RESULT TILL NOW
+val_unseen | Iter 120000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.79         | 7.79  | 15.95   | 2.61      | 1.13         | 74.0  | 87.33     | 58.99 | 65.35 | 55.11 | 64.34
+val_unseen     | 6.87         | 8.39  | 16.35   | 3.29      | 1.57         | 71.78 | 84.89     | 56.8  | 62.08 | 54.07 | 61.17
+
+[INFO] Training: total_actions 1, max_length 1, entropy 93828.2260, IL_loss 9.1300, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 21493m 24s (- 12896m 2s) (125000 62%) Iter 125000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.43         | 7.25  | 14.65   | 2.54      | 1.21         | 69.33 | 83.33     | 56.95 | 67.89 | 54.73 | 65.78
+val_unseen     | 6.62         | 7.8   | 15.03   | 3.4       | 1.68         | 69.86 | 82.84     | 55.69 | 62.46 | 53.41 | 61.28
+BEST RESULT TILL NOW
+val_unseen | Iter 120000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.79         | 7.79  | 15.95   | 2.61      | 1.13         | 74.0  | 87.33     | 58.99 | 65.35 | 55.11 | 64.34
+val_unseen     | 6.87         | 8.39  | 16.35   | 3.29      | 1.57         | 71.78 | 84.89     | 56.8  | 62.08 | 54.07 | 61.17
+
+[INFO] Training: total_actions 1, max_length 1, entropy 93136.0687, IL_loss 9.0121, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 21904m 0s (- 12455m 13s) (127500 63%) Iter 127500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.01         | 7.97  | 16.67   | 2.85      | 1.1          | 68.67 | 86.67     | 54.09 | 62.51 | 51.45 | 61.4 
+val_unseen     | 7.08         | 8.46  | 16.6    | 3.5       | 1.47         | 69.31 | 84.25     | 53.31 | 60.48 | 51.78 | 59.34
+BEST RESULT TILL NOW
+val_unseen | Iter 120000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.79         | 7.79  | 15.95   | 2.61      | 1.13         | 74.0  | 87.33     | 58.99 | 65.35 | 55.11 | 64.34
+val_unseen     | 6.87         | 8.39  | 16.35   | 3.29      | 1.57         | 71.78 | 84.89     | 56.8  | 62.08 | 54.07 | 61.17
+
+[INFO] Training: total_actions 1, max_length 1, entropy 90537.8499, IL_loss 8.8654, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 22316m 4s (- 12016m 20s) (130000 65%) Iter 130000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.26         | 8.75  | 18.61   | 2.8       | 0.99         | 70.67 | 88.67     | 55.05 | 62.26 | 52.9  | 60.36
+val_unseen     | 7.39         | 9.36  | 18.69   | 3.55      | 1.46         | 68.62 | 84.46     | 50.88 | 57.34 | 49.52 | 56.19
+BEST RESULT TILL NOW
+val_unseen | Iter 120000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.79         | 7.79  | 15.95   | 2.61      | 1.13         | 74.0  | 87.33     | 58.99 | 65.35 | 55.11 | 64.34
+val_unseen     | 6.87         | 8.39  | 16.35   | 3.29      | 1.57         | 71.78 | 84.89     | 56.8  | 62.08 | 54.07 | 61.17
+
+[INFO] Training: total_actions 1, max_length 1, entropy 92060.5089, IL_loss 8.9300, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 22705m 40s (- 11567m 2s) (132500 66%) Iter 132500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.49         | 7.25  | 14.99   | 3.03      | 1.32         | 69.33 | 83.33     | 57.13 | 66.27 | 54.46 | 63.98
+val_unseen     | 6.55         | 7.7   | 15.04   | 3.5       | 1.73         | 69.14 | 81.4      | 54.68 | 62.57 | 53.11 | 60.58
+BEST RESULT TILL NOW
+val_unseen | Iter 120000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.79         | 7.79  | 15.95   | 2.61      | 1.13         | 74.0  | 87.33     | 58.99 | 65.35 | 55.11 | 64.34
+val_unseen     | 6.87         | 8.39  | 16.35   | 3.29      | 1.57         | 71.78 | 84.89     | 56.8  | 62.08 | 54.07 | 61.17
+
+[INFO] Training: total_actions 1, max_length 1, entropy 89716.5889, IL_loss 8.7801, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 23104m 41s (- 11124m 28s) (135000 67%) Iter 135000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.89         | 8.11  | 17.25   | 2.9       | 1.22         | 70.67 | 84.67     | 55.24 | 63.14 | 54.16 | 60.58
+val_unseen     | 6.74         | 8.26  | 16.32   | 3.3       | 1.61         | 70.33 | 82.76     | 54.88 | 62.03 | 53.09 | 60.01
+BEST RESULT TILL NOW
+val_unseen | Iter 120000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.79         | 7.79  | 15.95   | 2.61      | 1.13         | 74.0  | 87.33     | 58.99 | 65.35 | 55.11 | 64.34
+val_unseen     | 6.87         | 8.39  | 16.35   | 3.29      | 1.57         | 71.78 | 84.89     | 56.8  | 62.08 | 54.07 | 61.17
+
+[INFO] Training: total_actions 1, max_length 1, entropy 89676.7134, IL_loss 8.6762, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 23514m 14s (- 10688m 17s) (137500 68%) Iter 137500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 8.05         | 9.7   | 20.44   | 3.03      | 1.04         | 66.0  | 85.33     | 48.93 | 57.88 | 49.09 | 57.17
+val_unseen     | 7.8          | 9.89  | 19.52   | 3.45      | 1.23         | 67.05 | 87.19     | 48.63 | 55.78 | 47.25 | 55.5 
+BEST RESULT TILL NOW
+val_unseen | Iter 120000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.79         | 7.79  | 15.95   | 2.61      | 1.13         | 74.0  | 87.33     | 58.99 | 65.35 | 55.11 | 64.34
+val_unseen     | 6.87         | 8.39  | 16.35   | 3.29      | 1.57         | 71.78 | 84.89     | 56.8  | 62.08 | 54.07 | 61.17
+
+[INFO] Training: total_actions 1, max_length 1, entropy 91162.9730, IL_loss 8.9087, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 23918m 40s (- 10250m 51s) (140000 70%) Iter 140000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.77         | 9.5   | 19.86   | 3.24      | 1.27         | 66.67 | 83.33     | 52.69 | 59.14 | 50.71 | 58.96
+val_unseen     | 7.59         | 9.79  | 19.32   | 3.26      | 1.37         | 69.86 | 85.99     | 53.34 | 57.79 | 50.13 | 58.26
+BEST RESULT TILL NOW
+val_unseen | Iter 120000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.79         | 7.79  | 15.95   | 2.61      | 1.13         | 74.0  | 87.33     | 58.99 | 65.35 | 55.11 | 64.34
+val_unseen     | 6.87         | 8.39  | 16.35   | 3.29      | 1.57         | 71.78 | 84.89     | 56.8  | 62.08 | 54.07 | 61.17
+
+[INFO] Training: total_actions 1, max_length 1, entropy 93364.8744, IL_loss 9.0579, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 24334m 25s (- 9819m 9s) (142500 71%) Iter 142500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.2          | 8.68  | 18.87   | 3.09      | 1.39         | 72.0  | 83.33     | 55.69 | 59.84 | 52.92 | 58.33
+val_unseen     | 6.83         | 8.51  | 17.21   | 3.49      | 1.7          | 69.01 | 82.08     | 54.07 | 59.54 | 51.38 | 58.77
+BEST RESULT TILL NOW
+val_unseen | Iter 120000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.79         | 7.79  | 15.95   | 2.61      | 1.13         | 74.0  | 87.33     | 58.99 | 65.35 | 55.11 | 64.34
+val_unseen     | 6.87         | 8.39  | 16.35   | 3.29      | 1.57         | 71.78 | 84.89     | 56.8  | 62.08 | 54.07 | 61.17
+
+[INFO] Training: total_actions 1, max_length 1, entropy 92665.6044, IL_loss 8.9634, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 24745m 6s (- 9386m 4s) (145000 72%) Iter 145000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.17         | 7.04  | 15.26   | 3.02      | 1.48         | 70.67 | 80.67     | 60.18 | 67.61 | 57.61 | 64.79
+val_unseen     | 6.31         | 7.74  | 15.46   | 3.24      | 1.72         | 71.14 | 81.86     | 57.14 | 63.68 | 54.48 | 61.49
+BEST RESULT TILL NOW
+val_unseen | Iter 145000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.17         | 7.04  | 15.26   | 3.02      | 1.48         | 70.67 | 80.67     | 60.18 | 67.61 | 57.61 | 64.79
+val_unseen     | 6.31         | 7.74  | 15.46   | 3.24      | 1.72         | 71.14 | 81.86     | 57.14 | 63.68 | 54.48 | 61.49
+
+[INFO] Training: total_actions 1, max_length 1, entropy 88923.0721, IL_loss 8.6925, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 25160m 28s (- 8955m 25s) (147500 73%) Iter 147500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.35         | 9.13  | 19.39   | 2.98      | 1.19         | 67.33 | 84.67     | 52.59 | 60.37 | 51.15 | 58.68
+val_unseen     | 7.38         | 9.53  | 18.71   | 3.27      | 1.36         | 71.05 | 86.21     | 54.71 | 59.56 | 52.45 | 59.19
+BEST RESULT TILL NOW
+val_unseen | Iter 145000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.17         | 7.04  | 15.26   | 3.02      | 1.48         | 70.67 | 80.67     | 60.18 | 67.61 | 57.61 | 64.79
+val_unseen     | 6.31         | 7.74  | 15.46   | 3.24      | 1.72         | 71.14 | 81.86     | 57.14 | 63.68 | 54.48 | 61.49
+
+[INFO] Training: total_actions 1, max_length 1, entropy 90619.6407, IL_loss 8.8697, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 25570m 42s (- 8523m 34s) (150000 75%) Iter 150000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.87         | 7.67  | 15.87   | 3.28      | 1.36         | 66.0  | 82.0      | 54.56 | 63.01 | 52.42 | 62.24
+val_unseen     | 6.73         | 7.84  | 15.14   | 3.32      | 1.57         | 70.63 | 82.89     | 56.78 | 63.16 | 54.88 | 61.78
+BEST RESULT TILL NOW
+val_unseen | Iter 145000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.17         | 7.04  | 15.26   | 3.02      | 1.48         | 70.67 | 80.67     | 60.18 | 67.61 | 57.61 | 64.79
+val_unseen     | 6.31         | 7.74  | 15.46   | 3.24      | 1.72         | 71.14 | 81.86     | 57.14 | 63.68 | 54.48 | 61.49
+
+[INFO] Training: total_actions 1, max_length 1, entropy 91534.8338, IL_loss 8.9387, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 25980m 8s (- 8092m 10s) (152500 76%) Iter 152500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.19         | 6.81  | 13.96   | 3.08      | 1.46         | 66.67 | 80.67     | 56.88 | 67.56 | 55.3  | 65.98
+val_unseen     | 6.51         | 7.7   | 14.83   | 3.11      | 1.56         | 73.05 | 83.52     | 59.39 | 65.25 | 57.12 | 64.01
+BEST RESULT TILL NOW
+val_unseen | Iter 152500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.19         | 6.81  | 13.96   | 3.08      | 1.46         | 66.67 | 80.67     | 56.88 | 67.56 | 55.3  | 65.98
+val_unseen     | 6.51         | 7.7   | 14.83   | 3.11      | 1.56         | 73.05 | 83.52     | 59.39 | 65.25 | 57.12 | 64.01
+
+[INFO] Training: total_actions 1, max_length 1, entropy 90025.3698, IL_loss 8.6773, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 26391m 13s (- 7661m 58s) (155000 77%) Iter 155000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.85         | 8.35  | 17.45   | 2.52      | 1.14         | 70.67 | 86.67     | 56.62 | 64.66 | 54.37 | 62.88
+val_unseen     | 7.04         | 9.12  | 17.69   | 2.99      | 1.43         | 73.69 | 85.91     | 56.47 | 61.2  | 53.81 | 60.33
+BEST RESULT TILL NOW
+val_unseen | Iter 152500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.19         | 6.81  | 13.96   | 3.08      | 1.46         | 66.67 | 80.67     | 56.88 | 67.56 | 55.3  | 65.98
+val_unseen     | 6.51         | 7.7   | 14.83   | 3.11      | 1.56         | 73.05 | 83.52     | 59.39 | 65.25 | 57.12 | 64.01
+
+[INFO] Training: total_actions 1, max_length 1, entropy 87865.0177, IL_loss 8.5132, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 26809m 59s (- 7234m 26s) (157500 78%) Iter 157500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.27         | 8.65  | 18.72   | 2.86      | 0.96         | 69.33 | 90.67     | 52.81 | 60.55 | 49.76 | 59.22
+val_unseen     | 7.3          | 9.16  | 18.38   | 3.25      | 1.31         | 69.73 | 87.48     | 53.01 | 58.8  | 50.39 | 58.38
+BEST RESULT TILL NOW
+val_unseen | Iter 152500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.19         | 6.81  | 13.96   | 3.08      | 1.46         | 66.67 | 80.67     | 56.88 | 67.56 | 55.3  | 65.98
+val_unseen     | 6.51         | 7.7   | 14.83   | 3.11      | 1.56         | 73.05 | 83.52     | 59.39 | 65.25 | 57.12 | 64.01
+
+[INFO] Training: total_actions 1, max_length 1, entropy 89113.4882, IL_loss 8.6569, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 27222m 50s (- 6805m 42s) (160000 80%) Iter 160000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.61         | 7.58  | 15.46   | 2.88      | 1.15         | 68.67 | 85.33     | 54.08 | 67.65 | 54.17 | 64.76
+val_unseen     | 6.67         | 7.86  | 15.17   | 3.14      | 1.43         | 72.58 | 85.1      | 57.13 | 64.17 | 55.81 | 61.92
+BEST RESULT TILL NOW
+val_unseen | Iter 152500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.19         | 6.81  | 13.96   | 3.08      | 1.46         | 66.67 | 80.67     | 56.88 | 67.56 | 55.3  | 65.98
+val_unseen     | 6.51         | 7.7   | 14.83   | 3.11      | 1.56         | 73.05 | 83.52     | 59.39 | 65.25 | 57.12 | 64.01
+
+[INFO] Training: total_actions 1, max_length 1, entropy 90271.1989, IL_loss 8.7483, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 27629m 7s (- 6375m 57s) (162500 81%) Iter 162500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.63         | 7.28  | 15.13   | 2.65      | 1.08         | 69.33 | 86.0      | 54.74 | 65.78 | 53.32 | 63.71
+val_unseen     | 6.77         | 7.75  | 15.11   | 3.4       | 1.52         | 68.75 | 83.65     | 54.6  | 62.39 | 53.11 | 60.89
+BEST RESULT TILL NOW
+val_unseen | Iter 152500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.19         | 6.81  | 13.96   | 3.08      | 1.46         | 66.67 | 80.67     | 56.88 | 67.56 | 55.3  | 65.98
+val_unseen     | 6.51         | 7.7   | 14.83   | 3.11      | 1.56         | 73.05 | 83.52     | 59.39 | 65.25 | 57.12 | 64.01
+
+[INFO] Training: total_actions 1, max_length 1, entropy 88303.6746, IL_loss 8.6051, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 28030m 55s (- 5945m 57s) (165000 82%) Iter 165000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS 
+-----------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.22         | 8.98  | 19.23   | 2.54      | 1.05         | 72.0  | 85.33     | 54.63 | 61.15 | 52.11 | 60.5
+val_unseen     | 7.32         | 9.4   | 18.65   | 3.29      | 1.45         | 70.67 | 84.33     | 53.76 | 58.7  | 51.41 | 58.1
+BEST RESULT TILL NOW
+val_unseen | Iter 152500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.19         | 6.81  | 13.96   | 3.08      | 1.46         | 66.67 | 80.67     | 56.88 | 67.56 | 55.3  | 65.98
+val_unseen     | 6.51         | 7.7   | 14.83   | 3.11      | 1.56         | 73.05 | 83.52     | 59.39 | 65.25 | 57.12 | 64.01
+
+[INFO] Training: total_actions 1, max_length 1, entropy 89762.6733, IL_loss 8.6979, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 28436m 56s (- 5517m 36s) (167500 83%) Iter 167500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.61         | 7.77  | 16.75   | 2.58      | 1.12         | 74.0  | 86.67     | 61.93 | 67.39 | 59.22 | 65.35
+val_unseen     | 6.79         | 8.45  | 16.96   | 3.12      | 1.46         | 72.92 | 85.01     | 56.9  | 62.59 | 54.8  | 61.24
+BEST RESULT TILL NOW
+val_unseen | Iter 152500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.19         | 6.81  | 13.96   | 3.08      | 1.46         | 66.67 | 80.67     | 56.88 | 67.56 | 55.3  | 65.98
+val_unseen     | 6.51         | 7.7   | 14.83   | 3.11      | 1.56         | 73.05 | 83.52     | 59.39 | 65.25 | 57.12 | 64.01
+
+[INFO] Training: total_actions 1, max_length 1, entropy 88744.6067, IL_loss 8.6102, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 28839m 9s (- 5089m 15s) (170000 85%) Iter 170000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.59         | 7.65  | 15.83   | 3.01      | 1.22         | 68.67 | 82.67     | 56.28 | 66.12 | 55.24 | 64.27
+val_unseen     | 6.79         | 8.22  | 16.17   | 3.12      | 1.44         | 72.58 | 85.01     | 57.31 | 63.52 | 55.55 | 61.58
+BEST RESULT TILL NOW
+val_unseen | Iter 152500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.19         | 6.81  | 13.96   | 3.08      | 1.46         | 66.67 | 80.67     | 56.88 | 67.56 | 55.3  | 65.98
+val_unseen     | 6.51         | 7.7   | 14.83   | 3.11      | 1.56         | 73.05 | 83.52     | 59.39 | 65.25 | 57.12 | 64.01
+
+[INFO] Training: total_actions 1, max_length 1, entropy 87093.7804, IL_loss 8.4809, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 29249m 35s (- 4662m 58s) (172500 86%) Iter 172500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.15         | 8.2   | 17.15   | 3.05      | 1.16         | 65.33 | 84.0      | 51.22 | 63.33 | 50.61 | 62.33
+val_unseen     | 7.17         | 8.67  | 17.07   | 3.24      | 1.36         | 70.41 | 85.74     | 54.98 | 61.62 | 53.46 | 60.28
+BEST RESULT TILL NOW
+val_unseen | Iter 152500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.19         | 6.81  | 13.96   | 3.08      | 1.46         | 66.67 | 80.67     | 56.88 | 67.56 | 55.3  | 65.98
+val_unseen     | 6.51         | 7.7   | 14.83   | 3.11      | 1.56         | 73.05 | 83.52     | 59.39 | 65.25 | 57.12 | 64.01
+
+[INFO] Training: total_actions 1, max_length 1, entropy 87593.9390, IL_loss 8.5196, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 29652m 1s (- 4236m 0s) (175000 87%) Iter 175000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.83         | 8.06  | 16.87   | 2.6       | 1.13         | 75.33 | 86.67     | 62.43 | 66.59 | 60.12 | 65.28
+val_unseen     | 7.09         | 8.74  | 17.03   | 3.17      | 1.39         | 71.65 | 85.65     | 56.1  | 61.28 | 53.56 | 60.89
+BEST RESULT TILL NOW
+val_unseen | Iter 152500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.19         | 6.81  | 13.96   | 3.08      | 1.46         | 66.67 | 80.67     | 56.88 | 67.56 | 55.3  | 65.98
+val_unseen     | 6.51         | 7.7   | 14.83   | 3.11      | 1.56         | 73.05 | 83.52     | 59.39 | 65.25 | 57.12 | 64.01
+
+[INFO] Training: total_actions 1, max_length 1, entropy 88386.7980, IL_loss 8.5891, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 30055m 58s (- 3809m 54s) (177500 88%) Iter 177500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.13         | 8.25  | 17.02   | 2.83      | 1.11         | 65.33 | 83.33     | 52.57 | 64.57 | 52.52 | 62.77
+val_unseen     | 7.02         | 8.33  | 16.06   | 3.34      | 1.52         | 71.14 | 84.55     | 55.09 | 60.85 | 53.04 | 59.78
+BEST RESULT TILL NOW
+val_unseen | Iter 152500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.19         | 6.81  | 13.96   | 3.08      | 1.46         | 66.67 | 80.67     | 56.88 | 67.56 | 55.3  | 65.98
+val_unseen     | 6.51         | 7.7   | 14.83   | 3.11      | 1.56         | 73.05 | 83.52     | 59.39 | 65.25 | 57.12 | 64.01
+
+[INFO] Training: total_actions 1, max_length 1, entropy 86031.6057, IL_loss 8.4245, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 30465m 42s (- 3385m 4s) (180000 90%) Iter 180000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.65         | 7.98  | 16.75   | 2.42      | 1.1          | 74.67 | 84.67     | 58.18 | 68.19 | 58.73 | 64.23
+val_unseen     | 7.06         | 9.24  | 18.2    | 3.28      | 1.41         | 71.56 | 84.93     | 54.35 | 60.91 | 53.03 | 58.86
+BEST RESULT TILL NOW
+val_unseen | Iter 152500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.19         | 6.81  | 13.96   | 3.08      | 1.46         | 66.67 | 80.67     | 56.88 | 67.56 | 55.3  | 65.98
+val_unseen     | 6.51         | 7.7   | 14.83   | 3.11      | 1.56         | 73.05 | 83.52     | 59.39 | 65.25 | 57.12 | 64.01
+
+[INFO] Training: total_actions 1, max_length 1, entropy 86304.4813, IL_loss 8.4176, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 30864m 57s (- 2959m 39s) (182500 91%) Iter 182500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.71         | 6.14  | 12.74   | 2.63      | 1.39         | 76.67 | 83.33     | 66.88 | 73.7  | 64.66 | 69.69
+val_unseen     | 6.13         | 7.12  | 14.04   | 2.98      | 1.58         | 73.82 | 83.91     | 61.06 | 67.85 | 59.02 | 64.87
+BEST RESULT TILL NOW
+val_unseen | Iter 182500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.71         | 6.14  | 12.74   | 2.63      | 1.39         | 76.67 | 83.33     | 66.88 | 73.7  | 64.66 | 69.69
+val_unseen     | 6.13         | 7.12  | 14.04   | 2.98      | 1.58         | 73.82 | 83.91     | 61.06 | 67.85 | 59.02 | 64.87
+
+[INFO] Training: total_actions 1, max_length 1, entropy 88421.6772, IL_loss 8.6047, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 31272m 2s (- 2535m 34s) (185000 92%) Iter 185000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.51         | 7.29  | 14.91   | 2.32      | 0.97         | 73.33 | 88.67     | 61.05 | 69.48 | 59.7  | 67.3 
+val_unseen     | 6.7          | 7.9   | 15.24   | 3.26      | 1.56         | 71.82 | 83.65     | 58.11 | 64.03 | 55.86 | 62.73
+BEST RESULT TILL NOW
+val_unseen | Iter 182500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.71         | 6.14  | 12.74   | 2.63      | 1.39         | 76.67 | 83.33     | 66.88 | 73.7  | 64.66 | 69.69
+val_unseen     | 6.13         | 7.12  | 14.04   | 2.98      | 1.58         | 73.82 | 83.91     | 61.06 | 67.85 | 59.02 | 64.87
+
+[INFO] Training: total_actions 1, max_length 1, entropy 85476.7070, IL_loss 8.3250, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 31677m 52s (- 2111m 51s) (187500 93%) Iter 187500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.59         | 7.65  | 15.7    | 2.45      | 1.22         | 74.67 | 82.67     | 60.86 | 68.29 | 58.78 | 66.48
+val_unseen     | 7.04         | 9.01  | 17.57   | 3.17      | 1.42         | 73.69 | 85.19     | 56.89 | 61.97 | 54.97 | 60.42
+BEST RESULT TILL NOW
+val_unseen | Iter 182500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.71         | 6.14  | 12.74   | 2.63      | 1.39         | 76.67 | 83.33     | 66.88 | 73.7  | 64.66 | 69.69
+val_unseen     | 6.13         | 7.12  | 14.04   | 2.98      | 1.58         | 73.82 | 83.91     | 61.06 | 67.85 | 59.02 | 64.87
+
+[INFO] Training: total_actions 1, max_length 1, entropy 85484.2529, IL_loss 8.3221, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 32080m 56s (- 1688m 28s) (190000 95%) Iter 190000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.92         | 6.37  | 12.96   | 2.66      | 1.27         | 70.67 | 81.33     | 60.17 | 71.73 | 59.05 | 68.08
+val_unseen     | 6.31         | 7.44  | 14.35   | 3.24      | 1.63         | 71.99 | 82.08     | 59.36 | 66.49 | 57.64 | 64.43
+BEST RESULT TILL NOW
+val_unseen | Iter 182500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.71         | 6.14  | 12.74   | 2.63      | 1.39         | 76.67 | 83.33     | 66.88 | 73.7  | 64.66 | 69.69
+val_unseen     | 6.13         | 7.12  | 14.04   | 2.98      | 1.58         | 73.82 | 83.91     | 61.06 | 67.85 | 59.02 | 64.87
+
+[INFO] Training: total_actions 1, max_length 1, entropy 86092.8533, IL_loss 8.4154, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 32491m 1s (- 1265m 53s) (192500 96%) Iter 192500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl  | nDTW  | SDTW  | CLS  
+-----------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 7.03         | 8.48  | 18.21   | 2.78      | 1.07         | 71.33 | 88.0      | 57.3 | 64.68 | 55.08 | 62.45
+val_unseen     | 7.23         | 9.14  | 18.32   | 3.16      | 1.24         | 72.46 | 87.44     | 55.6 | 60.57 | 53.4  | 59.84
+BEST RESULT TILL NOW
+val_unseen | Iter 182500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.71         | 6.14  | 12.74   | 2.63      | 1.39         | 76.67 | 83.33     | 66.88 | 73.7  | 64.66 | 69.69
+val_unseen     | 6.13         | 7.12  | 14.04   | 2.98      | 1.58         | 73.82 | 83.91     | 61.06 | 67.85 | 59.02 | 64.87
+
+[INFO] Training: total_actions 1, max_length 1, entropy 86573.0040, IL_loss 8.4769, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 32894m 45s (- 843m 27s) (195000 97%) Iter 195000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.74         | 7.66  | 15.72   | 2.44      | 0.94         | 73.33 | 87.33     | 60.48 | 69.68 | 59.8  | 66.87
+val_unseen     | 6.87         | 8.19  | 15.83   | 3.33      | 1.41         | 70.11 | 85.31     | 55.48 | 62.78 | 53.84 | 61.69
+BEST RESULT TILL NOW
+val_unseen | Iter 182500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.71         | 6.14  | 12.74   | 2.63      | 1.39         | 76.67 | 83.33     | 66.88 | 73.7  | 64.66 | 69.69
+val_unseen     | 6.13         | 7.12  | 14.04   | 2.98      | 1.58         | 73.82 | 83.91     | 61.06 | 67.85 | 59.02 | 64.87
+
+[INFO] Training: total_actions 1, max_length 1, entropy 84873.9817, IL_loss 8.2958, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 33296m 36s (- 421m 28s) (197500 98%) Iter 197500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.83         | 6.48  | 13.15   | 2.51      | 1.37         | 76.67 | 83.33     | 67.24 | 73.64 | 64.46 | 71.13
+val_unseen     | 6.25         | 7.39  | 14.39   | 3.01      | 1.55         | 73.39 | 84.38     | 60.58 | 66.78 | 58.08 | 64.7 
+BEST RESULT TILL NOW
+val_unseen | Iter 182500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.71         | 6.14  | 12.74   | 2.63      | 1.39         | 76.67 | 83.33     | 66.88 | 73.7  | 64.66 | 69.69
+val_unseen     | 6.13         | 7.12  | 14.04   | 2.98      | 1.58         | 73.82 | 83.91     | 61.06 | 67.85 | 59.02 | 64.87
+
+[INFO] Training: total_actions 1, max_length 1, entropy 87092.7685, IL_loss 8.4947, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+[INFO] 33703m 24s (- 0m 0s) (200000 100%) Iter 200000
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 6.14         | 6.69  | 13.53   | 2.48      | 1.13         | 71.33 | 85.33     | 58.97 | 71.34 | 58.67 | 67.38
+val_unseen     | 6.78         | 8.18  | 16.27   | 3.23      | 1.4          | 70.24 | 84.25     | 55.33 | 63.51 | 54.21 | 61.35
+BEST RESULT TILL NOW
+val_unseen | Iter 182500
+eval_split     | action_steps | steps | lengths | nav_error | oracle_error | sr    | oracle_sr | spl   | nDTW  | SDTW  | CLS  
+------------------------------------------------------------------------------------------------------------------------------
+val_train_seen | 5.71         | 6.14  | 12.74   | 2.63      | 1.39         | 76.67 | 83.33     | 66.88 | 73.7  | 64.66 | 69.69
+val_unseen     | 6.13         | 7.12  | 14.04   | 2.98      | 1.58         | 73.82 | 83.91     | 61.06 | 67.85 | 59.02 | 64.87

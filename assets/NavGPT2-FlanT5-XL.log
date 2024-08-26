@@ -1,0 +1,885 @@
+Namespace(accumulate_grad_step=1, act_visited_nodes=False, angle_feat_size=4, anno_dir='../datasets/R2R/annotations', arch='blip2_t5_instruct_nav', attention_probs_dropout_prob=0.1, aug='/home/gengze/projects/NavGPT2/datasets/R2R/annotations/prevalent_aug.json', batch_size=2, bert_ckpt_file=None, candidate_file_dir='../datasets/R2R/annotations/scanvp_candidates.json', ckpt_dir='../datasets/R2R/exprs_map/finetune/NavGPT2-DuET-seed.0-bs2-freezepretrainqformer-aug/ckpts', connectivity_dir='../datasets/R2R/connectivity', dataset='r2r', detailed_output=False, dropout=0.5, enc_full_graph=True, entropy_loss_weight=0.01, epsilon=0.1, eval_first=False, expert_policy='spl', expl_max_ratio=0.6, expl_sample=False, feat_dropout=0.4, features='eva-clip-g', feedback='sample', freeze_qformer=True, fusion='dynamic', gamma=0.0, global_cross_attn=True, graph_sprels=True, hidden_dropout_prob=0.1, hidden_size=768, ignoreid=-100, image_feat_size=1408, img_ft_file='../datasets/R2R/features/MP3D_eva_clip_g_can.lmdb', iters=200000, layer_norm_eps=1e-12, length_penalty=1.0, llm_ctx_size=2048, llm_token_merge='linear', load_patch_feature=True, local_rank=-1, log_dir='../datasets/R2R/exprs_map/finetune/NavGPT2-DuET-seed.0-bs2-freezepretrainqformer-aug/logs', log_every=2500, lr=1e-05, max_action_steps=15, max_instr_len=200, max_length=256, min_length=1, ml_weight=0.2, model_type='flant5xl', no_backtrack=False, node_rank=0, normalize_loss='total', num_attention_heads=12, num_beams=5, num_captions=1, num_pano_layers=2, num_x_layers=4, obj_feat_size=0, optim='adamW', output_dir='../datasets/R2R/exprs_map/finetune/NavGPT2-DuET-seed.0-bs2-freezepretrainqformer-aug', output_thought=False, pred_dir='../datasets/R2R/exprs_map/finetune/NavGPT2-DuET-seed.0-bs2-freezepretrainqformer-aug/preds', qformer_ckpt_path='/home/gengze/projects/LAVIS/lavis/output/NavGPT-InstructBLIP/20240221112/checkpoint_best.pth', qformer_pos_emb=False, repetition_penalty=1.5, resume_file=None, resume_optimizer=False, root_dir='../datasets', scan_data_dir='../datasets/Matterport3D/v1_unzip_scans', seed=0, step_update=False, submit=False, temperature=1.0, test=False, tokenizer='bert', top_p=0.9, train_alg='dagger', use_clip_img_emb=False, use_lang2visn_attn=False, use_nucleus_sampling=False, views=36, weight_decay=0.0, world_size=1)
+
+
+
+Listener training starts, start iteration: 0
+
+total_actions 1, max_length 1, entropy 144083.7266, IL_loss 14.5600, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+84m 17s (- 6659m 3s) (2500 1%) iter 2500,
+val_train_seen, action_steps: 14.66, steps: 27.21, lengths: 55.30, nav_error: 9.14, oracle_error: 2.12, sr: 16.67, oracle_sr: 73.33, spl: 3.24, nDTW: 3.74, SDTW: 1.51, CLS: 14.21,
+val_seen, action_steps: 14.57, steps: 26.81, lengths: 54.28, nav_error: 10.02, oracle_error: 2.91, sr: 13.52, oracle_sr: 60.04, spl: 2.80, nDTW: 4.17, SDTW: 1.43, CLS: 14.01,
+val_unseen, action_steps: 14.54, steps: 29.44, lengths: 58.86, nav_error: 9.67, oracle_error: 2.63, sr: 14.60, oracle_sr: 64.28, spl: 2.64, nDTW: 3.12, SDTW: 1.15, CLS: 12.45
+BEST RESULT TILL NOW
+val_unseen | Iter 2500 iter 2500,
+val_train_seen, action_steps: 14.66, steps: 27.21, lengths: 55.30, nav_error: 9.14, oracle_error: 2.12, sr: 16.67, oracle_sr: 73.33, spl: 3.24, nDTW: 3.74, SDTW: 1.51, CLS: 14.21,
+val_seen, action_steps: 14.57, steps: 26.81, lengths: 54.28, nav_error: 10.02, oracle_error: 2.91, sr: 13.52, oracle_sr: 60.04, spl: 2.80, nDTW: 4.17, SDTW: 1.43, CLS: 14.01,
+val_unseen, action_steps: 14.54, steps: 29.44, lengths: 58.86, nav_error: 9.67, oracle_error: 2.63, sr: 14.60, oracle_sr: 64.28, spl: 2.64, nDTW: 3.12, SDTW: 1.15, CLS: 12.45
+
+total_actions 1, max_length 1, entropy 143099.5318, IL_loss 14.3247, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+162m 48s (- 6349m 37s) (5000 2%) iter 5000,
+val_train_seen, action_steps: 14.58, steps: 24.25, lengths: 51.78, nav_error: 8.54, oracle_error: 1.63, sr: 17.33, oracle_sr: 78.67, spl: 3.67, nDTW: 3.70, SDTW: 1.44, CLS: 15.97,
+val_seen, action_steps: 14.44, steps: 25.22, lengths: 52.66, nav_error: 9.44, oracle_error: 2.43, sr: 16.85, oracle_sr: 68.85, spl: 3.52, nDTW: 3.13, SDTW: 1.11, CLS: 15.10,
+val_unseen, action_steps: 14.44, steps: 26.52, lengths: 53.93, nav_error: 9.37, oracle_error: 2.16, sr: 16.52, oracle_sr: 72.41, spl: 3.06, nDTW: 2.34, SDTW: 0.71, CLS: 14.26
+BEST RESULT TILL NOW
+val_unseen | Iter 5000 iter 5000,
+val_train_seen, action_steps: 14.58, steps: 24.25, lengths: 51.78, nav_error: 8.54, oracle_error: 1.63, sr: 17.33, oracle_sr: 78.67, spl: 3.67, nDTW: 3.70, SDTW: 1.44, CLS: 15.97,
+val_seen, action_steps: 14.44, steps: 25.22, lengths: 52.66, nav_error: 9.44, oracle_error: 2.43, sr: 16.85, oracle_sr: 68.85, spl: 3.52, nDTW: 3.13, SDTW: 1.11, CLS: 15.10,
+val_unseen, action_steps: 14.44, steps: 26.52, lengths: 53.93, nav_error: 9.37, oracle_error: 2.16, sr: 16.52, oracle_sr: 72.41, spl: 3.06, nDTW: 2.34, SDTW: 0.71, CLS: 14.26
+
+total_actions 1, max_length 1, entropy 141792.0283, IL_loss 14.0532, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+239m 57s (- 6159m 6s) (7500 3%) iter 7500,
+val_train_seen, action_steps: 14.62, steps: 22.20, lengths: 44.94, nav_error: 8.19, oracle_error: 1.73, sr: 12.67, oracle_sr: 77.33, spl: 3.13, nDTW: 4.18, SDTW: 1.29, CLS: 18.38,
+val_seen, action_steps: 14.60, steps: 23.12, lengths: 45.99, nav_error: 10.01, oracle_error: 2.41, sr: 15.38, oracle_sr: 70.81, spl: 3.75, nDTW: 3.59, SDTW: 1.33, CLS: 17.42,
+val_unseen, action_steps: 14.65, steps: 24.89, lengths: 47.36, nav_error: 9.06, oracle_error: 2.01, sr: 18.26, oracle_sr: 75.73, spl: 3.77, nDTW: 2.98, SDTW: 1.08, CLS: 16.49
+BEST RESULT TILL NOW
+val_unseen | Iter 7500 iter 7500,
+val_train_seen, action_steps: 14.62, steps: 22.20, lengths: 44.94, nav_error: 8.19, oracle_error: 1.73, sr: 12.67, oracle_sr: 77.33, spl: 3.13, nDTW: 4.18, SDTW: 1.29, CLS: 18.38,
+val_seen, action_steps: 14.60, steps: 23.12, lengths: 45.99, nav_error: 10.01, oracle_error: 2.41, sr: 15.38, oracle_sr: 70.81, spl: 3.75, nDTW: 3.59, SDTW: 1.33, CLS: 17.42,
+val_unseen, action_steps: 14.65, steps: 24.89, lengths: 47.36, nav_error: 9.06, oracle_error: 2.01, sr: 18.26, oracle_sr: 75.73, spl: 3.77, nDTW: 2.98, SDTW: 1.08, CLS: 16.49
+
+total_actions 1, max_length 1, entropy 133623.4558, IL_loss 13.1169, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+310m 16s (- 5895m 4s) (10000 5%) iter 10000,
+val_train_seen, action_steps: 8.77, steps: 10.72, lengths: 21.58, nav_error: 5.22, oracle_error: 2.30, sr: 42.67, oracle_sr: 71.33, spl: 27.81, nDTW: 41.47, SDTW: 26.63, CLS: 43.80,
+val_seen, action_steps: 9.13, steps: 11.53, lengths: 22.70, nav_error: 7.10, oracle_error: 3.15, sr: 32.71, oracle_sr: 60.24, spl: 21.15, nDTW: 34.81, SDTW: 19.86, CLS: 40.20,
+val_unseen, action_steps: 8.42, steps: 10.53, lengths: 20.09, nav_error: 6.54, oracle_error: 2.96, sr: 36.44, oracle_sr: 61.00, spl: 25.59, nDTW: 39.61, SDTW: 23.71, CLS: 43.46
+BEST RESULT TILL NOW
+val_unseen | Iter 10000 iter 10000,
+val_train_seen, action_steps: 8.77, steps: 10.72, lengths: 21.58, nav_error: 5.22, oracle_error: 2.30, sr: 42.67, oracle_sr: 71.33, spl: 27.81, nDTW: 41.47, SDTW: 26.63, CLS: 43.80,
+val_seen, action_steps: 9.13, steps: 11.53, lengths: 22.70, nav_error: 7.10, oracle_error: 3.15, sr: 32.71, oracle_sr: 60.24, spl: 21.15, nDTW: 34.81, SDTW: 19.86, CLS: 40.20,
+val_unseen, action_steps: 8.42, steps: 10.53, lengths: 20.09, nav_error: 6.54, oracle_error: 2.96, sr: 36.44, oracle_sr: 61.00, spl: 25.59, nDTW: 39.61, SDTW: 23.71, CLS: 43.46
+
+total_actions 1, max_length 1, entropy 129576.3969, IL_loss 12.6425, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+384m 32s (- 5768m 14s) (12500 6%) iter 12500,
+val_train_seen, action_steps: 11.67, steps: 16.73, lengths: 35.38, nav_error: 5.88, oracle_error: 1.67, sr: 33.33, oracle_sr: 80.00, spl: 15.35, nDTW: 23.33, SDTW: 12.53, CLS: 29.94,
+val_seen, action_steps: 11.80, steps: 18.05, lengths: 37.13, nav_error: 6.77, oracle_error: 2.18, sr: 33.89, oracle_sr: 73.75, spl: 15.22, nDTW: 22.01, SDTW: 13.48, CLS: 29.24,
+val_unseen, action_steps: 11.68, steps: 18.63, lengths: 37.03, nav_error: 6.39, oracle_error: 1.93, sr: 36.70, oracle_sr: 77.39, spl: 17.81, nDTW: 23.93, SDTW: 15.89, CLS: 30.26
+BEST RESULT TILL NOW
+val_unseen | Iter 10000 iter 10000,
+val_train_seen, action_steps: 8.77, steps: 10.72, lengths: 21.58, nav_error: 5.22, oracle_error: 2.30, sr: 42.67, oracle_sr: 71.33, spl: 27.81, nDTW: 41.47, SDTW: 26.63, CLS: 43.80,
+val_seen, action_steps: 9.13, steps: 11.53, lengths: 22.70, nav_error: 7.10, oracle_error: 3.15, sr: 32.71, oracle_sr: 60.24, spl: 21.15, nDTW: 34.81, SDTW: 19.86, CLS: 40.20,
+val_unseen, action_steps: 8.42, steps: 10.53, lengths: 20.09, nav_error: 6.54, oracle_error: 2.96, sr: 36.44, oracle_sr: 61.00, spl: 25.59, nDTW: 39.61, SDTW: 23.71, CLS: 43.46
+
+total_actions 1, max_length 1, entropy 125708.6280, IL_loss 12.2779, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+457m 27s (- 5641m 58s) (15000 7%) iter 15000,
+val_train_seen, action_steps: 10.74, steps: 14.14, lengths: 28.51, nav_error: 5.86, oracle_error: 1.76, sr: 38.00, oracle_sr: 80.67, spl: 21.05, nDTW: 33.23, SDTW: 21.14, CLS: 36.27,
+val_seen, action_steps: 11.23, steps: 15.14, lengths: 30.50, nav_error: 6.96, oracle_error: 2.34, sr: 34.48, oracle_sr: 71.99, spl: 18.24, nDTW: 26.94, SDTW: 17.37, CLS: 32.68,
+val_unseen, action_steps: 11.02, steps: 15.54, lengths: 30.48, nav_error: 6.59, oracle_error: 1.95, sr: 36.36, oracle_sr: 76.80, spl: 18.88, nDTW: 26.85, SDTW: 17.47, CLS: 32.46
+BEST RESULT TILL NOW
+val_unseen | Iter 10000 iter 10000,
+val_train_seen, action_steps: 8.77, steps: 10.72, lengths: 21.58, nav_error: 5.22, oracle_error: 2.30, sr: 42.67, oracle_sr: 71.33, spl: 27.81, nDTW: 41.47, SDTW: 26.63, CLS: 43.80,
+val_seen, action_steps: 9.13, steps: 11.53, lengths: 22.70, nav_error: 7.10, oracle_error: 3.15, sr: 32.71, oracle_sr: 60.24, spl: 21.15, nDTW: 34.81, SDTW: 19.86, CLS: 40.20,
+val_unseen, action_steps: 8.42, steps: 10.53, lengths: 20.09, nav_error: 6.54, oracle_error: 2.96, sr: 36.44, oracle_sr: 61.00, spl: 25.59, nDTW: 39.61, SDTW: 23.71, CLS: 43.46
+
+total_actions 1, max_length 1, entropy 120148.6975, IL_loss 11.6735, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+525m 5s (- 5475m 59s) (17500 8%) iter 17500,
+val_train_seen, action_steps: 6.89, steps: 8.34, lengths: 17.20, nav_error: 4.24, oracle_error: 2.61, sr: 54.67, oracle_sr: 72.00, spl: 42.49, nDTW: 51.95, SDTW: 37.99, CLS: 52.49,
+val_seen, action_steps: 7.52, steps: 9.70, lengths: 19.68, nav_error: 5.65, oracle_error: 3.01, sr: 45.25, oracle_sr: 61.80, spl: 32.98, nDTW: 47.39, SDTW: 31.39, CLS: 48.21,
+val_unseen, action_steps: 7.72, steps: 10.53, lengths: 20.87, nav_error: 5.04, oracle_error: 2.54, sr: 51.26, oracle_sr: 69.14, spl: 36.28, nDTW: 47.07, SDTW: 34.07, CLS: 48.06
+BEST RESULT TILL NOW
+val_unseen | Iter 17500 iter 17500,
+val_train_seen, action_steps: 6.89, steps: 8.34, lengths: 17.20, nav_error: 4.24, oracle_error: 2.61, sr: 54.67, oracle_sr: 72.00, spl: 42.49, nDTW: 51.95, SDTW: 37.99, CLS: 52.49,
+val_seen, action_steps: 7.52, steps: 9.70, lengths: 19.68, nav_error: 5.65, oracle_error: 3.01, sr: 45.25, oracle_sr: 61.80, spl: 32.98, nDTW: 47.39, SDTW: 31.39, CLS: 48.21,
+val_unseen, action_steps: 7.72, steps: 10.53, lengths: 20.87, nav_error: 5.04, oracle_error: 2.54, sr: 51.26, oracle_sr: 69.14, spl: 36.28, nDTW: 47.07, SDTW: 34.07, CLS: 48.06
+
+total_actions 1, max_length 1, entropy 119206.1237, IL_loss 11.6382, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+594m 59s (- 5354m 53s) (20000 10%) iter 20000,
+val_train_seen, action_steps: 8.56, steps: 10.63, lengths: 21.20, nav_error: 4.75, oracle_error: 2.18, sr: 46.00, oracle_sr: 72.67, spl: 30.99, nDTW: 43.05, SDTW: 27.40, CLS: 46.17,
+val_seen, action_steps: 9.18, steps: 12.20, lengths: 24.44, nav_error: 5.99, oracle_error: 2.80, sr: 46.23, oracle_sr: 67.19, spl: 28.51, nDTW: 38.30, SDTW: 27.27, CLS: 41.44,
+val_unseen, action_steps: 8.84, steps: 11.78, lengths: 23.09, nav_error: 5.42, oracle_error: 2.33, sr: 49.60, oracle_sr: 73.05, spl: 33.26, nDTW: 42.13, SDTW: 31.30, CLS: 44.91
+BEST RESULT TILL NOW
+val_unseen | Iter 17500 iter 17500,
+val_train_seen, action_steps: 6.89, steps: 8.34, lengths: 17.20, nav_error: 4.24, oracle_error: 2.61, sr: 54.67, oracle_sr: 72.00, spl: 42.49, nDTW: 51.95, SDTW: 37.99, CLS: 52.49,
+val_seen, action_steps: 7.52, steps: 9.70, lengths: 19.68, nav_error: 5.65, oracle_error: 3.01, sr: 45.25, oracle_sr: 61.80, spl: 32.98, nDTW: 47.39, SDTW: 31.39, CLS: 48.21,
+val_unseen, action_steps: 7.72, steps: 10.53, lengths: 20.87, nav_error: 5.04, oracle_error: 2.54, sr: 51.26, oracle_sr: 69.14, spl: 36.28, nDTW: 47.07, SDTW: 34.07, CLS: 48.06
+
+total_actions 1, max_length 1, entropy 116073.4495, IL_loss 11.2998, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+667m 26s (- 5265m 20s) (22500 11%) iter 22500,
+val_train_seen, action_steps: 11.14, steps: 14.77, lengths: 29.97, nav_error: 4.71, oracle_error: 1.32, sr: 39.33, oracle_sr: 86.67, spl: 21.63, nDTW: 30.60, SDTW: 18.39, CLS: 38.20,
+val_seen, action_steps: 11.81, steps: 16.97, lengths: 34.11, nav_error: 5.91, oracle_error: 1.88, sr: 46.13, oracle_sr: 78.94, spl: 21.80, nDTW: 25.39, SDTW: 19.08, CLS: 33.36,
+val_unseen, action_steps: 11.55, steps: 16.84, lengths: 33.59, nav_error: 5.30, oracle_error: 1.40, sr: 47.51, oracle_sr: 84.04, spl: 24.74, nDTW: 28.66, SDTW: 22.51, CLS: 35.00
+BEST RESULT TILL NOW
+val_unseen | Iter 17500 iter 17500,
+val_train_seen, action_steps: 6.89, steps: 8.34, lengths: 17.20, nav_error: 4.24, oracle_error: 2.61, sr: 54.67, oracle_sr: 72.00, spl: 42.49, nDTW: 51.95, SDTW: 37.99, CLS: 52.49,
+val_seen, action_steps: 7.52, steps: 9.70, lengths: 19.68, nav_error: 5.65, oracle_error: 3.01, sr: 45.25, oracle_sr: 61.80, spl: 32.98, nDTW: 47.39, SDTW: 31.39, CLS: 48.21,
+val_unseen, action_steps: 7.72, steps: 10.53, lengths: 20.87, nav_error: 5.04, oracle_error: 2.54, sr: 51.26, oracle_sr: 69.14, spl: 36.28, nDTW: 47.07, SDTW: 34.07, CLS: 48.06
+
+total_actions 1, max_length 1, entropy 114648.4404, IL_loss 11.1764, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+736m 20s (- 5154m 24s) (25000 12%) iter 25000,
+val_train_seen, action_steps: 8.29, steps: 10.16, lengths: 20.41, nav_error: 4.18, oracle_error: 1.72, sr: 51.33, oracle_sr: 80.67, spl: 35.82, nDTW: 48.10, SDTW: 33.82, CLS: 49.58,
+val_seen, action_steps: 9.34, steps: 12.71, lengths: 25.38, nav_error: 5.32, oracle_error: 2.34, sr: 51.03, oracle_sr: 72.48, spl: 31.00, nDTW: 40.00, SDTW: 30.17, CLS: 42.49,
+val_unseen, action_steps: 9.15, steps: 13.10, lengths: 25.62, nav_error: 4.99, oracle_error: 1.94, sr: 52.87, oracle_sr: 77.35, spl: 34.10, nDTW: 41.84, SDTW: 32.78, CLS: 43.73
+BEST RESULT TILL NOW
+val_unseen | Iter 17500 iter 17500,
+val_train_seen, action_steps: 6.89, steps: 8.34, lengths: 17.20, nav_error: 4.24, oracle_error: 2.61, sr: 54.67, oracle_sr: 72.00, spl: 42.49, nDTW: 51.95, SDTW: 37.99, CLS: 52.49,
+val_seen, action_steps: 7.52, steps: 9.70, lengths: 19.68, nav_error: 5.65, oracle_error: 3.01, sr: 45.25, oracle_sr: 61.80, spl: 32.98, nDTW: 47.39, SDTW: 31.39, CLS: 48.21,
+val_unseen, action_steps: 7.72, steps: 10.53, lengths: 20.87, nav_error: 5.04, oracle_error: 2.54, sr: 51.26, oracle_sr: 69.14, spl: 36.28, nDTW: 47.07, SDTW: 34.07, CLS: 48.06
+
+total_actions 1, max_length 1, entropy 113987.1619, IL_loss 11.1143, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+806m 6s (- 5056m 30s) (27500 13%) iter 27500,
+val_train_seen, action_steps: 9.02, steps: 11.82, lengths: 23.90, nav_error: 5.19, oracle_error: 1.72, sr: 41.33, oracle_sr: 77.33, spl: 26.88, nDTW: 41.81, SDTW: 25.48, CLS: 43.56,
+val_seen, action_steps: 9.77, steps: 12.81, lengths: 25.75, nav_error: 5.59, oracle_error: 2.19, sr: 49.66, oracle_sr: 75.02, spl: 30.56, nDTW: 37.92, SDTW: 28.85, CLS: 42.01,
+val_unseen, action_steps: 9.38, steps: 13.01, lengths: 25.19, nav_error: 5.37, oracle_error: 1.94, sr: 51.17, oracle_sr: 77.48, spl: 32.79, nDTW: 39.86, SDTW: 31.04, CLS: 42.80
+BEST RESULT TILL NOW
+val_unseen | Iter 17500 iter 17500,
+val_train_seen, action_steps: 6.89, steps: 8.34, lengths: 17.20, nav_error: 4.24, oracle_error: 2.61, sr: 54.67, oracle_sr: 72.00, spl: 42.49, nDTW: 51.95, SDTW: 37.99, CLS: 52.49,
+val_seen, action_steps: 7.52, steps: 9.70, lengths: 19.68, nav_error: 5.65, oracle_error: 3.01, sr: 45.25, oracle_sr: 61.80, spl: 32.98, nDTW: 47.39, SDTW: 31.39, CLS: 48.21,
+val_unseen, action_steps: 7.72, steps: 10.53, lengths: 20.87, nav_error: 5.04, oracle_error: 2.54, sr: 51.26, oracle_sr: 69.14, spl: 36.28, nDTW: 47.07, SDTW: 34.07, CLS: 48.06
+
+total_actions 1, max_length 1, entropy 112382.6327, IL_loss 10.9992, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+878m 14s (- 4976m 39s) (30000 15%) iter 30000,
+val_train_seen, action_steps: 10.43, steps: 13.51, lengths: 27.98, nav_error: 4.45, oracle_error: 1.48, sr: 43.33, oracle_sr: 80.67, spl: 24.96, nDTW: 34.55, SDTW: 22.08, CLS: 40.57,
+val_seen, action_steps: 10.52, steps: 13.97, lengths: 28.64, nav_error: 5.25, oracle_error: 2.11, sr: 51.42, oracle_sr: 75.61, spl: 28.07, nDTW: 33.54, SDTW: 25.79, CLS: 38.90,
+val_unseen, action_steps: 9.98, steps: 13.75, lengths: 27.50, nav_error: 4.89, oracle_error: 1.81, sr: 52.41, oracle_sr: 78.08, spl: 31.89, nDTW: 37.98, SDTW: 29.78, CLS: 42.03
+BEST RESULT TILL NOW
+val_unseen | Iter 17500 iter 17500,
+val_train_seen, action_steps: 6.89, steps: 8.34, lengths: 17.20, nav_error: 4.24, oracle_error: 2.61, sr: 54.67, oracle_sr: 72.00, spl: 42.49, nDTW: 51.95, SDTW: 37.99, CLS: 52.49,
+val_seen, action_steps: 7.52, steps: 9.70, lengths: 19.68, nav_error: 5.65, oracle_error: 3.01, sr: 45.25, oracle_sr: 61.80, spl: 32.98, nDTW: 47.39, SDTW: 31.39, CLS: 48.21,
+val_unseen, action_steps: 7.72, steps: 10.53, lengths: 20.87, nav_error: 5.04, oracle_error: 2.54, sr: 51.26, oracle_sr: 69.14, spl: 36.28, nDTW: 47.07, SDTW: 34.07, CLS: 48.06
+
+total_actions 1, max_length 1, entropy 110544.7628, IL_loss 10.7947, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+950m 4s (- 4896m 33s) (32500 16%) iter 32500,
+val_train_seen, action_steps: 10.31, steps: 14.63, lengths: 29.94, nav_error: 3.84, oracle_error: 1.29, sr: 52.67, oracle_sr: 86.67, spl: 30.28, nDTW: 36.81, SDTW: 26.77, CLS: 40.54,
+val_seen, action_steps: 10.81, steps: 16.43, lengths: 33.32, nav_error: 5.21, oracle_error: 1.93, sr: 52.30, oracle_sr: 78.84, spl: 26.64, nDTW: 31.35, SDTW: 24.92, CLS: 35.80,
+val_unseen, action_steps: 10.57, steps: 17.21, lengths: 33.90, nav_error: 4.85, oracle_error: 1.60, sr: 55.30, oracle_sr: 82.12, spl: 30.34, nDTW: 34.35, SDTW: 28.79, CLS: 37.62
+BEST RESULT TILL NOW
+val_unseen | Iter 17500 iter 17500,
+val_train_seen, action_steps: 6.89, steps: 8.34, lengths: 17.20, nav_error: 4.24, oracle_error: 2.61, sr: 54.67, oracle_sr: 72.00, spl: 42.49, nDTW: 51.95, SDTW: 37.99, CLS: 52.49,
+val_seen, action_steps: 7.52, steps: 9.70, lengths: 19.68, nav_error: 5.65, oracle_error: 3.01, sr: 45.25, oracle_sr: 61.80, spl: 32.98, nDTW: 47.39, SDTW: 31.39, CLS: 48.21,
+val_unseen, action_steps: 7.72, steps: 10.53, lengths: 20.87, nav_error: 5.04, oracle_error: 2.54, sr: 51.26, oracle_sr: 69.14, spl: 36.28, nDTW: 47.07, SDTW: 34.07, CLS: 48.06
+
+total_actions 1, max_length 1, entropy 110722.4352, IL_loss 10.7277, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+1019m 49s (- 4807m 44s) (35000 17%) iter 35000,
+val_train_seen, action_steps: 8.40, steps: 10.92, lengths: 22.52, nav_error: 3.62, oracle_error: 1.50, sr: 59.33, oracle_sr: 75.33, spl: 41.03, nDTW: 49.59, SDTW: 37.30, CLS: 52.20,
+val_seen, action_steps: 9.05, steps: 12.75, lengths: 25.83, nav_error: 4.83, oracle_error: 2.29, sr: 55.63, oracle_sr: 71.99, spl: 35.01, nDTW: 42.07, SDTW: 32.35, CLS: 45.37,
+val_unseen, action_steps: 8.93, steps: 13.44, lengths: 26.29, nav_error: 4.33, oracle_error: 1.84, sr: 57.68, oracle_sr: 77.27, spl: 37.25, nDTW: 43.97, SDTW: 34.92, CLS: 46.57
+BEST RESULT TILL NOW
+val_unseen | Iter 35000 iter 35000,
+val_train_seen, action_steps: 8.40, steps: 10.92, lengths: 22.52, nav_error: 3.62, oracle_error: 1.50, sr: 59.33, oracle_sr: 75.33, spl: 41.03, nDTW: 49.59, SDTW: 37.30, CLS: 52.20,
+val_seen, action_steps: 9.05, steps: 12.75, lengths: 25.83, nav_error: 4.83, oracle_error: 2.29, sr: 55.63, oracle_sr: 71.99, spl: 35.01, nDTW: 42.07, SDTW: 32.35, CLS: 45.37,
+val_unseen, action_steps: 8.93, steps: 13.44, lengths: 26.29, nav_error: 4.33, oracle_error: 1.84, sr: 57.68, oracle_sr: 77.27, spl: 37.25, nDTW: 43.97, SDTW: 34.92, CLS: 46.57
+
+total_actions 1, max_length 1, entropy 108270.7968, IL_loss 10.4277, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+1088m 52s (- 4718m 29s) (37500 18%) iter 37500,
+val_train_seen, action_steps: 8.45, steps: 10.66, lengths: 21.43, nav_error: 3.84, oracle_error: 1.57, sr: 52.00, oracle_sr: 79.33, spl: 36.39, nDTW: 48.01, SDTW: 34.26, CLS: 48.62,
+val_seen, action_steps: 9.32, steps: 12.98, lengths: 26.12, nav_error: 4.99, oracle_error: 2.09, sr: 55.44, oracle_sr: 75.91, spl: 34.77, nDTW: 42.16, SDTW: 33.61, CLS: 44.48,
+val_unseen, action_steps: 8.94, steps: 13.16, lengths: 26.09, nav_error: 4.55, oracle_error: 1.79, sr: 57.26, oracle_sr: 77.99, spl: 36.94, nDTW: 44.54, SDTW: 35.69, CLS: 45.74
+BEST RESULT TILL NOW
+val_unseen | Iter 35000 iter 35000,
+val_train_seen, action_steps: 8.40, steps: 10.92, lengths: 22.52, nav_error: 3.62, oracle_error: 1.50, sr: 59.33, oracle_sr: 75.33, spl: 41.03, nDTW: 49.59, SDTW: 37.30, CLS: 52.20,
+val_seen, action_steps: 9.05, steps: 12.75, lengths: 25.83, nav_error: 4.83, oracle_error: 2.29, sr: 55.63, oracle_sr: 71.99, spl: 35.01, nDTW: 42.07, SDTW: 32.35, CLS: 45.37,
+val_unseen, action_steps: 8.93, steps: 13.44, lengths: 26.29, nav_error: 4.33, oracle_error: 1.84, sr: 57.68, oracle_sr: 77.27, spl: 37.25, nDTW: 43.97, SDTW: 34.92, CLS: 46.57
+
+total_actions 1, max_length 1, entropy 106672.5829, IL_loss 10.3401, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+1157m 17s (- 4629m 8s) (40000 20%) iter 40000,
+val_train_seen, action_steps: 9.83, steps: 13.19, lengths: 26.26, nav_error: 4.27, oracle_error: 1.22, sr: 51.33, oracle_sr: 86.00, spl: 31.52, nDTW: 40.85, SDTW: 29.36, CLS: 44.09,
+val_seen, action_steps: 10.14, steps: 14.26, lengths: 28.10, nav_error: 5.04, oracle_error: 1.79, sr: 53.77, oracle_sr: 80.22, spl: 31.28, nDTW: 36.11, SDTW: 29.15, CLS: 40.82,
+val_unseen, action_steps: 9.78, steps: 14.73, lengths: 28.25, nav_error: 4.62, oracle_error: 1.60, sr: 55.60, oracle_sr: 81.52, spl: 33.40, nDTW: 39.44, SDTW: 31.35, CLS: 42.85
+BEST RESULT TILL NOW
+val_unseen | Iter 35000 iter 35000,
+val_train_seen, action_steps: 8.40, steps: 10.92, lengths: 22.52, nav_error: 3.62, oracle_error: 1.50, sr: 59.33, oracle_sr: 75.33, spl: 41.03, nDTW: 49.59, SDTW: 37.30, CLS: 52.20,
+val_seen, action_steps: 9.05, steps: 12.75, lengths: 25.83, nav_error: 4.83, oracle_error: 2.29, sr: 55.63, oracle_sr: 71.99, spl: 35.01, nDTW: 42.07, SDTW: 32.35, CLS: 45.37,
+val_unseen, action_steps: 8.93, steps: 13.44, lengths: 26.29, nav_error: 4.33, oracle_error: 1.84, sr: 57.68, oracle_sr: 77.27, spl: 37.25, nDTW: 43.97, SDTW: 34.92, CLS: 46.57
+
+total_actions 1, max_length 1, entropy 106382.0611, IL_loss 10.3069, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+1224m 18s (- 4537m 8s) (42500 21%) iter 42500,
+val_train_seen, action_steps: 7.91, steps: 9.95, lengths: 20.21, nav_error: 3.49, oracle_error: 1.37, sr: 55.33, oracle_sr: 84.00, spl: 41.56, nDTW: 54.33, SDTW: 39.49, CLS: 54.69,
+val_seen, action_steps: 8.55, steps: 10.96, lengths: 21.79, nav_error: 4.59, oracle_error: 2.06, sr: 56.51, oracle_sr: 76.00, spl: 39.16, nDTW: 47.93, SDTW: 37.21, CLS: 50.00,
+val_unseen, action_steps: 8.47, steps: 11.43, lengths: 21.98, nav_error: 4.28, oracle_error: 1.75, sr: 58.83, oracle_sr: 80.08, spl: 40.08, nDTW: 48.12, SDTW: 38.28, CLS: 49.92
+BEST RESULT TILL NOW
+val_unseen | Iter 42500 iter 42500,
+val_train_seen, action_steps: 7.91, steps: 9.95, lengths: 20.21, nav_error: 3.49, oracle_error: 1.37, sr: 55.33, oracle_sr: 84.00, spl: 41.56, nDTW: 54.33, SDTW: 39.49, CLS: 54.69,
+val_seen, action_steps: 8.55, steps: 10.96, lengths: 21.79, nav_error: 4.59, oracle_error: 2.06, sr: 56.51, oracle_sr: 76.00, spl: 39.16, nDTW: 47.93, SDTW: 37.21, CLS: 50.00,
+val_unseen, action_steps: 8.47, steps: 11.43, lengths: 21.98, nav_error: 4.28, oracle_error: 1.75, sr: 58.83, oracle_sr: 80.08, spl: 40.08, nDTW: 48.12, SDTW: 38.28, CLS: 49.92
+
+total_actions 1, max_length 1, entropy 104659.0742, IL_loss 10.1818, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+1293m 6s (- 4454m 2s) (45000 22%) iter 45000,
+val_train_seen, action_steps: 8.34, steps: 10.72, lengths: 21.75, nav_error: 3.38, oracle_error: 1.14, sr: 60.67, oracle_sr: 86.00, spl: 43.61, nDTW: 51.40, SDTW: 41.05, CLS: 52.64,
+val_seen, action_steps: 8.50, steps: 11.37, lengths: 23.32, nav_error: 4.40, oracle_error: 1.99, sr: 59.94, oracle_sr: 77.77, spl: 40.51, nDTW: 47.49, SDTW: 38.13, CLS: 49.27,
+val_unseen, action_steps: 8.57, steps: 12.41, lengths: 24.60, nav_error: 4.33, oracle_error: 1.70, sr: 60.03, oracle_sr: 80.03, spl: 39.42, nDTW: 46.33, SDTW: 37.57, CLS: 47.62
+BEST RESULT TILL NOW
+val_unseen | Iter 42500 iter 42500,
+val_train_seen, action_steps: 7.91, steps: 9.95, lengths: 20.21, nav_error: 3.49, oracle_error: 1.37, sr: 55.33, oracle_sr: 84.00, spl: 41.56, nDTW: 54.33, SDTW: 39.49, CLS: 54.69,
+val_seen, action_steps: 8.55, steps: 10.96, lengths: 21.79, nav_error: 4.59, oracle_error: 2.06, sr: 56.51, oracle_sr: 76.00, spl: 39.16, nDTW: 47.93, SDTW: 37.21, CLS: 50.00,
+val_unseen, action_steps: 8.47, steps: 11.43, lengths: 21.98, nav_error: 4.28, oracle_error: 1.75, sr: 58.83, oracle_sr: 80.08, spl: 40.08, nDTW: 48.12, SDTW: 38.28, CLS: 49.92
+
+total_actions 1, max_length 1, entropy 102154.7761, IL_loss 9.9618, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+1360m 51s (- 4369m 3s) (47500 23%) iter 47500,
+val_train_seen, action_steps: 8.65, steps: 11.79, lengths: 24.29, nav_error: 3.03, oracle_error: 1.22, sr: 62.67, oracle_sr: 84.67, spl: 43.08, nDTW: 51.37, SDTW: 40.47, CLS: 52.30,
+val_seen, action_steps: 8.78, steps: 11.87, lengths: 23.50, nav_error: 4.69, oracle_error: 2.14, sr: 58.77, oracle_sr: 75.22, spl: 39.21, nDTW: 46.08, SDTW: 36.89, CLS: 48.54,
+val_unseen, action_steps: 8.62, steps: 12.85, lengths: 24.78, nav_error: 4.47, oracle_error: 1.79, sr: 59.05, oracle_sr: 79.27, spl: 40.33, nDTW: 47.38, SDTW: 38.47, CLS: 49.11
+BEST RESULT TILL NOW
+val_unseen | Iter 47500 iter 47500,
+val_train_seen, action_steps: 8.65, steps: 11.79, lengths: 24.29, nav_error: 3.03, oracle_error: 1.22, sr: 62.67, oracle_sr: 84.67, spl: 43.08, nDTW: 51.37, SDTW: 40.47, CLS: 52.30,
+val_seen, action_steps: 8.78, steps: 11.87, lengths: 23.50, nav_error: 4.69, oracle_error: 2.14, sr: 58.77, oracle_sr: 75.22, spl: 39.21, nDTW: 46.08, SDTW: 36.89, CLS: 48.54,
+val_unseen, action_steps: 8.62, steps: 12.85, lengths: 24.78, nav_error: 4.47, oracle_error: 1.79, sr: 59.05, oracle_sr: 79.27, spl: 40.33, nDTW: 47.38, SDTW: 38.47, CLS: 49.11
+
+total_actions 1, max_length 1, entropy 103044.8907, IL_loss 10.0188, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+1428m 11s (- 4284m 34s) (50000 25%) iter 50000,
+val_train_seen, action_steps: 7.89, steps: 9.22, lengths: 18.40, nav_error: 3.86, oracle_error: 1.61, sr: 56.00, oracle_sr: 80.00, spl: 42.52, nDTW: 52.71, SDTW: 40.14, CLS: 53.88,
+val_seen, action_steps: 8.07, steps: 9.93, lengths: 19.87, nav_error: 4.58, oracle_error: 2.12, sr: 59.45, oracle_sr: 76.49, spl: 43.04, nDTW: 50.52, SDTW: 41.01, CLS: 51.70,
+val_unseen, action_steps: 8.04, steps: 10.13, lengths: 19.66, nav_error: 4.73, oracle_error: 2.13, sr: 57.64, oracle_sr: 76.37, spl: 40.85, nDTW: 48.73, SDTW: 39.21, CLS: 49.59
+BEST RESULT TILL NOW
+val_unseen | Iter 50000 iter 50000,
+val_train_seen, action_steps: 7.89, steps: 9.22, lengths: 18.40, nav_error: 3.86, oracle_error: 1.61, sr: 56.00, oracle_sr: 80.00, spl: 42.52, nDTW: 52.71, SDTW: 40.14, CLS: 53.88,
+val_seen, action_steps: 8.07, steps: 9.93, lengths: 19.87, nav_error: 4.58, oracle_error: 2.12, sr: 59.45, oracle_sr: 76.49, spl: 43.04, nDTW: 50.52, SDTW: 41.01, CLS: 51.70,
+val_unseen, action_steps: 8.04, steps: 10.13, lengths: 19.66, nav_error: 4.73, oracle_error: 2.13, sr: 57.64, oracle_sr: 76.37, spl: 40.85, nDTW: 48.73, SDTW: 39.21, CLS: 49.59
+
+total_actions 1, max_length 1, entropy 100370.2182, IL_loss 9.7345, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+1495m 56s (- 4202m 51s) (52500 26%) iter 52500,
+val_train_seen, action_steps: 8.26, steps: 10.78, lengths: 21.76, nav_error: 3.09, oracle_error: 1.04, sr: 58.67, oracle_sr: 88.00, spl: 44.09, nDTW: 53.01, SDTW: 41.54, CLS: 53.73,
+val_seen, action_steps: 8.57, steps: 11.41, lengths: 22.87, nav_error: 4.24, oracle_error: 1.81, sr: 61.21, oracle_sr: 79.73, spl: 41.65, nDTW: 48.07, SDTW: 39.52, CLS: 49.74,
+val_unseen, action_steps: 8.63, steps: 11.97, lengths: 23.07, nav_error: 4.43, oracle_error: 1.75, sr: 58.71, oracle_sr: 80.89, spl: 38.91, nDTW: 46.61, SDTW: 37.55, CLS: 47.89
+BEST RESULT TILL NOW
+val_unseen | Iter 50000 iter 50000,
+val_train_seen, action_steps: 7.89, steps: 9.22, lengths: 18.40, nav_error: 3.86, oracle_error: 1.61, sr: 56.00, oracle_sr: 80.00, spl: 42.52, nDTW: 52.71, SDTW: 40.14, CLS: 53.88,
+val_seen, action_steps: 8.07, steps: 9.93, lengths: 19.87, nav_error: 4.58, oracle_error: 2.12, sr: 59.45, oracle_sr: 76.49, spl: 43.04, nDTW: 50.52, SDTW: 41.01, CLS: 51.70,
+val_unseen, action_steps: 8.04, steps: 10.13, lengths: 19.66, nav_error: 4.73, oracle_error: 2.13, sr: 57.64, oracle_sr: 76.37, spl: 40.85, nDTW: 48.73, SDTW: 39.21, CLS: 49.59
+
+total_actions 1, max_length 1, entropy 101038.1823, IL_loss 9.8509, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+1572m 35s (- 4145m 56s) (55000 27%) iter 55000,
+val_train_seen, action_steps: 7.30, steps: 8.92, lengths: 18.73, nav_error: 3.10, oracle_error: 1.67, sr: 61.33, oracle_sr: 78.67, spl: 47.51, nDTW: 58.96, SDTW: 44.57, CLS: 58.27,
+val_seen, action_steps: 7.63, steps: 9.47, lengths: 19.11, nav_error: 4.19, oracle_error: 2.23, sr: 61.02, oracle_sr: 74.53, spl: 45.87, nDTW: 53.17, SDTW: 42.60, CLS: 54.59,
+val_unseen, action_steps: 7.75, steps: 10.13, lengths: 19.81, nav_error: 4.30, oracle_error: 2.09, sr: 60.41, oracle_sr: 75.99, spl: 44.58, nDTW: 51.46, SDTW: 41.83, CLS: 52.56
+BEST RESULT TILL NOW
+val_unseen | Iter 55000 iter 55000,
+val_train_seen, action_steps: 7.30, steps: 8.92, lengths: 18.73, nav_error: 3.10, oracle_error: 1.67, sr: 61.33, oracle_sr: 78.67, spl: 47.51, nDTW: 58.96, SDTW: 44.57, CLS: 58.27,
+val_seen, action_steps: 7.63, steps: 9.47, lengths: 19.11, nav_error: 4.19, oracle_error: 2.23, sr: 61.02, oracle_sr: 74.53, spl: 45.87, nDTW: 53.17, SDTW: 42.60, CLS: 54.59,
+val_unseen, action_steps: 7.75, steps: 10.13, lengths: 19.81, nav_error: 4.30, oracle_error: 2.09, sr: 60.41, oracle_sr: 75.99, spl: 44.58, nDTW: 51.46, SDTW: 41.83, CLS: 52.56
+
+total_actions 1, max_length 1, entropy 101693.8162, IL_loss 9.8484, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+1639m 21s (- 4062m 45s) (57500 28%) iter 57500,
+val_train_seen, action_steps: 8.05, steps: 9.97, lengths: 20.70, nav_error: 2.63, oracle_error: 1.05, sr: 66.00, oracle_sr: 89.33, spl: 48.15, nDTW: 55.50, SDTW: 45.08, CLS: 56.01,
+val_seen, action_steps: 8.22, steps: 10.37, lengths: 21.15, nav_error: 4.09, oracle_error: 1.83, sr: 63.86, oracle_sr: 80.12, spl: 45.95, nDTW: 51.39, SDTW: 42.87, CLS: 53.35,
+val_unseen, action_steps: 8.24, steps: 11.24, lengths: 21.99, nav_error: 4.04, oracle_error: 1.75, sr: 63.64, oracle_sr: 79.91, spl: 44.79, nDTW: 50.51, SDTW: 42.05, CLS: 51.70
+BEST RESULT TILL NOW
+val_unseen | Iter 57500 iter 57500,
+val_train_seen, action_steps: 8.05, steps: 9.97, lengths: 20.70, nav_error: 2.63, oracle_error: 1.05, sr: 66.00, oracle_sr: 89.33, spl: 48.15, nDTW: 55.50, SDTW: 45.08, CLS: 56.01,
+val_seen, action_steps: 8.22, steps: 10.37, lengths: 21.15, nav_error: 4.09, oracle_error: 1.83, sr: 63.86, oracle_sr: 80.12, spl: 45.95, nDTW: 51.39, SDTW: 42.87, CLS: 53.35,
+val_unseen, action_steps: 8.24, steps: 11.24, lengths: 21.99, nav_error: 4.04, oracle_error: 1.75, sr: 63.64, oracle_sr: 79.91, spl: 44.79, nDTW: 50.51, SDTW: 42.05, CLS: 51.70
+
+total_actions 1, max_length 1, entropy 98275.8446, IL_loss 9.5462, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+1701m 34s (- 3970m 20s) (60000 30%) iter 60000,
+val_train_seen, action_steps: 6.32, steps: 7.23, lengths: 14.59, nav_error: 3.47, oracle_error: 2.10, sr: 57.33, oracle_sr: 72.00, spl: 48.68, nDTW: 62.25, SDTW: 44.80, CLS: 61.64,
+val_seen, action_steps: 6.45, steps: 7.43, lengths: 15.16, nav_error: 4.40, oracle_error: 2.59, sr: 60.43, oracle_sr: 68.95, spl: 49.62, nDTW: 60.19, SDTW: 47.04, CLS: 59.81,
+val_unseen, action_steps: 6.49, steps: 8.13, lengths: 15.72, nav_error: 4.01, oracle_error: 2.27, sr: 62.24, oracle_sr: 72.71, spl: 49.42, nDTW: 59.05, SDTW: 47.05, CLS: 58.30
+BEST RESULT TILL NOW
+val_unseen | Iter 60000 iter 60000,
+val_train_seen, action_steps: 6.32, steps: 7.23, lengths: 14.59, nav_error: 3.47, oracle_error: 2.10, sr: 57.33, oracle_sr: 72.00, spl: 48.68, nDTW: 62.25, SDTW: 44.80, CLS: 61.64,
+val_seen, action_steps: 6.45, steps: 7.43, lengths: 15.16, nav_error: 4.40, oracle_error: 2.59, sr: 60.43, oracle_sr: 68.95, spl: 49.62, nDTW: 60.19, SDTW: 47.04, CLS: 59.81,
+val_unseen, action_steps: 6.49, steps: 8.13, lengths: 15.72, nav_error: 4.01, oracle_error: 2.27, sr: 62.24, oracle_sr: 72.71, spl: 49.42, nDTW: 59.05, SDTW: 47.05, CLS: 58.30
+
+total_actions 1, max_length 1, entropy 97817.8614, IL_loss 9.5476, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+1767m 24s (- 3888m 17s) (62500 31%) iter 62500,
+val_train_seen, action_steps: 8.23, steps: 11.34, lengths: 23.64, nav_error: 3.73, oracle_error: 1.40, sr: 60.00, oracle_sr: 83.33, spl: 43.77, nDTW: 51.67, SDTW: 40.82, CLS: 51.60,
+val_seen, action_steps: 8.37, steps: 11.21, lengths: 22.50, nav_error: 4.45, oracle_error: 1.98, sr: 61.31, oracle_sr: 79.14, spl: 42.29, nDTW: 48.04, SDTW: 39.20, CLS: 49.88,
+val_unseen, action_steps: 8.71, steps: 12.78, lengths: 24.83, nav_error: 4.24, oracle_error: 1.64, sr: 59.51, oracle_sr: 80.76, spl: 39.76, nDTW: 47.06, SDTW: 38.08, CLS: 48.54
+BEST RESULT TILL NOW
+val_unseen | Iter 60000 iter 60000,
+val_train_seen, action_steps: 6.32, steps: 7.23, lengths: 14.59, nav_error: 3.47, oracle_error: 2.10, sr: 57.33, oracle_sr: 72.00, spl: 48.68, nDTW: 62.25, SDTW: 44.80, CLS: 61.64,
+val_seen, action_steps: 6.45, steps: 7.43, lengths: 15.16, nav_error: 4.40, oracle_error: 2.59, sr: 60.43, oracle_sr: 68.95, spl: 49.62, nDTW: 60.19, SDTW: 47.04, CLS: 59.81,
+val_unseen, action_steps: 6.49, steps: 8.13, lengths: 15.72, nav_error: 4.01, oracle_error: 2.27, sr: 62.24, oracle_sr: 72.71, spl: 49.42, nDTW: 59.05, SDTW: 47.05, CLS: 58.30
+
+total_actions 1, max_length 1, entropy 96234.3024, IL_loss 9.3497, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+1829m 47s (- 3800m 19s) (65000 32%) iter 65000,
+val_train_seen, action_steps: 6.90, steps: 8.01, lengths: 15.86, nav_error: 2.67, oracle_error: 1.40, sr: 71.33, oracle_sr: 83.33, spl: 56.87, nDTW: 62.45, SDTW: 52.32, CLS: 61.85,
+val_seen, action_steps: 6.87, steps: 8.06, lengths: 16.07, nav_error: 4.45, oracle_error: 2.43, sr: 62.00, oracle_sr: 73.26, spl: 49.59, nDTW: 57.86, SDTW: 46.84, CLS: 57.96,
+val_unseen, action_steps: 6.84, steps: 8.10, lengths: 15.55, nav_error: 4.08, oracle_error: 2.23, sr: 63.60, oracle_sr: 74.58, spl: 49.76, nDTW: 57.76, SDTW: 47.63, CLS: 57.31
+BEST RESULT TILL NOW
+val_unseen | Iter 65000 iter 65000,
+val_train_seen, action_steps: 6.90, steps: 8.01, lengths: 15.86, nav_error: 2.67, oracle_error: 1.40, sr: 71.33, oracle_sr: 83.33, spl: 56.87, nDTW: 62.45, SDTW: 52.32, CLS: 61.85,
+val_seen, action_steps: 6.87, steps: 8.06, lengths: 16.07, nav_error: 4.45, oracle_error: 2.43, sr: 62.00, oracle_sr: 73.26, spl: 49.59, nDTW: 57.86, SDTW: 46.84, CLS: 57.96,
+val_unseen, action_steps: 6.84, steps: 8.10, lengths: 15.55, nav_error: 4.08, oracle_error: 2.23, sr: 63.60, oracle_sr: 74.58, spl: 49.76, nDTW: 57.76, SDTW: 47.63, CLS: 57.31
+
+total_actions 1, max_length 1, entropy 97011.4178, IL_loss 9.5005, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+1892m 16s (- 3714m 28s) (67500 33%) iter 67500,
+val_train_seen, action_steps: 6.65, steps: 7.83, lengths: 15.97, nav_error: 3.35, oracle_error: 1.69, sr: 60.67, oracle_sr: 81.33, spl: 51.56, nDTW: 61.06, SDTW: 47.42, CLS: 60.15,
+val_seen, action_steps: 6.54, steps: 7.69, lengths: 15.67, nav_error: 3.95, oracle_error: 2.24, sr: 64.05, oracle_sr: 73.36, spl: 52.25, nDTW: 60.87, SDTW: 49.12, CLS: 60.36,
+val_unseen, action_steps: 6.76, steps: 8.29, lengths: 15.94, nav_error: 3.62, oracle_error: 1.89, sr: 66.92, oracle_sr: 78.25, spl: 52.32, nDTW: 60.20, SDTW: 50.37, CLS: 59.30
+BEST RESULT TILL NOW
+val_unseen | Iter 67500 iter 67500,
+val_train_seen, action_steps: 6.65, steps: 7.83, lengths: 15.97, nav_error: 3.35, oracle_error: 1.69, sr: 60.67, oracle_sr: 81.33, spl: 51.56, nDTW: 61.06, SDTW: 47.42, CLS: 60.15,
+val_seen, action_steps: 6.54, steps: 7.69, lengths: 15.67, nav_error: 3.95, oracle_error: 2.24, sr: 64.05, oracle_sr: 73.36, spl: 52.25, nDTW: 60.87, SDTW: 49.12, CLS: 60.36,
+val_unseen, action_steps: 6.76, steps: 8.29, lengths: 15.94, nav_error: 3.62, oracle_error: 1.89, sr: 66.92, oracle_sr: 78.25, spl: 52.32, nDTW: 60.20, SDTW: 50.37, CLS: 59.30
+
+total_actions 1, max_length 1, entropy 93275.1941, IL_loss 9.1404, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+1957m 49s (- 3635m 57s) (70000 35%) iter 70000,
+val_train_seen, action_steps: 8.65, steps: 10.97, lengths: 22.56, nav_error: 3.11, oracle_error: 1.09, sr: 62.67, oracle_sr: 90.00, spl: 45.06, nDTW: 51.41, SDTW: 43.01, CLS: 51.95,
+val_seen, action_steps: 8.31, steps: 10.68, lengths: 22.22, nav_error: 4.26, oracle_error: 1.83, sr: 60.72, oracle_sr: 80.22, spl: 43.05, nDTW: 49.95, SDTW: 41.28, CLS: 51.33,
+val_unseen, action_steps: 8.68, steps: 12.04, lengths: 24.13, nav_error: 3.86, oracle_error: 1.43, sr: 62.96, oracle_sr: 83.70, spl: 42.17, nDTW: 47.96, SDTW: 40.23, CLS: 49.33
+BEST RESULT TILL NOW
+val_unseen | Iter 67500 iter 67500,
+val_train_seen, action_steps: 6.65, steps: 7.83, lengths: 15.97, nav_error: 3.35, oracle_error: 1.69, sr: 60.67, oracle_sr: 81.33, spl: 51.56, nDTW: 61.06, SDTW: 47.42, CLS: 60.15,
+val_seen, action_steps: 6.54, steps: 7.69, lengths: 15.67, nav_error: 3.95, oracle_error: 2.24, sr: 64.05, oracle_sr: 73.36, spl: 52.25, nDTW: 60.87, SDTW: 49.12, CLS: 60.36,
+val_unseen, action_steps: 6.76, steps: 8.29, lengths: 15.94, nav_error: 3.62, oracle_error: 1.89, sr: 66.92, oracle_sr: 78.25, spl: 52.32, nDTW: 60.20, SDTW: 50.37, CLS: 59.30
+
+total_actions 1, max_length 1, entropy 93397.4656, IL_loss 9.1273, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+2021m 34s (- 3555m 10s) (72500 36%) iter 72500,
+val_train_seen, action_steps: 7.81, steps: 10.23, lengths: 20.62, nav_error: 3.07, oracle_error: 1.24, sr: 65.33, oracle_sr: 86.67, spl: 48.66, nDTW: 56.80, SDTW: 47.57, CLS: 55.23,
+val_seen, action_steps: 7.65, steps: 9.83, lengths: 19.84, nav_error: 4.05, oracle_error: 1.94, sr: 65.23, oracle_sr: 78.75, spl: 48.66, nDTW: 55.80, SDTW: 46.37, CLS: 55.94,
+val_unseen, action_steps: 7.94, steps: 11.43, lengths: 22.23, nav_error: 3.86, oracle_error: 1.60, sr: 64.84, oracle_sr: 82.50, spl: 46.48, nDTW: 53.27, SDTW: 44.88, CLS: 53.22
+BEST RESULT TILL NOW
+val_unseen | Iter 67500 iter 67500,
+val_train_seen, action_steps: 6.65, steps: 7.83, lengths: 15.97, nav_error: 3.35, oracle_error: 1.69, sr: 60.67, oracle_sr: 81.33, spl: 51.56, nDTW: 61.06, SDTW: 47.42, CLS: 60.15,
+val_seen, action_steps: 6.54, steps: 7.69, lengths: 15.67, nav_error: 3.95, oracle_error: 2.24, sr: 64.05, oracle_sr: 73.36, spl: 52.25, nDTW: 60.87, SDTW: 49.12, CLS: 60.36,
+val_unseen, action_steps: 6.76, steps: 8.29, lengths: 15.94, nav_error: 3.62, oracle_error: 1.89, sr: 66.92, oracle_sr: 78.25, spl: 52.32, nDTW: 60.20, SDTW: 50.37, CLS: 59.30
+
+total_actions 1, max_length 1, entropy 93239.3825, IL_loss 9.0972, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+2083m 25s (- 3472m 21s) (75000 37%) iter 75000,
+val_train_seen, action_steps: 6.49, steps: 8.00, lengths: 16.48, nav_error: 2.85, oracle_error: 1.58, sr: 71.33, oracle_sr: 83.33, spl: 58.62, nDTW: 64.99, SDTW: 55.34, CLS: 62.56,
+val_seen, action_steps: 6.60, steps: 8.54, lengths: 17.48, nav_error: 3.57, oracle_error: 2.17, sr: 65.82, oracle_sr: 74.93, spl: 51.49, nDTW: 60.07, SDTW: 47.90, CLS: 59.31,
+val_unseen, action_steps: 6.76, steps: 9.36, lengths: 18.20, nav_error: 3.71, oracle_error: 2.02, sr: 65.05, oracle_sr: 76.76, spl: 49.80, nDTW: 57.66, SDTW: 47.28, CLS: 56.77
+BEST RESULT TILL NOW
+val_unseen | Iter 67500 iter 67500,
+val_train_seen, action_steps: 6.65, steps: 7.83, lengths: 15.97, nav_error: 3.35, oracle_error: 1.69, sr: 60.67, oracle_sr: 81.33, spl: 51.56, nDTW: 61.06, SDTW: 47.42, CLS: 60.15,
+val_seen, action_steps: 6.54, steps: 7.69, lengths: 15.67, nav_error: 3.95, oracle_error: 2.24, sr: 64.05, oracle_sr: 73.36, spl: 52.25, nDTW: 60.87, SDTW: 49.12, CLS: 60.36,
+val_unseen, action_steps: 6.76, steps: 8.29, lengths: 15.94, nav_error: 3.62, oracle_error: 1.89, sr: 66.92, oracle_sr: 78.25, spl: 52.32, nDTW: 60.20, SDTW: 50.37, CLS: 59.30
+
+total_actions 1, max_length 1, entropy 90803.2603, IL_loss 8.8172, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+2145m 54s (- 3391m 55s) (77500 38%) iter 77500,
+val_train_seen, action_steps: 6.88, steps: 8.28, lengths: 16.53, nav_error: 2.36, oracle_error: 1.23, sr: 75.33, oracle_sr: 86.00, spl: 59.61, nDTW: 65.04, SDTW: 57.06, CLS: 62.22,
+val_seen, action_steps: 7.18, steps: 8.96, lengths: 17.74, nav_error: 3.83, oracle_error: 2.01, sr: 64.54, oracle_sr: 76.79, spl: 49.48, nDTW: 57.88, SDTW: 47.07, CLS: 58.23,
+val_unseen, action_steps: 7.36, steps: 10.10, lengths: 19.40, nav_error: 3.58, oracle_error: 1.63, sr: 66.88, oracle_sr: 81.23, spl: 49.50, nDTW: 56.30, SDTW: 47.27, CLS: 56.43
+BEST RESULT TILL NOW
+val_unseen | Iter 67500 iter 67500,
+val_train_seen, action_steps: 6.65, steps: 7.83, lengths: 15.97, nav_error: 3.35, oracle_error: 1.69, sr: 60.67, oracle_sr: 81.33, spl: 51.56, nDTW: 61.06, SDTW: 47.42, CLS: 60.15,
+val_seen, action_steps: 6.54, steps: 7.69, lengths: 15.67, nav_error: 3.95, oracle_error: 2.24, sr: 64.05, oracle_sr: 73.36, spl: 52.25, nDTW: 60.87, SDTW: 49.12, CLS: 60.36,
+val_unseen, action_steps: 6.76, steps: 8.29, lengths: 15.94, nav_error: 3.62, oracle_error: 1.89, sr: 66.92, oracle_sr: 78.25, spl: 52.32, nDTW: 60.20, SDTW: 50.37, CLS: 59.30
+
+total_actions 1, max_length 1, entropy 90572.1367, IL_loss 8.7809, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+2208m 3s (- 3312m 4s) (80000 40%) iter 80000,
+val_train_seen, action_steps: 6.63, steps: 7.88, lengths: 15.58, nav_error: 2.74, oracle_error: 1.51, sr: 71.33, oracle_sr: 82.00, spl: 59.41, nDTW: 66.36, SDTW: 55.54, CLS: 65.35,
+val_seen, action_steps: 6.95, steps: 8.41, lengths: 16.35, nav_error: 4.01, oracle_error: 2.25, sr: 64.05, oracle_sr: 73.36, spl: 51.40, nDTW: 59.79, SDTW: 48.50, CLS: 60.35,
+val_unseen, action_steps: 6.98, steps: 8.69, lengths: 16.14, nav_error: 3.75, oracle_error: 1.98, sr: 66.03, oracle_sr: 77.01, spl: 51.35, nDTW: 58.93, SDTW: 48.72, CLS: 59.30
+BEST RESULT TILL NOW
+val_unseen | Iter 67500 iter 67500,
+val_train_seen, action_steps: 6.65, steps: 7.83, lengths: 15.97, nav_error: 3.35, oracle_error: 1.69, sr: 60.67, oracle_sr: 81.33, spl: 51.56, nDTW: 61.06, SDTW: 47.42, CLS: 60.15,
+val_seen, action_steps: 6.54, steps: 7.69, lengths: 15.67, nav_error: 3.95, oracle_error: 2.24, sr: 64.05, oracle_sr: 73.36, spl: 52.25, nDTW: 60.87, SDTW: 49.12, CLS: 60.36,
+val_unseen, action_steps: 6.76, steps: 8.29, lengths: 15.94, nav_error: 3.62, oracle_error: 1.89, sr: 66.92, oracle_sr: 78.25, spl: 52.32, nDTW: 60.20, SDTW: 50.37, CLS: 59.30
+
+total_actions 1, max_length 1, entropy 91880.7326, IL_loss 8.9517, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+2270m 8s (- 3233m 14s) (82500 41%) iter 82500,
+val_train_seen, action_steps: 7.20, steps: 8.65, lengths: 17.27, nav_error: 2.95, oracle_error: 1.30, sr: 67.33, oracle_sr: 84.67, spl: 54.46, nDTW: 62.12, SDTW: 52.15, CLS: 60.71,
+val_seen, action_steps: 7.22, steps: 8.55, lengths: 17.04, nav_error: 3.86, oracle_error: 1.89, sr: 64.35, oracle_sr: 78.45, spl: 49.67, nDTW: 58.18, SDTW: 47.61, CLS: 58.41,
+val_unseen, action_steps: 7.46, steps: 9.41, lengths: 18.06, nav_error: 3.65, oracle_error: 1.56, sr: 65.86, oracle_sr: 82.03, spl: 48.65, nDTW: 56.62, SDTW: 47.62, CLS: 56.14
+BEST RESULT TILL NOW
+val_unseen | Iter 67500 iter 67500,
+val_train_seen, action_steps: 6.65, steps: 7.83, lengths: 15.97, nav_error: 3.35, oracle_error: 1.69, sr: 60.67, oracle_sr: 81.33, spl: 51.56, nDTW: 61.06, SDTW: 47.42, CLS: 60.15,
+val_seen, action_steps: 6.54, steps: 7.69, lengths: 15.67, nav_error: 3.95, oracle_error: 2.24, sr: 64.05, oracle_sr: 73.36, spl: 52.25, nDTW: 60.87, SDTW: 49.12, CLS: 60.36,
+val_unseen, action_steps: 6.76, steps: 8.29, lengths: 15.94, nav_error: 3.62, oracle_error: 1.89, sr: 66.92, oracle_sr: 78.25, spl: 52.32, nDTW: 60.20, SDTW: 50.37, CLS: 59.30
+
+total_actions 1, max_length 1, entropy 89470.9665, IL_loss 8.6671, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+2331m 59s (- 3155m 3s) (85000 42%) iter 85000,
+val_train_seen, action_steps: 7.09, steps: 8.03, lengths: 16.07, nav_error: 3.15, oracle_error: 1.13, sr: 65.33, oracle_sr: 88.67, spl: 50.58, nDTW: 62.78, SDTW: 50.69, CLS: 59.91,
+val_seen, action_steps: 7.16, steps: 8.53, lengths: 17.08, nav_error: 4.02, oracle_error: 1.87, sr: 64.35, oracle_sr: 79.63, spl: 50.26, nDTW: 59.19, SDTW: 48.70, CLS: 58.64,
+val_unseen, action_steps: 7.53, steps: 9.67, lengths: 18.55, nav_error: 3.89, oracle_error: 1.59, sr: 64.37, oracle_sr: 81.74, spl: 47.20, nDTW: 56.06, SDTW: 46.13, CLS: 55.53
+BEST RESULT TILL NOW
+val_unseen | Iter 67500 iter 67500,
+val_train_seen, action_steps: 6.65, steps: 7.83, lengths: 15.97, nav_error: 3.35, oracle_error: 1.69, sr: 60.67, oracle_sr: 81.33, spl: 51.56, nDTW: 61.06, SDTW: 47.42, CLS: 60.15,
+val_seen, action_steps: 6.54, steps: 7.69, lengths: 15.67, nav_error: 3.95, oracle_error: 2.24, sr: 64.05, oracle_sr: 73.36, spl: 52.25, nDTW: 60.87, SDTW: 49.12, CLS: 60.36,
+val_unseen, action_steps: 6.76, steps: 8.29, lengths: 15.94, nav_error: 3.62, oracle_error: 1.89, sr: 66.92, oracle_sr: 78.25, spl: 52.32, nDTW: 60.20, SDTW: 50.37, CLS: 59.30
+
+total_actions 1, max_length 1, entropy 89616.2732, IL_loss 8.7498, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+2393m 43s (- 3077m 39s) (87500 43%) iter 87500,
+val_train_seen, action_steps: 6.58, steps: 7.92, lengths: 16.27, nav_error: 2.08, oracle_error: 1.10, sr: 77.33, oracle_sr: 88.67, spl: 63.89, nDTW: 68.56, SDTW: 60.30, CLS: 66.57,
+val_seen, action_steps: 6.94, steps: 8.81, lengths: 18.10, nav_error: 3.89, oracle_error: 2.02, sr: 64.25, oracle_sr: 76.10, spl: 50.52, nDTW: 59.40, SDTW: 48.35, CLS: 58.82,
+val_unseen, action_steps: 7.30, steps: 10.19, lengths: 19.95, nav_error: 3.55, oracle_error: 1.64, sr: 67.48, oracle_sr: 81.44, spl: 50.67, nDTW: 57.14, SDTW: 48.24, CLS: 56.67
+BEST RESULT TILL NOW
+val_unseen | Iter 67500 iter 67500,
+val_train_seen, action_steps: 6.65, steps: 7.83, lengths: 15.97, nav_error: 3.35, oracle_error: 1.69, sr: 60.67, oracle_sr: 81.33, spl: 51.56, nDTW: 61.06, SDTW: 47.42, CLS: 60.15,
+val_seen, action_steps: 6.54, steps: 7.69, lengths: 15.67, nav_error: 3.95, oracle_error: 2.24, sr: 64.05, oracle_sr: 73.36, spl: 52.25, nDTW: 60.87, SDTW: 49.12, CLS: 60.36,
+val_unseen, action_steps: 6.76, steps: 8.29, lengths: 15.94, nav_error: 3.62, oracle_error: 1.89, sr: 66.92, oracle_sr: 78.25, spl: 52.32, nDTW: 60.20, SDTW: 50.37, CLS: 59.30
+
+total_actions 1, max_length 1, entropy 87308.1642, IL_loss 8.5050, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+2457m 2s (- 3003m 3s) (90000 45%) iter 90000,
+val_train_seen, action_steps: 7.90, steps: 9.16, lengths: 19.02, nav_error: 2.99, oracle_error: 0.91, sr: 66.00, oracle_sr: 92.67, spl: 50.55, nDTW: 58.41, SDTW: 48.73, CLS: 58.42,
+val_seen, action_steps: 8.06, steps: 10.22, lengths: 20.94, nav_error: 3.83, oracle_error: 1.46, sr: 64.45, oracle_sr: 83.64, spl: 47.17, nDTW: 54.05, SDTW: 45.32, CLS: 54.83,
+val_unseen, action_steps: 8.32, steps: 11.10, lengths: 21.73, nav_error: 3.82, oracle_error: 1.30, sr: 62.62, oracle_sr: 85.06, spl: 44.01, nDTW: 51.52, SDTW: 42.40, CLS: 52.33
+BEST RESULT TILL NOW
+val_unseen | Iter 67500 iter 67500,
+val_train_seen, action_steps: 6.65, steps: 7.83, lengths: 15.97, nav_error: 3.35, oracle_error: 1.69, sr: 60.67, oracle_sr: 81.33, spl: 51.56, nDTW: 61.06, SDTW: 47.42, CLS: 60.15,
+val_seen, action_steps: 6.54, steps: 7.69, lengths: 15.67, nav_error: 3.95, oracle_error: 2.24, sr: 64.05, oracle_sr: 73.36, spl: 52.25, nDTW: 60.87, SDTW: 49.12, CLS: 60.36,
+val_unseen, action_steps: 6.76, steps: 8.29, lengths: 15.94, nav_error: 3.62, oracle_error: 1.89, sr: 66.92, oracle_sr: 78.25, spl: 52.32, nDTW: 60.20, SDTW: 50.37, CLS: 59.30
+
+total_actions 1, max_length 1, entropy 87192.2523, IL_loss 8.5466, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+2518m 38s (- 2927m 4s) (92500 46%) iter 92500,
+val_train_seen, action_steps: 7.19, steps: 8.25, lengths: 16.99, nav_error: 2.88, oracle_error: 1.12, sr: 68.67, oracle_sr: 88.67, spl: 56.02, nDTW: 62.01, SDTW: 53.26, CLS: 61.32,
+val_seen, action_steps: 7.27, steps: 8.67, lengths: 17.68, nav_error: 3.65, oracle_error: 1.83, sr: 65.82, oracle_sr: 79.14, spl: 51.66, nDTW: 58.84, SDTW: 48.86, CLS: 59.25,
+val_unseen, action_steps: 7.32, steps: 9.15, lengths: 17.76, nav_error: 3.56, oracle_error: 1.56, sr: 66.28, oracle_sr: 82.63, spl: 51.31, nDTW: 58.27, SDTW: 49.29, CLS: 58.44
+BEST RESULT TILL NOW
+val_unseen | Iter 67500 iter 67500,
+val_train_seen, action_steps: 6.65, steps: 7.83, lengths: 15.97, nav_error: 3.35, oracle_error: 1.69, sr: 60.67, oracle_sr: 81.33, spl: 51.56, nDTW: 61.06, SDTW: 47.42, CLS: 60.15,
+val_seen, action_steps: 6.54, steps: 7.69, lengths: 15.67, nav_error: 3.95, oracle_error: 2.24, sr: 64.05, oracle_sr: 73.36, spl: 52.25, nDTW: 60.87, SDTW: 49.12, CLS: 60.36,
+val_unseen, action_steps: 6.76, steps: 8.29, lengths: 15.94, nav_error: 3.62, oracle_error: 1.89, sr: 66.92, oracle_sr: 78.25, spl: 52.32, nDTW: 60.20, SDTW: 50.37, CLS: 59.30
+
+total_actions 1, max_length 1, entropy 87703.1107, IL_loss 8.4901, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+2620m 39s (- 2896m 31s) (95000 47%) iter 95000,
+val_train_seen, action_steps: 8.33, steps: 10.75, lengths: 23.04, nav_error: 2.87, oracle_error: 1.01, sr: 68.00, oracle_sr: 90.67, spl: 46.99, nDTW: 54.09, SDTW: 44.99, CLS: 54.37,
+val_seen, action_steps: 8.04, steps: 10.44, lengths: 22.08, nav_error: 3.67, oracle_error: 1.53, sr: 66.50, oracle_sr: 83.84, spl: 48.12, nDTW: 53.73, SDTW: 46.08, CLS: 54.09,
+val_unseen, action_steps: 8.25, steps: 11.70, lengths: 23.47, nav_error: 3.62, oracle_error: 1.28, sr: 65.94, oracle_sr: 86.16, spl: 45.60, nDTW: 51.58, SDTW: 44.18, CLS: 51.95
+BEST RESULT TILL NOW
+val_unseen | Iter 67500 iter 67500,
+val_train_seen, action_steps: 6.65, steps: 7.83, lengths: 15.97, nav_error: 3.35, oracle_error: 1.69, sr: 60.67, oracle_sr: 81.33, spl: 51.56, nDTW: 61.06, SDTW: 47.42, CLS: 60.15,
+val_seen, action_steps: 6.54, steps: 7.69, lengths: 15.67, nav_error: 3.95, oracle_error: 2.24, sr: 64.05, oracle_sr: 73.36, spl: 52.25, nDTW: 60.87, SDTW: 49.12, CLS: 60.36,
+val_unseen, action_steps: 6.76, steps: 8.29, lengths: 15.94, nav_error: 3.62, oracle_error: 1.89, sr: 66.92, oracle_sr: 78.25, spl: 52.32, nDTW: 60.20, SDTW: 50.37, CLS: 59.30
+
+total_actions 1, max_length 1, entropy 89375.4120, IL_loss 8.7369, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+2683m 24s (- 2821m 1s) (97500 48%) iter 97500,
+val_train_seen, action_steps: 6.77, steps: 8.12, lengths: 16.24, nav_error: 2.61, oracle_error: 1.07, sr: 73.33, oracle_sr: 88.67, spl: 61.86, nDTW: 67.83, SDTW: 59.10, CLS: 65.66,
+val_seen, action_steps: 7.16, steps: 9.07, lengths: 18.07, nav_error: 3.68, oracle_error: 1.78, sr: 67.38, oracle_sr: 80.12, spl: 52.90, nDTW: 59.38, SDTW: 50.43, CLS: 59.45,
+val_unseen, action_steps: 7.29, steps: 9.43, lengths: 17.91, nav_error: 3.69, oracle_error: 1.68, sr: 66.07, oracle_sr: 80.89, spl: 49.76, nDTW: 57.87, SDTW: 48.31, CLS: 57.58
+BEST RESULT TILL NOW
+val_unseen | Iter 67500 iter 67500,
+val_train_seen, action_steps: 6.65, steps: 7.83, lengths: 15.97, nav_error: 3.35, oracle_error: 1.69, sr: 60.67, oracle_sr: 81.33, spl: 51.56, nDTW: 61.06, SDTW: 47.42, CLS: 60.15,
+val_seen, action_steps: 6.54, steps: 7.69, lengths: 15.67, nav_error: 3.95, oracle_error: 2.24, sr: 64.05, oracle_sr: 73.36, spl: 52.25, nDTW: 60.87, SDTW: 49.12, CLS: 60.36,
+val_unseen, action_steps: 6.76, steps: 8.29, lengths: 15.94, nav_error: 3.62, oracle_error: 1.89, sr: 66.92, oracle_sr: 78.25, spl: 52.32, nDTW: 60.20, SDTW: 50.37, CLS: 59.30
+
+total_actions 1, max_length 1, entropy 88234.0223, IL_loss 8.6405, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+2745m 21s (- 2745m 21s) (100000 50%) iter 100000,
+val_train_seen, action_steps: 6.76, steps: 8.07, lengths: 16.66, nav_error: 2.32, oracle_error: 1.04, sr: 75.33, oracle_sr: 88.67, spl: 62.01, nDTW: 67.80, SDTW: 59.92, CLS: 66.00,
+val_seen, action_steps: 7.35, steps: 9.11, lengths: 18.69, nav_error: 3.52, oracle_error: 1.76, sr: 66.80, oracle_sr: 80.22, spl: 51.37, nDTW: 58.89, SDTW: 49.31, CLS: 58.68,
+val_unseen, action_steps: 7.45, steps: 9.88, lengths: 19.32, nav_error: 3.60, oracle_error: 1.60, sr: 67.35, oracle_sr: 81.95, spl: 50.24, nDTW: 56.60, SDTW: 48.32, CLS: 56.35
+BEST RESULT TILL NOW
+val_unseen | Iter 67500 iter 67500,
+val_train_seen, action_steps: 6.65, steps: 7.83, lengths: 15.97, nav_error: 3.35, oracle_error: 1.69, sr: 60.67, oracle_sr: 81.33, spl: 51.56, nDTW: 61.06, SDTW: 47.42, CLS: 60.15,
+val_seen, action_steps: 6.54, steps: 7.69, lengths: 15.67, nav_error: 3.95, oracle_error: 2.24, sr: 64.05, oracle_sr: 73.36, spl: 52.25, nDTW: 60.87, SDTW: 49.12, CLS: 60.36,
+val_unseen, action_steps: 6.76, steps: 8.29, lengths: 15.94, nav_error: 3.62, oracle_error: 1.89, sr: 66.92, oracle_sr: 78.25, spl: 52.32, nDTW: 60.20, SDTW: 50.37, CLS: 59.30
+
+total_actions 1, max_length 1, entropy 85259.5973, IL_loss 8.3022, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+2806m 45s (- 2669m 50s) (102500 51%) iter 102500,
+val_train_seen, action_steps: 6.95, steps: 8.33, lengths: 17.20, nav_error: 2.42, oracle_error: 1.19, sr: 77.33, oracle_sr: 87.33, spl: 62.72, nDTW: 66.25, SDTW: 59.29, CLS: 64.84,
+val_seen, action_steps: 7.15, steps: 8.86, lengths: 18.25, nav_error: 3.43, oracle_error: 1.77, sr: 70.52, oracle_sr: 81.39, spl: 54.78, nDTW: 60.05, SDTW: 51.74, CLS: 59.81,
+val_unseen, action_steps: 7.23, steps: 9.43, lengths: 18.67, nav_error: 3.49, oracle_error: 1.67, sr: 68.67, oracle_sr: 80.89, spl: 51.92, nDTW: 57.83, SDTW: 49.68, CLS: 57.12
+BEST RESULT TILL NOW
+val_unseen | Iter 67500 iter 67500,
+val_train_seen, action_steps: 6.65, steps: 7.83, lengths: 15.97, nav_error: 3.35, oracle_error: 1.69, sr: 60.67, oracle_sr: 81.33, spl: 51.56, nDTW: 61.06, SDTW: 47.42, CLS: 60.15,
+val_seen, action_steps: 6.54, steps: 7.69, lengths: 15.67, nav_error: 3.95, oracle_error: 2.24, sr: 64.05, oracle_sr: 73.36, spl: 52.25, nDTW: 60.87, SDTW: 49.12, CLS: 60.36,
+val_unseen, action_steps: 6.76, steps: 8.29, lengths: 15.94, nav_error: 3.62, oracle_error: 1.89, sr: 66.92, oracle_sr: 78.25, spl: 52.32, nDTW: 60.20, SDTW: 50.37, CLS: 59.30
+
+total_actions 1, max_length 1, entropy 84828.3114, IL_loss 8.2204, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+2867m 52s (- 2594m 44s) (105000 52%) iter 105000,
+val_train_seen, action_steps: 6.08, steps: 6.71, lengths: 13.45, nav_error: 2.23, oracle_error: 1.14, sr: 72.67, oracle_sr: 86.67, spl: 64.58, nDTW: 73.69, SDTW: 62.11, CLS: 71.16,
+val_seen, action_steps: 6.62, steps: 7.78, lengths: 15.63, nav_error: 3.53, oracle_error: 1.89, sr: 68.36, oracle_sr: 78.55, spl: 56.09, nDTW: 63.66, SDTW: 53.68, CLS: 62.53,
+val_unseen, action_steps: 6.69, steps: 8.06, lengths: 15.45, nav_error: 3.22, oracle_error: 1.62, sr: 69.65, oracle_sr: 80.67, spl: 54.96, nDTW: 62.32, SDTW: 52.67, CLS: 61.26
+BEST RESULT TILL NOW
+val_unseen | Iter 105000 iter 105000,
+val_train_seen, action_steps: 6.08, steps: 6.71, lengths: 13.45, nav_error: 2.23, oracle_error: 1.14, sr: 72.67, oracle_sr: 86.67, spl: 64.58, nDTW: 73.69, SDTW: 62.11, CLS: 71.16,
+val_seen, action_steps: 6.62, steps: 7.78, lengths: 15.63, nav_error: 3.53, oracle_error: 1.89, sr: 68.36, oracle_sr: 78.55, spl: 56.09, nDTW: 63.66, SDTW: 53.68, CLS: 62.53,
+val_unseen, action_steps: 6.69, steps: 8.06, lengths: 15.45, nav_error: 3.22, oracle_error: 1.62, sr: 69.65, oracle_sr: 80.67, spl: 54.96, nDTW: 62.32, SDTW: 52.67, CLS: 61.26
+
+total_actions 1, max_length 1, entropy 83714.2785, IL_loss 8.1844, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+2929m 14s (- 2520m 30s) (107500 53%) iter 107500,
+val_train_seen, action_steps: 6.52, steps: 7.45, lengths: 15.30, nav_error: 3.18, oracle_error: 1.40, sr: 68.67, oracle_sr: 86.00, spl: 59.55, nDTW: 65.57, SDTW: 55.74, CLS: 64.05,
+val_seen, action_steps: 6.59, steps: 7.85, lengths: 16.10, nav_error: 3.61, oracle_error: 1.82, sr: 68.07, oracle_sr: 79.82, spl: 55.24, nDTW: 62.84, SDTW: 53.14, CLS: 61.49,
+val_unseen, action_steps: 6.93, steps: 8.83, lengths: 17.11, nav_error: 3.49, oracle_error: 1.59, sr: 68.07, oracle_sr: 82.38, spl: 52.98, nDTW: 60.58, SDTW: 51.77, CLS: 59.12
+BEST RESULT TILL NOW
+val_unseen | Iter 105000 iter 105000,
+val_train_seen, action_steps: 6.08, steps: 6.71, lengths: 13.45, nav_error: 2.23, oracle_error: 1.14, sr: 72.67, oracle_sr: 86.67, spl: 64.58, nDTW: 73.69, SDTW: 62.11, CLS: 71.16,
+val_seen, action_steps: 6.62, steps: 7.78, lengths: 15.63, nav_error: 3.53, oracle_error: 1.89, sr: 68.36, oracle_sr: 78.55, spl: 56.09, nDTW: 63.66, SDTW: 53.68, CLS: 62.53,
+val_unseen, action_steps: 6.69, steps: 8.06, lengths: 15.45, nav_error: 3.22, oracle_error: 1.62, sr: 69.65, oracle_sr: 80.67, spl: 54.96, nDTW: 62.32, SDTW: 52.67, CLS: 61.26
+
+total_actions 1, max_length 1, entropy 82336.3357, IL_loss 8.1005, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+2991m 24s (- 2447m 30s) (110000 55%) iter 110000,
+val_train_seen, action_steps: 6.68, steps: 7.69, lengths: 15.61, nav_error: 2.45, oracle_error: 1.11, sr: 74.00, oracle_sr: 87.33, spl: 63.31, nDTW: 69.34, SDTW: 60.84, CLS: 67.46,
+val_seen, action_steps: 7.07, steps: 8.42, lengths: 17.14, nav_error: 3.40, oracle_error: 1.72, sr: 68.66, oracle_sr: 81.00, spl: 53.95, nDTW: 61.14, SDTW: 51.52, CLS: 60.43,
+val_unseen, action_steps: 7.41, steps: 9.56, lengths: 18.70, nav_error: 3.52, oracle_error: 1.54, sr: 67.39, oracle_sr: 82.29, spl: 50.58, nDTW: 56.98, SDTW: 48.31, CLS: 56.75
+BEST RESULT TILL NOW
+val_unseen | Iter 105000 iter 105000,
+val_train_seen, action_steps: 6.08, steps: 6.71, lengths: 13.45, nav_error: 2.23, oracle_error: 1.14, sr: 72.67, oracle_sr: 86.67, spl: 64.58, nDTW: 73.69, SDTW: 62.11, CLS: 71.16,
+val_seen, action_steps: 6.62, steps: 7.78, lengths: 15.63, nav_error: 3.53, oracle_error: 1.89, sr: 68.36, oracle_sr: 78.55, spl: 56.09, nDTW: 63.66, SDTW: 53.68, CLS: 62.53,
+val_unseen, action_steps: 6.69, steps: 8.06, lengths: 15.45, nav_error: 3.22, oracle_error: 1.62, sr: 69.65, oracle_sr: 80.67, spl: 54.96, nDTW: 62.32, SDTW: 52.67, CLS: 61.26
+
+total_actions 1, max_length 1, entropy 84704.5571, IL_loss 8.2760, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+3052m 3s (- 2373m 49s) (112500 56%) iter 112500,
+val_train_seen, action_steps: 6.37, steps: 7.20, lengths: 14.33, nav_error: 2.33, oracle_error: 1.07, sr: 76.00, oracle_sr: 88.00, spl: 66.04, nDTW: 71.79, SDTW: 63.60, CLS: 69.44,
+val_seen, action_steps: 6.67, steps: 7.68, lengths: 15.25, nav_error: 3.72, oracle_error: 2.07, sr: 67.48, oracle_sr: 76.59, spl: 55.08, nDTW: 62.57, SDTW: 52.44, CLS: 62.58,
+val_unseen, action_steps: 7.03, steps: 8.54, lengths: 16.34, nav_error: 3.55, oracle_error: 1.73, sr: 66.79, oracle_sr: 79.65, spl: 51.41, nDTW: 59.59, SDTW: 49.77, CLS: 58.78
+BEST RESULT TILL NOW
+val_unseen | Iter 105000 iter 105000,
+val_train_seen, action_steps: 6.08, steps: 6.71, lengths: 13.45, nav_error: 2.23, oracle_error: 1.14, sr: 72.67, oracle_sr: 86.67, spl: 64.58, nDTW: 73.69, SDTW: 62.11, CLS: 71.16,
+val_seen, action_steps: 6.62, steps: 7.78, lengths: 15.63, nav_error: 3.53, oracle_error: 1.89, sr: 68.36, oracle_sr: 78.55, spl: 56.09, nDTW: 63.66, SDTW: 53.68, CLS: 62.53,
+val_unseen, action_steps: 6.69, steps: 8.06, lengths: 15.45, nav_error: 3.22, oracle_error: 1.62, sr: 69.65, oracle_sr: 80.67, spl: 54.96, nDTW: 62.32, SDTW: 52.67, CLS: 61.26
+
+total_actions 1, max_length 1, entropy 82422.7885, IL_loss 8.0472, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+3111m 35s (- 2299m 52s) (115000 57%) iter 115000,
+val_train_seen, action_steps: 5.87, steps: 6.53, lengths: 13.14, nav_error: 2.15, oracle_error: 1.35, sr: 78.67, oracle_sr: 86.00, spl: 70.34, nDTW: 74.75, SDTW: 66.74, CLS: 71.23,
+val_seen, action_steps: 6.15, steps: 7.21, lengths: 14.77, nav_error: 3.50, oracle_error: 2.04, sr: 68.66, oracle_sr: 76.79, spl: 57.88, nDTW: 65.71, SDTW: 55.23, CLS: 64.30,
+val_unseen, action_steps: 6.53, steps: 8.27, lengths: 16.25, nav_error: 3.34, oracle_error: 1.80, sr: 69.26, oracle_sr: 78.97, spl: 55.27, nDTW: 61.84, SDTW: 52.79, CLS: 60.67
+BEST RESULT TILL NOW
+val_unseen | Iter 115000 iter 115000,
+val_train_seen, action_steps: 5.87, steps: 6.53, lengths: 13.14, nav_error: 2.15, oracle_error: 1.35, sr: 78.67, oracle_sr: 86.00, spl: 70.34, nDTW: 74.75, SDTW: 66.74, CLS: 71.23,
+val_seen, action_steps: 6.15, steps: 7.21, lengths: 14.77, nav_error: 3.50, oracle_error: 2.04, sr: 68.66, oracle_sr: 76.79, spl: 57.88, nDTW: 65.71, SDTW: 55.23, CLS: 64.30,
+val_unseen, action_steps: 6.53, steps: 8.27, lengths: 16.25, nav_error: 3.34, oracle_error: 1.80, sr: 69.26, oracle_sr: 78.97, spl: 55.27, nDTW: 61.84, SDTW: 52.79, CLS: 60.67
+
+total_actions 1, max_length 1, entropy 82121.9604, IL_loss 7.9965, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+3173m 23s (- 2228m 7s) (117500 58%) iter 117500,
+val_train_seen, action_steps: 6.96, steps: 8.34, lengths: 16.91, nav_error: 2.88, oracle_error: 0.94, sr: 65.33, oracle_sr: 89.33, spl: 54.72, nDTW: 65.66, SDTW: 52.70, CLS: 64.21,
+val_seen, action_steps: 7.24, steps: 9.28, lengths: 19.03, nav_error: 3.44, oracle_error: 1.58, sr: 69.64, oracle_sr: 82.66, spl: 53.49, nDTW: 59.87, SDTW: 51.30, CLS: 59.55,
+val_unseen, action_steps: 7.70, steps: 10.56, lengths: 20.65, nav_error: 3.37, oracle_error: 1.33, sr: 68.71, oracle_sr: 84.72, spl: 50.04, nDTW: 55.99, SDTW: 47.87, CLS: 56.14
+BEST RESULT TILL NOW
+val_unseen | Iter 115000 iter 115000,
+val_train_seen, action_steps: 5.87, steps: 6.53, lengths: 13.14, nav_error: 2.15, oracle_error: 1.35, sr: 78.67, oracle_sr: 86.00, spl: 70.34, nDTW: 74.75, SDTW: 66.74, CLS: 71.23,
+val_seen, action_steps: 6.15, steps: 7.21, lengths: 14.77, nav_error: 3.50, oracle_error: 2.04, sr: 68.66, oracle_sr: 76.79, spl: 57.88, nDTW: 65.71, SDTW: 55.23, CLS: 64.30,
+val_unseen, action_steps: 6.53, steps: 8.27, lengths: 16.25, nav_error: 3.34, oracle_error: 1.80, sr: 69.26, oracle_sr: 78.97, spl: 55.27, nDTW: 61.84, SDTW: 52.79, CLS: 60.67
+
+total_actions 1, max_length 1, entropy 81233.8359, IL_loss 7.9420, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+3233m 58s (- 2155m 58s) (120000 60%) iter 120000,
+val_train_seen, action_steps: 6.31, steps: 7.00, lengths: 14.12, nav_error: 2.36, oracle_error: 1.16, sr: 71.33, oracle_sr: 87.33, spl: 61.30, nDTW: 70.77, SDTW: 60.02, CLS: 68.03,
+val_seen, action_steps: 6.63, steps: 7.66, lengths: 15.79, nav_error: 3.55, oracle_error: 1.86, sr: 68.66, oracle_sr: 79.24, spl: 55.48, nDTW: 63.75, SDTW: 53.48, CLS: 62.38,
+val_unseen, action_steps: 6.79, steps: 8.08, lengths: 15.90, nav_error: 3.44, oracle_error: 1.65, sr: 69.05, oracle_sr: 81.48, spl: 54.38, nDTW: 61.64, SDTW: 52.47, CLS: 60.22
+BEST RESULT TILL NOW
+val_unseen | Iter 115000 iter 115000,
+val_train_seen, action_steps: 5.87, steps: 6.53, lengths: 13.14, nav_error: 2.15, oracle_error: 1.35, sr: 78.67, oracle_sr: 86.00, spl: 70.34, nDTW: 74.75, SDTW: 66.74, CLS: 71.23,
+val_seen, action_steps: 6.15, steps: 7.21, lengths: 14.77, nav_error: 3.50, oracle_error: 2.04, sr: 68.66, oracle_sr: 76.79, spl: 57.88, nDTW: 65.71, SDTW: 55.23, CLS: 64.30,
+val_unseen, action_steps: 6.53, steps: 8.27, lengths: 16.25, nav_error: 3.34, oracle_error: 1.80, sr: 69.26, oracle_sr: 78.97, spl: 55.27, nDTW: 61.84, SDTW: 52.79, CLS: 60.67
+
+total_actions 1, max_length 1, entropy 81612.1398, IL_loss 7.9541, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+3294m 46s (- 2084m 27s) (122500 61%) iter 122500,
+val_train_seen, action_steps: 6.69, steps: 7.59, lengths: 15.51, nav_error: 2.90, oracle_error: 1.10, sr: 64.67, oracle_sr: 87.33, spl: 55.16, nDTW: 67.54, SDTW: 53.55, CLS: 65.70,
+val_seen, action_steps: 7.04, steps: 8.38, lengths: 17.15, nav_error: 3.63, oracle_error: 1.74, sr: 67.38, oracle_sr: 80.90, spl: 54.08, nDTW: 62.47, SDTW: 52.52, CLS: 61.49,
+val_unseen, action_steps: 7.01, steps: 8.48, lengths: 16.51, nav_error: 3.54, oracle_error: 1.57, sr: 67.90, oracle_sr: 82.42, spl: 53.03, nDTW: 60.36, SDTW: 51.72, CLS: 59.51
+BEST RESULT TILL NOW
+val_unseen | Iter 115000 iter 115000,
+val_train_seen, action_steps: 5.87, steps: 6.53, lengths: 13.14, nav_error: 2.15, oracle_error: 1.35, sr: 78.67, oracle_sr: 86.00, spl: 70.34, nDTW: 74.75, SDTW: 66.74, CLS: 71.23,
+val_seen, action_steps: 6.15, steps: 7.21, lengths: 14.77, nav_error: 3.50, oracle_error: 2.04, sr: 68.66, oracle_sr: 76.79, spl: 57.88, nDTW: 65.71, SDTW: 55.23, CLS: 64.30,
+val_unseen, action_steps: 6.53, steps: 8.27, lengths: 16.25, nav_error: 3.34, oracle_error: 1.80, sr: 69.26, oracle_sr: 78.97, spl: 55.27, nDTW: 61.84, SDTW: 52.79, CLS: 60.67
+
+total_actions 1, max_length 1, entropy 79074.1024, IL_loss 7.8181, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+3353m 45s (- 2012m 15s) (125000 62%) iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 80346.1764, IL_loss 7.9319, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+3414m 33s (- 1941m 36s) (127500 63%) iter 127500,
+val_train_seen, action_steps: 6.25, steps: 6.99, lengths: 14.47, nav_error: 2.10, oracle_error: 0.92, sr: 75.33, oracle_sr: 89.33, spl: 65.53, nDTW: 73.85, SDTW: 63.72, CLS: 71.37,
+val_seen, action_steps: 6.77, steps: 8.06, lengths: 16.53, nav_error: 3.42, oracle_error: 1.81, sr: 69.64, oracle_sr: 79.92, spl: 56.25, nDTW: 62.89, SDTW: 53.82, CLS: 62.41,
+val_unseen, action_steps: 6.96, steps: 8.64, lengths: 16.99, nav_error: 3.48, oracle_error: 1.68, sr: 68.20, oracle_sr: 79.74, spl: 53.13, nDTW: 60.22, SDTW: 51.21, CLS: 59.51
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 79107.7231, IL_loss 7.7287, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+3472m 44s (- 1869m 56s) (130000 65%) iter 130000,
+val_train_seen, action_steps: 5.95, steps: 6.83, lengths: 14.05, nav_error: 2.32, oracle_error: 1.27, sr: 78.67, oracle_sr: 88.67, spl: 71.51, nDTW: 72.63, SDTW: 65.63, CLS: 71.83,
+val_seen, action_steps: 5.94, steps: 6.71, lengths: 13.58, nav_error: 3.46, oracle_error: 2.13, sr: 69.34, oracle_sr: 76.10, spl: 59.97, nDTW: 67.44, SDTW: 57.13, CLS: 66.40,
+val_unseen, action_steps: 6.01, steps: 6.94, lengths: 13.39, nav_error: 3.62, oracle_error: 2.10, sr: 67.31, oracle_sr: 75.44, spl: 56.71, nDTW: 64.81, SDTW: 53.73, CLS: 63.72
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 79711.4394, IL_loss 7.7606, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+3532m 47s (- 1799m 43s) (132500 66%) iter 132500,
+val_train_seen, action_steps: 6.37, steps: 7.30, lengths: 14.98, nav_error: 2.51, oracle_error: 1.21, sr: 74.00, oracle_sr: 88.67, spl: 65.90, nDTW: 70.83, SDTW: 62.86, CLS: 69.08,
+val_seen, action_steps: 6.57, steps: 7.95, lengths: 16.53, nav_error: 3.36, oracle_error: 1.86, sr: 70.71, oracle_sr: 79.43, spl: 58.38, nDTW: 64.71, SDTW: 55.71, CLS: 63.89,
+val_unseen, action_steps: 6.88, steps: 8.64, lengths: 17.08, nav_error: 3.19, oracle_error: 1.61, sr: 69.77, oracle_sr: 81.06, spl: 54.34, nDTW: 60.93, SDTW: 51.81, CLS: 60.09
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 76587.4206, IL_loss 7.5606, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+3590m 35s (- 1728m 48s) (135000 67%) iter 135000,
+val_train_seen, action_steps: 5.78, steps: 6.16, lengths: 12.64, nav_error: 2.26, oracle_error: 1.30, sr: 77.33, oracle_sr: 86.67, spl: 69.44, nDTW: 74.48, SDTW: 66.36, CLS: 71.46,
+val_seen, action_steps: 6.10, steps: 6.94, lengths: 14.73, nav_error: 3.53, oracle_error: 1.99, sr: 69.83, oracle_sr: 77.28, spl: 58.87, nDTW: 66.60, SDTW: 56.76, CLS: 64.47,
+val_unseen, action_steps: 6.08, steps: 7.02, lengths: 14.20, nav_error: 3.50, oracle_error: 1.97, sr: 67.60, oracle_sr: 76.67, spl: 55.47, nDTW: 64.45, SDTW: 53.64, CLS: 62.04
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 78581.2279, IL_loss 7.6948, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+3651m 48s (- 1659m 54s) (137500 68%) iter 137500,
+val_train_seen, action_steps: 7.43, steps: 9.25, lengths: 20.32, nav_error: 2.59, oracle_error: 0.86, sr: 73.33, oracle_sr: 92.00, spl: 58.65, nDTW: 65.27, SDTW: 57.23, CLS: 63.72,
+val_seen, action_steps: 7.45, steps: 9.87, lengths: 20.92, nav_error: 3.30, oracle_error: 1.46, sr: 70.42, oracle_sr: 84.04, spl: 52.82, nDTW: 58.77, SDTW: 51.01, CLS: 58.32,
+val_unseen, action_steps: 7.58, steps: 10.51, lengths: 21.26, nav_error: 3.29, oracle_error: 1.32, sr: 69.22, oracle_sr: 84.93, spl: 49.96, nDTW: 56.79, SDTW: 49.00, CLS: 55.64
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 78063.1356, IL_loss 7.6710, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+3710m 25s (- 1590m 10s) (140000 70%) iter 140000,
+val_train_seen, action_steps: 5.87, steps: 6.58, lengths: 13.50, nav_error: 2.32, oracle_error: 1.14, sr: 79.33, oracle_sr: 88.00, spl: 71.18, nDTW: 76.86, SDTW: 70.57, CLS: 73.32,
+val_seen, action_steps: 6.29, steps: 7.30, lengths: 15.00, nav_error: 3.32, oracle_error: 1.85, sr: 68.66, oracle_sr: 79.24, spl: 56.73, nDTW: 65.03, SDTW: 54.58, CLS: 63.31,
+val_unseen, action_steps: 6.41, steps: 7.46, lengths: 14.71, nav_error: 3.33, oracle_error: 1.74, sr: 68.50, oracle_sr: 79.74, spl: 54.83, nDTW: 63.02, SDTW: 53.04, CLS: 61.00
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 75295.3739, IL_loss 7.4208, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+3768m 49s (- 1520m 45s) (142500 71%) iter 142500,
+val_train_seen, action_steps: 6.05, steps: 6.91, lengths: 14.11, nav_error: 2.05, oracle_error: 0.88, sr: 83.33, oracle_sr: 92.00, spl: 73.42, nDTW: 77.17, SDTW: 71.65, CLS: 74.06,
+val_seen, action_steps: 6.74, steps: 8.35, lengths: 17.13, nav_error: 3.53, oracle_error: 1.82, sr: 67.58, oracle_sr: 78.75, spl: 54.70, nDTW: 63.11, SDTW: 53.03, CLS: 61.85,
+val_unseen, action_steps: 7.03, steps: 8.95, lengths: 17.62, nav_error: 3.41, oracle_error: 1.57, sr: 67.77, oracle_sr: 81.52, spl: 51.53, nDTW: 59.38, SDTW: 50.06, CLS: 58.07
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 76158.9098, IL_loss 7.5062, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+3826m 26s (- 1451m 24s) (145000 72%) iter 145000,
+val_train_seen, action_steps: 5.57, steps: 6.18, lengths: 12.86, nav_error: 2.24, oracle_error: 1.29, sr: 78.00, oracle_sr: 84.67, spl: 71.00, nDTW: 76.88, SDTW: 69.50, CLS: 73.79,
+val_seen, action_steps: 5.88, steps: 6.78, lengths: 14.19, nav_error: 3.38, oracle_error: 2.11, sr: 69.05, oracle_sr: 74.44, spl: 59.04, nDTW: 67.47, SDTW: 56.34, CLS: 65.52,
+val_unseen, action_steps: 6.27, steps: 7.70, lengths: 15.50, nav_error: 3.17, oracle_error: 1.81, sr: 70.71, oracle_sr: 78.25, spl: 56.81, nDTW: 63.70, SDTW: 54.27, CLS: 61.70
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 75035.9517, IL_loss 7.3741, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+3883m 46s (- 1382m 21s) (147500 73%) iter 147500,
+val_train_seen, action_steps: 5.69, steps: 6.11, lengths: 12.38, nav_error: 1.93, oracle_error: 1.07, sr: 78.67, oracle_sr: 86.67, spl: 72.65, nDTW: 77.31, SDTW: 70.30, CLS: 74.40,
+val_seen, action_steps: 6.26, steps: 6.87, lengths: 14.00, nav_error: 3.42, oracle_error: 1.92, sr: 70.13, oracle_sr: 78.84, spl: 59.85, nDTW: 67.55, SDTW: 57.92, CLS: 66.47,
+val_unseen, action_steps: 6.30, steps: 7.16, lengths: 14.06, nav_error: 3.58, oracle_error: 1.85, sr: 68.41, oracle_sr: 77.78, spl: 56.61, nDTW: 64.58, SDTW: 54.89, CLS: 63.12
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 76427.8649, IL_loss 7.5168, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+3942m 51s (- 1314m 17s) (150000 75%) iter 150000,
+val_train_seen, action_steps: 6.45, steps: 7.25, lengths: 15.07, nav_error: 2.22, oracle_error: 1.03, sr: 75.33, oracle_sr: 88.67, spl: 65.30, nDTW: 71.84, SDTW: 63.57, CLS: 69.93,
+val_seen, action_steps: 6.73, steps: 7.97, lengths: 16.37, nav_error: 3.21, oracle_error: 1.60, sr: 70.32, oracle_sr: 81.39, spl: 57.95, nDTW: 65.25, SDTW: 56.13, CLS: 64.29,
+val_unseen, action_steps: 6.93, steps: 8.44, lengths: 16.62, nav_error: 3.16, oracle_error: 1.50, sr: 71.43, oracle_sr: 83.06, spl: 55.82, nDTW: 62.02, SDTW: 54.20, CLS: 60.40
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 75806.2700, IL_loss 7.4362, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+4034m 6s (- 1256m 31s) (152500 76%) iter 152500,
+val_train_seen, action_steps: 5.96, steps: 6.63, lengths: 14.10, nav_error: 2.15, oracle_error: 1.11, sr: 78.67, oracle_sr: 88.67, spl: 70.13, nDTW: 73.16, SDTW: 65.98, CLS: 71.01,
+val_seen, action_steps: 6.38, steps: 7.58, lengths: 15.84, nav_error: 3.23, oracle_error: 1.73, sr: 70.32, oracle_sr: 79.92, spl: 58.27, nDTW: 66.07, SDTW: 56.01, CLS: 64.19,
+val_unseen, action_steps: 6.84, steps: 8.56, lengths: 17.15, nav_error: 3.30, oracle_error: 1.59, sr: 71.09, oracle_sr: 81.99, spl: 55.48, nDTW: 61.74, SDTW: 53.63, CLS: 59.71
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 75813.9387, IL_loss 7.4190, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+4094m 52s (- 1188m 50s) (155000 77%) iter 155000,
+val_train_seen, action_steps: 5.41, steps: 5.56, lengths: 11.19, nav_error: 1.96, oracle_error: 1.20, sr: 81.33, oracle_sr: 87.33, spl: 75.61, nDTW: 79.40, SDTW: 72.63, CLS: 76.22,
+val_seen, action_steps: 5.79, steps: 6.26, lengths: 13.01, nav_error: 3.35, oracle_error: 2.09, sr: 69.34, oracle_sr: 75.91, spl: 60.06, nDTW: 69.01, SDTW: 57.71, CLS: 67.27,
+val_unseen, action_steps: 6.06, steps: 6.81, lengths: 13.50, nav_error: 3.67, oracle_error: 2.06, sr: 67.60, oracle_sr: 75.90, spl: 56.65, nDTW: 64.36, SDTW: 54.28, CLS: 62.43
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 73138.9487, IL_loss 7.2762, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+4170m 32s (- 1125m 23s) (157500 78%) iter 157500,
+val_train_seen, action_steps: 6.25, steps: 6.79, lengths: 13.72, nav_error: 2.14, oracle_error: 1.06, sr: 75.33, oracle_sr: 89.33, spl: 67.07, nDTW: 73.05, SDTW: 65.25, CLS: 71.14,
+val_seen, action_steps: 6.55, steps: 7.48, lengths: 15.33, nav_error: 3.28, oracle_error: 1.72, sr: 70.52, oracle_sr: 80.90, spl: 58.52, nDTW: 65.85, SDTW: 56.44, CLS: 64.84,
+val_unseen, action_steps: 6.79, steps: 8.06, lengths: 15.82, nav_error: 3.52, oracle_error: 1.75, sr: 68.71, oracle_sr: 79.52, spl: 54.36, nDTW: 61.55, SDTW: 52.63, CLS: 60.45
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 75372.8964, IL_loss 7.4160, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+4243m 16s (- 1060m 49s) (160000 80%) iter 160000,
+val_train_seen, action_steps: 6.03, steps: 6.69, lengths: 13.99, nav_error: 2.16, oracle_error: 1.02, sr: 75.33, oracle_sr: 89.33, spl: 68.92, nDTW: 75.99, SDTW: 67.56, CLS: 74.08,
+val_seen, action_steps: 6.45, steps: 7.65, lengths: 15.65, nav_error: 3.24, oracle_error: 1.78, sr: 70.52, oracle_sr: 78.45, spl: 58.33, nDTW: 65.33, SDTW: 55.87, CLS: 64.19,
+val_unseen, action_steps: 6.63, steps: 8.16, lengths: 15.97, nav_error: 3.29, oracle_error: 1.68, sr: 71.09, oracle_sr: 81.06, spl: 55.36, nDTW: 62.44, SDTW: 54.08, CLS: 60.16
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 73216.5125, IL_loss 7.2076, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+4331m 13s (- 999m 30s) (162500 81%) iter 162500,
+val_train_seen, action_steps: 6.41, steps: 7.20, lengths: 14.92, nav_error: 2.01, oracle_error: 0.79, sr: 78.67, oracle_sr: 92.00, spl: 68.33, nDTW: 74.73, SDTW: 67.52, CLS: 71.76,
+val_seen, action_steps: 6.60, steps: 7.67, lengths: 15.82, nav_error: 3.27, oracle_error: 1.64, sr: 70.52, oracle_sr: 81.59, spl: 57.74, nDTW: 65.63, SDTW: 56.05, CLS: 64.30,
+val_unseen, action_steps: 7.03, steps: 8.60, lengths: 17.01, nav_error: 3.19, oracle_error: 1.44, sr: 70.92, oracle_sr: 83.10, spl: 54.07, nDTW: 60.85, SDTW: 52.36, CLS: 59.55
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 70344.1524, IL_loss 6.9674, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+4408m 43s (- 935m 11s) (165000 82%) iter 165000,
+val_train_seen, action_steps: 6.02, steps: 6.71, lengths: 13.75, nav_error: 2.47, oracle_error: 1.21, sr: 76.67, oracle_sr: 90.00, spl: 70.29, nDTW: 75.29, SDTW: 68.02, CLS: 73.68,
+val_seen, action_steps: 6.11, steps: 6.90, lengths: 14.18, nav_error: 3.24, oracle_error: 1.91, sr: 70.52, oracle_sr: 79.04, spl: 60.18, nDTW: 67.91, SDTW: 57.71, CLS: 66.24,
+val_unseen, action_steps: 6.39, steps: 7.46, lengths: 14.67, nav_error: 3.47, oracle_error: 1.82, sr: 68.20, oracle_sr: 78.20, spl: 55.58, nDTW: 63.33, SDTW: 53.48, CLS: 61.99
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 71788.9035, IL_loss 7.0693, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+4466m 28s (- 866m 37s) (167500 83%) iter 167500,
+val_train_seen, action_steps: 5.99, steps: 6.82, lengths: 14.27, nav_error: 1.74, oracle_error: 0.93, sr: 80.00, oracle_sr: 90.00, spl: 71.47, nDTW: 76.82, SDTW: 68.80, CLS: 74.95,
+val_seen, action_steps: 6.30, steps: 7.42, lengths: 15.08, nav_error: 3.29, oracle_error: 1.84, sr: 69.25, oracle_sr: 78.26, spl: 58.77, nDTW: 67.10, SDTW: 56.50, CLS: 66.09,
+val_unseen, action_steps: 6.77, steps: 8.29, lengths: 16.26, nav_error: 3.24, oracle_error: 1.64, sr: 69.60, oracle_sr: 80.42, spl: 55.13, nDTW: 62.10, SDTW: 52.93, CLS: 61.27
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 72448.3906, IL_loss 7.1506, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+4523m 33s (- 798m 16s) (170000 85%) iter 170000,
+val_train_seen, action_steps: 5.79, steps: 6.27, lengths: 13.01, nav_error: 1.99, oracle_error: 1.00, sr: 78.00, oracle_sr: 89.33, spl: 69.60, nDTW: 77.54, SDTW: 69.68, CLS: 73.36,
+val_seen, action_steps: 6.22, steps: 7.58, lengths: 15.82, nav_error: 3.11, oracle_error: 1.68, sr: 71.89, oracle_sr: 80.61, spl: 59.98, nDTW: 67.65, SDTW: 58.13, CLS: 65.29,
+val_unseen, action_steps: 6.53, steps: 8.04, lengths: 16.08, nav_error: 3.27, oracle_error: 1.63, sr: 69.86, oracle_sr: 80.63, spl: 55.32, nDTW: 63.09, SDTW: 53.52, CLS: 61.24
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 71256.6239, IL_loss 7.0532, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+4581m 40s (- 730m 24s) (172500 86%) iter 172500,
+val_train_seen, action_steps: 6.15, steps: 6.60, lengths: 13.60, nav_error: 1.90, oracle_error: 0.76, sr: 76.67, oracle_sr: 92.67, spl: 67.38, nDTW: 77.17, SDTW: 66.84, CLS: 73.81,
+val_seen, action_steps: 6.59, steps: 7.39, lengths: 15.10, nav_error: 3.22, oracle_error: 1.58, sr: 71.01, oracle_sr: 82.08, spl: 59.38, nDTW: 66.06, SDTW: 57.47, CLS: 64.90,
+val_unseen, action_steps: 6.91, steps: 8.09, lengths: 15.83, nav_error: 3.42, oracle_error: 1.60, sr: 70.03, oracle_sr: 81.82, spl: 55.09, nDTW: 61.74, SDTW: 53.57, CLS: 60.42
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 71540.7030, IL_loss 7.0714, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+4638m 30s (- 662m 38s) (175000 87%) iter 175000,
+val_train_seen, action_steps: 5.79, steps: 6.27, lengths: 12.73, nav_error: 1.70, oracle_error: 0.92, sr: 80.00, oracle_sr: 90.00, spl: 74.48, nDTW: 80.33, SDTW: 72.60, CLS: 78.04,
+val_seen, action_steps: 6.05, steps: 6.78, lengths: 13.81, nav_error: 3.28, oracle_error: 1.88, sr: 70.13, oracle_sr: 78.16, spl: 59.92, nDTW: 68.13, SDTW: 57.44, CLS: 66.69,
+val_unseen, action_steps: 6.35, steps: 7.36, lengths: 14.40, nav_error: 3.49, oracle_error: 1.86, sr: 68.97, oracle_sr: 77.69, spl: 56.24, nDTW: 63.58, SDTW: 53.98, CLS: 62.18
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 69535.9386, IL_loss 6.9152, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+4695m 27s (- 595m 11s) (177500 88%) iter 177500,
+val_train_seen, action_steps: 5.79, steps: 6.17, lengths: 12.28, nav_error: 1.54, oracle_error: 0.73, sr: 79.33, oracle_sr: 92.00, spl: 72.41, nDTW: 80.30, SDTW: 70.40, CLS: 78.66,
+val_seen, action_steps: 6.07, steps: 6.56, lengths: 13.39, nav_error: 3.25, oracle_error: 1.78, sr: 70.81, oracle_sr: 80.51, spl: 61.74, nDTW: 69.04, SDTW: 59.18, CLS: 67.98,
+val_unseen, action_steps: 6.57, steps: 7.59, lengths: 14.66, nav_error: 3.33, oracle_error: 1.69, sr: 69.90, oracle_sr: 79.99, spl: 56.62, nDTW: 63.59, SDTW: 54.30, CLS: 62.51
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 70478.8044, IL_loss 7.0039, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+4753m 0s (- 528m 6s) (180000 90%) iter 180000,
+val_train_seen, action_steps: 6.31, steps: 6.95, lengths: 14.23, nav_error: 1.89, oracle_error: 0.68, sr: 81.33, oracle_sr: 93.33, spl: 72.36, nDTW: 76.35, SDTW: 70.01, CLS: 74.99,
+val_seen, action_steps: 6.44, steps: 7.45, lengths: 15.26, nav_error: 2.88, oracle_error: 1.48, sr: 73.56, oracle_sr: 83.64, spl: 62.48, nDTW: 68.90, SDTW: 60.25, CLS: 67.61,
+val_unseen, action_steps: 6.85, steps: 8.27, lengths: 16.29, nav_error: 3.02, oracle_error: 1.47, sr: 71.90, oracle_sr: 82.89, spl: 56.60, nDTW: 62.73, SDTW: 54.34, CLS: 61.67
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 68156.7055, IL_loss 6.7686, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+4809m 4s (- 461m 8s) (182500 91%) iter 182500,
+val_train_seen, action_steps: 5.33, steps: 5.61, lengths: 11.46, nav_error: 1.18, oracle_error: 0.76, sr: 86.67, oracle_sr: 91.33, spl: 81.00, nDTW: 85.06, SDTW: 79.36, CLS: 81.95,
+val_seen, action_steps: 5.72, steps: 6.30, lengths: 13.12, nav_error: 3.09, oracle_error: 1.97, sr: 71.40, oracle_sr: 77.08, spl: 62.53, nDTW: 70.32, SDTW: 59.41, CLS: 68.16,
+val_unseen, action_steps: 6.05, steps: 7.01, lengths: 13.94, nav_error: 3.23, oracle_error: 1.89, sr: 69.18, oracle_sr: 76.29, spl: 57.29, nDTW: 65.83, SDTW: 55.08, CLS: 63.63
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 70352.4263, IL_loss 6.8721, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+4867m 20s (- 394m 38s) (185000 92%) iter 185000,
+val_train_seen, action_steps: 6.30, steps: 6.79, lengths: 13.67, nav_error: 1.84, oracle_error: 0.67, sr: 77.33, oracle_sr: 92.67, spl: 68.47, nDTW: 76.73, SDTW: 67.74, CLS: 74.45,
+val_seen, action_steps: 6.47, steps: 7.26, lengths: 14.80, nav_error: 3.06, oracle_error: 1.52, sr: 74.44, oracle_sr: 83.94, spl: 62.77, nDTW: 68.29, SDTW: 60.78, CLS: 66.99,
+val_unseen, action_steps: 6.83, steps: 8.01, lengths: 15.61, nav_error: 3.39, oracle_error: 1.60, sr: 70.84, oracle_sr: 82.25, spl: 56.31, nDTW: 62.50, SDTW: 54.32, CLS: 61.20
+BEST RESULT TILL NOW
+val_unseen | Iter 125000 iter 125000,
+val_train_seen, action_steps: 5.59, steps: 5.98, lengths: 11.92, nav_error: 2.34, oracle_error: 1.59, sr: 72.67, oracle_sr: 79.33, spl: 66.66, nDTW: 74.58, SDTW: 63.02, CLS: 72.78,
+val_seen, action_steps: 5.86, steps: 6.72, lengths: 13.65, nav_error: 3.39, oracle_error: 2.23, sr: 68.95, oracle_sr: 75.32, spl: 59.44, nDTW: 67.83, SDTW: 56.52, CLS: 66.28,
+val_unseen, action_steps: 6.09, steps: 7.23, lengths: 13.97, nav_error: 3.34, oracle_error: 2.02, sr: 69.43, oracle_sr: 76.50, spl: 57.34, nDTW: 64.83, SDTW: 54.73, CLS: 63.23
+
+total_actions 1, max_length 1, entropy 68602.9733, IL_loss 6.7421, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+4923m 43s (- 328m 14s) (187500 93%) iter 187500,
+val_train_seen, action_steps: 5.57, steps: 5.75, lengths: 11.22, nav_error: 1.45, oracle_error: 0.86, sr: 82.67, oracle_sr: 90.00, spl: 75.87, nDTW: 82.12, SDTW: 74.35, CLS: 80.12,
+val_seen, action_steps: 5.83, steps: 6.18, lengths: 12.44, nav_error: 2.97, oracle_error: 1.76, sr: 73.07, oracle_sr: 79.92, spl: 65.22, nDTW: 72.43, SDTW: 62.73, CLS: 70.77,
+val_unseen, action_steps: 6.12, steps: 6.70, lengths: 12.81, nav_error: 3.33, oracle_error: 1.83, sr: 69.86, oracle_sr: 78.50, spl: 58.86, nDTW: 66.55, SDTW: 56.63, CLS: 65.02
+BEST RESULT TILL NOW
+val_unseen | Iter 187500 iter 187500,
+val_train_seen, action_steps: 5.57, steps: 5.75, lengths: 11.22, nav_error: 1.45, oracle_error: 0.86, sr: 82.67, oracle_sr: 90.00, spl: 75.87, nDTW: 82.12, SDTW: 74.35, CLS: 80.12,
+val_seen, action_steps: 5.83, steps: 6.18, lengths: 12.44, nav_error: 2.97, oracle_error: 1.76, sr: 73.07, oracle_sr: 79.92, spl: 65.22, nDTW: 72.43, SDTW: 62.73, CLS: 70.77,
+val_unseen, action_steps: 6.12, steps: 6.70, lengths: 12.81, nav_error: 3.33, oracle_error: 1.83, sr: 69.86, oracle_sr: 78.50, spl: 58.86, nDTW: 66.55, SDTW: 56.63, CLS: 65.02
+
+total_actions 1, max_length 1, entropy 68356.4145, IL_loss 6.8002, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+4980m 46s (- 262m 8s) (190000 95%) iter 190000,
+val_train_seen, action_steps: 5.93, steps: 6.14, lengths: 12.55, nav_error: 1.79, oracle_error: 0.88, sr: 79.33, oracle_sr: 90.67, spl: 72.72, nDTW: 80.24, SDTW: 72.12, CLS: 77.32,
+val_seen, action_steps: 6.19, steps: 6.76, lengths: 13.90, nav_error: 3.25, oracle_error: 1.73, sr: 71.40, oracle_sr: 80.71, spl: 61.56, nDTW: 68.78, SDTW: 59.51, CLS: 67.15,
+val_unseen, action_steps: 6.45, steps: 7.19, lengths: 14.14, nav_error: 3.34, oracle_error: 1.72, sr: 70.03, oracle_sr: 79.91, spl: 57.19, nDTW: 64.17, SDTW: 54.99, CLS: 62.64
+BEST RESULT TILL NOW
+val_unseen | Iter 187500 iter 187500,
+val_train_seen, action_steps: 5.57, steps: 5.75, lengths: 11.22, nav_error: 1.45, oracle_error: 0.86, sr: 82.67, oracle_sr: 90.00, spl: 75.87, nDTW: 82.12, SDTW: 74.35, CLS: 80.12,
+val_seen, action_steps: 5.83, steps: 6.18, lengths: 12.44, nav_error: 2.97, oracle_error: 1.76, sr: 73.07, oracle_sr: 79.92, spl: 65.22, nDTW: 72.43, SDTW: 62.73, CLS: 70.77,
+val_unseen, action_steps: 6.12, steps: 6.70, lengths: 12.81, nav_error: 3.33, oracle_error: 1.83, sr: 69.86, oracle_sr: 78.50, spl: 58.86, nDTW: 66.55, SDTW: 56.63, CLS: 65.02
+
+total_actions 1, max_length 1, entropy 68039.4074, IL_loss 6.7476, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+5038m 14s (- 196m 17s) (192500 96%) iter 192500,
+val_train_seen, action_steps: 5.86, steps: 6.27, lengths: 12.71, nav_error: 1.81, oracle_error: 0.81, sr: 78.67, oracle_sr: 88.67, spl: 70.68, nDTW: 79.33, SDTW: 70.04, CLS: 76.56,
+val_seen, action_steps: 6.59, steps: 7.62, lengths: 15.51, nav_error: 3.30, oracle_error: 1.60, sr: 71.69, oracle_sr: 82.27, spl: 59.42, nDTW: 66.68, SDTW: 58.03, CLS: 65.45,
+val_unseen, action_steps: 6.83, steps: 7.96, lengths: 15.48, nav_error: 3.45, oracle_error: 1.61, sr: 69.26, oracle_sr: 81.31, spl: 54.54, nDTW: 61.57, SDTW: 52.78, CLS: 60.48
+BEST RESULT TILL NOW
+val_unseen | Iter 187500 iter 187500,
+val_train_seen, action_steps: 5.57, steps: 5.75, lengths: 11.22, nav_error: 1.45, oracle_error: 0.86, sr: 82.67, oracle_sr: 90.00, spl: 75.87, nDTW: 82.12, SDTW: 74.35, CLS: 80.12,
+val_seen, action_steps: 5.83, steps: 6.18, lengths: 12.44, nav_error: 2.97, oracle_error: 1.76, sr: 73.07, oracle_sr: 79.92, spl: 65.22, nDTW: 72.43, SDTW: 62.73, CLS: 70.77,
+val_unseen, action_steps: 6.12, steps: 6.70, lengths: 12.81, nav_error: 3.33, oracle_error: 1.83, sr: 69.86, oracle_sr: 78.50, spl: 58.86, nDTW: 66.55, SDTW: 56.63, CLS: 65.02
+
+total_actions 1, max_length 1, entropy 67347.1075, IL_loss 6.6743, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+5096m 0s (- 130m 40s) (195000 97%) iter 195000,
+val_train_seen, action_steps: 6.33, steps: 6.96, lengths: 14.17, nav_error: 2.14, oracle_error: 0.99, sr: 74.00, oracle_sr: 88.67, spl: 64.98, nDTW: 74.19, SDTW: 63.90, CLS: 72.62,
+val_seen, action_steps: 6.56, steps: 7.36, lengths: 14.81, nav_error: 3.11, oracle_error: 1.56, sr: 71.89, oracle_sr: 82.76, spl: 60.36, nDTW: 68.00, SDTW: 58.92, CLS: 66.96,
+val_unseen, action_steps: 6.79, steps: 7.83, lengths: 15.24, nav_error: 3.32, oracle_error: 1.55, sr: 69.94, oracle_sr: 82.63, spl: 55.91, nDTW: 63.12, SDTW: 54.15, CLS: 61.98
+BEST RESULT TILL NOW
+val_unseen | Iter 187500 iter 187500,
+val_train_seen, action_steps: 5.57, steps: 5.75, lengths: 11.22, nav_error: 1.45, oracle_error: 0.86, sr: 82.67, oracle_sr: 90.00, spl: 75.87, nDTW: 82.12, SDTW: 74.35, CLS: 80.12,
+val_seen, action_steps: 5.83, steps: 6.18, lengths: 12.44, nav_error: 2.97, oracle_error: 1.76, sr: 73.07, oracle_sr: 79.92, spl: 65.22, nDTW: 72.43, SDTW: 62.73, CLS: 70.77,
+val_unseen, action_steps: 6.12, steps: 6.70, lengths: 12.81, nav_error: 3.33, oracle_error: 1.83, sr: 69.86, oracle_sr: 78.50, spl: 58.86, nDTW: 66.55, SDTW: 56.63, CLS: 65.02
+
+total_actions 1, max_length 1, entropy 67478.2521, IL_loss 6.6715, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+5154m 33s (- 65m 14s) (197500 98%) iter 197500,
+val_train_seen, action_steps: 5.74, steps: 6.11, lengths: 12.35, nav_error: 1.70, oracle_error: 0.84, sr: 78.67, oracle_sr: 88.00, spl: 71.49, nDTW: 80.04, SDTW: 70.72, CLS: 77.42,
+val_seen, action_steps: 6.10, steps: 6.64, lengths: 13.62, nav_error: 3.25, oracle_error: 1.74, sr: 70.62, oracle_sr: 81.00, spl: 61.53, nDTW: 69.77, SDTW: 59.70, CLS: 68.07,
+val_unseen, action_steps: 6.51, steps: 7.42, lengths: 14.65, nav_error: 3.33, oracle_error: 1.68, sr: 69.43, oracle_sr: 80.29, spl: 56.34, nDTW: 63.52, SDTW: 54.25, CLS: 61.88
+BEST RESULT TILL NOW
+val_unseen | Iter 187500 iter 187500,
+val_train_seen, action_steps: 5.57, steps: 5.75, lengths: 11.22, nav_error: 1.45, oracle_error: 0.86, sr: 82.67, oracle_sr: 90.00, spl: 75.87, nDTW: 82.12, SDTW: 74.35, CLS: 80.12,
+val_seen, action_steps: 5.83, steps: 6.18, lengths: 12.44, nav_error: 2.97, oracle_error: 1.76, sr: 73.07, oracle_sr: 79.92, spl: 65.22, nDTW: 72.43, SDTW: 62.73, CLS: 70.77,
+val_unseen, action_steps: 6.12, steps: 6.70, lengths: 12.81, nav_error: 3.33, oracle_error: 1.83, sr: 69.86, oracle_sr: 78.50, spl: 58.86, nDTW: 66.55, SDTW: 56.63, CLS: 65.02
+
+total_actions 1, max_length 1, entropy 68112.9527, IL_loss 6.7236, RL_loss 0.0000, policy_loss 0.0000, critic_loss 0.0000
+5213m 18s (- 0m 0s) (200000 100%) iter 200000,
+val_train_seen, action_steps: 5.51, steps: 5.95, lengths: 12.29, nav_error: 1.53, oracle_error: 0.79, sr: 82.00, oracle_sr: 92.00, spl: 75.34, nDTW: 82.70, SDTW: 73.64, CLS: 78.65,
+val_seen, action_steps: 6.23, steps: 7.13, lengths: 14.48, nav_error: 3.26, oracle_error: 1.69, sr: 70.32, oracle_sr: 80.41, spl: 60.27, nDTW: 68.58, SDTW: 58.50, CLS: 66.96,
+val_unseen, action_steps: 6.64, steps: 7.92, lengths: 15.72, nav_error: 3.30, oracle_error: 1.58, sr: 70.16, oracle_sr: 81.06, spl: 56.47, nDTW: 63.20, SDTW: 54.50, CLS: 62.20
+BEST RESULT TILL NOW
+val_unseen | Iter 187500 iter 187500,
+val_train_seen, action_steps: 5.57, steps: 5.75, lengths: 11.22, nav_error: 1.45, oracle_error: 0.86, sr: 82.67, oracle_sr: 90.00, spl: 75.87, nDTW: 82.12, SDTW: 74.35, CLS: 80.12,
+val_seen, action_steps: 5.83, steps: 6.18, lengths: 12.44, nav_error: 2.97, oracle_error: 1.76, sr: 73.07, oracle_sr: 79.92, spl: 65.22, nDTW: 72.43, SDTW: 62.73, CLS: 70.77,
+val_unseen, action_steps: 6.12, steps: 6.70, lengths: 12.81, nav_error: 3.33, oracle_error: 1.83, sr: 69.86, oracle_sr: 78.50, spl: 58.86, nDTW: 66.55, SDTW: 56.63, CLS: 65.02
