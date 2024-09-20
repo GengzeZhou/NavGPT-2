@@ -11,7 +11,7 @@
 </div>
 <sup>🍕</sup>AIML, University of Adelaide 
 <sup>🌭</sup>Adobe Research 
-<sup>🍔</sup>Shanghai AI Laboratory 
+<sup>🍔</sup>UNC Chapel Hill
 <sup>🌮</sup>University of California, Santa Cruz
 
 <br>
