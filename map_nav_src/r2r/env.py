@@ -71,6 +71,15 @@ class EnvBatch(object):
             feature_states.append((feature, state))
         return feature_states
 
+    def get_sc_vp_feature(self, scanId, viewpointId):
+        return self.feat_db.get_image_feature(scanId, viewpointId)
+    
+    def get_sc_vp_state(self, i, scanId, viewpointId):
+        self.sims[i].newEpisode([scanId], [viewpointId], [0], [0])
+        state = self.sims[i].getState()[0]
+        feature = self.feat_db.get_image_feature(state.scanId, state.location.viewpointId)
+        return feature, state
+
     def makeActions(self, actions):
         ''' Take an action using the full state dependent action interface (with batched input).
             Every action element should be an (index, heading, elevation) tuple. '''
@@ -192,6 +201,8 @@ class R2RNavBatch(object):
         candidate = self.candidates_dict[long_id]
         candidate_new = []
         for key, value in candidate.items():
+            ccand_feature = self.env.get_sc_vp_feature(scanId, key)
+
             c_new = {
                 'heading' : value[3] - base_heading,
                 'elevation' : value[4] - base_elevation,
@@ -203,6 +214,7 @@ class R2RNavBatch(object):
                 'distance': value[2],
                 'feature': feature[value[1]],
                 'position': tuple(value[5]),
+                'ccand_feature': ccand_feature
             }
             candidate_new.append(c_new)
         return candidate_new

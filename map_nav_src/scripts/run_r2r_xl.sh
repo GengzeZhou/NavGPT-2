@@ -1,6 +1,6 @@
 DATA_ROOT=../datasets
 
-train_alg=dagger
+train_alg=imitation
 
 features=eva-clip-g
 ft_dim=1408
@@ -13,7 +13,7 @@ name=NavGPT2-XL
 name=${name}-seed.${seed}
 name=${name}-bs${batch_size}
 
-outdir=${DATA_ROOT}/R2R/exprs_map/finetune/${name}
+outdir=${DATA_ROOT}/R2R/exprs_map/finetune/${name}-cross_pano-teacher
 
 flag="--root_dir ${DATA_ROOT}
       --dataset r2r
@@ -51,15 +51,17 @@ flag="--root_dir ${DATA_ROOT}
       
       --gamma 0."
 
-# train
+# # train
 CUDA_VISIBLE_DEVICES='0' python r2r/main_nav.py $flag  \
         --freeze_qformer \
         --aug ../datasets/R2R/annotations/prevalent_aug.json \
-        --qformer_ckpt_path models/lavis/output/NavGPT-InstructBLIP-FlanT5XL.pth   # replace with the path to the pretrained qformer
+        --qformer_ckpt_path models/lavis/output/NavGPT-InstructBLIP-FlanT5xl/20240923153/checkpoint_best.pth \
+        --resume_file ${outdir}/ckpts/best_val_unseen
+        # --qformer_ckpt_path models/lavis/output/NavGPT-InstructBLIP-FlanT5xl/20240911212/checkpoint_best.pth   # replace with the path to the pretrained qformer
 
 # test
 CUDA_VISIBLE_DEVICES='0' python r2r/main_nav.py $flag  \
         --test --submit \
         --freeze_qformer \
-        --qformer_ckpt_path models/lavis/output/NavGPT-InstructBLIP-FlanT5XL.pth \
+        --qformer_ckpt_path models/lavis/output/NavGPT-InstructBLIP-FlanT5xl/20240923153/checkpoint_best.pth \
         --resume_file ${outdir}/ckpts/best_val_unseen                              # replace with the path to the best model

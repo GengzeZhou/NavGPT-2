@@ -244,13 +244,16 @@ def train(args, train_env, val_envs, aug_env=None, rank=-1):
 def valid(args, train_env, val_envs, rank=-1):
     default_gpu = is_default_gpu(args)
 
+    # 传入加载好的数据集，初始化agent类
     agent_class = GMapNavAgent
     agent = agent_class(args, train_env, rank=rank)
 
+    # 打印微调好的模型的批次跟读取地址
     if args.resume_file is not None:
         print("Loaded the listener model at iter %d from %s" % (
             agent.load(args.resume_file), args.resume_file))
 
+    # 打印本次运行的模型加载的超参数以及配置信息，并保存
     if default_gpu:
         with open(os.path.join(args.log_dir, 'validation_args.json'), 'w') as outf:
             json.dump(vars(args), outf, indent=4)
@@ -298,6 +301,8 @@ def valid(args, train_env, val_envs, rank=-1):
 
 def main():
     args = parse_args()
+    args.cross_next_pano = True
+    args.use_single2pano_attn = False
 
     if args.world_size > 1:
         rank = init_distributed(args)

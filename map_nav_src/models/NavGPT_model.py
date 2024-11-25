@@ -125,6 +125,104 @@ class GraphLXRTXLayer(nn.Module):
         return lang_output
 
 
+class CrossNextPanoLayer(nn.Module):
+    '''
+    Cross Next Pano Layer with crossmodal attention with language
+    '''
+    def __init__(self, config):
+        super().__init__()
+
+        # if config.use_single2pano_attn:
+        #     # next pano self-att and FFN layer
+        #     self.pano_self_att = BertAttention(config)
+        #     self.pano_inter = BertIntermediate(config)
+        #     self.pano_output = BertOutput(config)
+
+        # single view self-att and FFN layer
+        self.single_self_att = BertAttention(config)
+        self.single_inter = BertIntermediate(config)
+        self.single_output = BertOutput(config)
+
+        # The cross attention layer
+        self.visual_attention = BertXAttention(config, ctx_dim=768)   # default dim 768
+
+    def forward(
+        self, pano_feats, pano_attention_mask, visn_feats, visn_attention_mask,
+        graph_sprels=None
+    ):
+        
+        visn_att_output = self.visual_attention(
+            visn_feats, pano_feats, ctx_att_mask=pano_attention_mask
+        )[0]
+
+        if graph_sprels is not None:
+            visn_attention_mask = visn_attention_mask + graph_sprels
+        visn_att_output = self.single_self_att(visn_att_output, visn_attention_mask)[0]
+
+        visn_inter_output = self.single_inter(visn_att_output)
+        visn_output = self.single_output(visn_inter_output, visn_att_output)
+
+        return visn_output
+
+    # def forward_lang2visn(
+    #     self, lang_feats, lang_attention_mask, visn_feats, visn_attention_mask,
+    # ):
+    #     lang_att_output = self.visual_attention(
+    #         lang_feats, visn_feats, ctx_att_mask=visn_attention_mask
+    #     )[0]
+    #     lang_att_output = self.pano_self_att(
+    #         lang_att_output, lang_attention_mask
+    #     )[0]
+    #     lang_inter_output = self.pano_inter(lang_att_output)
+    #     lang_output = self.pano_output(lang_inter_output, lang_att_output)
+    #     return lang_output
+
+
+class CNPEncoder(nn.Module):
+    '''
+    Cross-attention Next pano imgs feature encoder
+    '''
+    def __init__(self, config):
+        super().__init__()
+        self.num_x_layers = 2
+        self.x_layers = nn.ModuleList(
+            [CrossNextPanoLayer(config) for _ in range(self.num_x_layers)]
+        )
+        self.pano_self_attention = nn.MultiheadAttention(768, 2, batch_first=True)
+        self.pano2fusing = nn.Linear(1408, 1)
+        self.pano2embeding = nn.Linear(257, 768)
+
+    def forward(self, pano_feats, pano_attention_masks, img_feats, img_masks,
+        graph_sprels=None):
+
+        batch, n_cand = pano_feats.shape[0], pano_feats.shape[1]
+        # pano_mask = pano_attention_masks.unsqueeze(-1).expand(batch, n_cand, 257).reshape(batch * n_cand, 257)
+        pano_feats = self.pano2fusing(pano_feats).view(batch, n_cand, 257)
+
+        pano_feats = self.pano2embeding(pano_feats)
+
+        # if torch.cuda.is_available():
+        #     device = torch.device("cuda:0")  # 当前使用的设备
+        #     allocated_memory = torch.cuda.memory_allocated(device) / 1024**3  # 转换为 GB
+        #     print(f"CNPEncoder: 已分配显存: {allocated_memory:.2f} GB")
+        
+        pano_feats, _ = self.pano_self_attention(
+            pano_feats, pano_feats, pano_feats
+        )  # [batch * n, 256, embed_dim]
+
+        # pano_feats = pano_feats[:, 0, :]  # 提取 CLS Token [batch * n, embed_dim]
+
+        extended_next_pano_masks = extend_neg_masks(pano_attention_masks)
+        extended_img_masks = extend_neg_masks(img_masks) # (N, 1(H), 1(L_q), L_v)
+        for layer_module in self.x_layers:
+            img_embeds = layer_module(
+                pano_feats, extended_next_pano_masks, 
+                img_feats, extended_img_masks,
+                graph_sprels=graph_sprels
+            )
+        return img_embeds
+
+
 class GASAEncoder(nn.Module):
     '''
     Graph aware self-attention encoder
@@ -157,6 +255,11 @@ class GACAEncoder(nn.Module):
         )
 
     def forward(self, txt_embeds, txt_masks, img_embeds, img_masks, graph_sprels=None):
+
+        # if torch.cuda.is_available():
+        #     device = torch.device("cuda:0")  # 当前使用的设备
+        #     allocated_memory = torch.cuda.memory_allocated(device) / 1024**3  # 转换为 GB
+        #     print(f"GACAEncoder: 已分配显存: {allocated_memory:.2f} GB")
         extended_txt_masks = extend_neg_masks(txt_masks)
         extended_img_masks = extend_neg_masks(img_masks) # (N, 1(H), 1(L_q), L_v)
         for layer_module in self.x_layers:
@@ -693,6 +796,11 @@ class NavGPTAction(BertPreTrainedModel):
         
         self.global_sap_head = ClsPrediction(config.hidden_size)
 
+        self.cross_next_pano = config.cross_next_pano
+
+        if self.cross_next_pano:
+            self.cross_next_pano_model = CNPEncoder(config)
+
         # Whether to fuse local actions
         if config.fusion != 'global':
             self.local_encoder = GACAEncoder(config)
@@ -787,7 +895,8 @@ class NavGPTAction(BertPreTrainedModel):
         txt_embeds, txt_masks,
         gmap_img_embeds, gmap_step_ids, gmap_pos_fts, 
         gmap_masks, gmap_pair_dists, gmap_visited_masks, gmap_vpids,
-        pano_embeds, pano_masks, vp_cand_vpids
+        pano_embeds, pano_masks, vp_cand_vpids, 
+        gmap_cand_img_fts=None, gmap_cand_mask=None
     ):
         batch_size = txt_embeds.size(0)
 
@@ -801,6 +910,13 @@ class NavGPTAction(BertPreTrainedModel):
                 gmap_pair_dists.unsqueeze(3)).squeeze(3).unsqueeze(1)
         else:
             graph_sprels = None
+
+        if self.cross_next_pano:
+            gmap_embeds = self.cross_next_pano_model(
+                gmap_cand_img_fts, gmap_cand_mask, 
+                gmap_embeds, gmap_masks, 
+                graph_sprels=graph_sprels
+            )
         
         if self.global_cross_attn:
             gmap_embeds = self.global_encoder(
@@ -879,12 +995,21 @@ class NavGPTAction(BertPreTrainedModel):
             )
         # forward in inference or finetune mode
         elif mode == 'per_step':
-            return self.forward_per_step(
-                batch['text_embeds'], batch['text_masks'],
-                batch['gmap_img_embeds'], batch['gmap_step_ids'], batch['gmap_pos_fts'], 
-                batch['gmap_masks'], batch['gmap_pair_dists'], batch['gmap_visited_masks'], batch['gmap_vpids'],
-                batch['vp_img_embeds'], batch['vp_masks'], batch['vp_cand_vpids']
-            )
+            if not self.cross_next_pano:
+                return self.forward_per_step(
+                    batch['text_embeds'], batch['text_masks'],
+                    batch['gmap_img_embeds'], batch['gmap_step_ids'], batch['gmap_pos_fts'], 
+                    batch['gmap_masks'], batch['gmap_pair_dists'], batch['gmap_visited_masks'], batch['gmap_vpids'],
+                    batch['vp_img_embeds'], batch['vp_masks'], batch['vp_cand_vpids']
+                )
+            else:
+                return self.forward_per_step(
+                    batch['text_embeds'], batch['text_masks'],
+                    batch['gmap_img_embeds'], batch['gmap_step_ids'], batch['gmap_pos_fts'], 
+                    batch['gmap_masks'], batch['gmap_pair_dists'], batch['gmap_visited_masks'], batch['gmap_vpids'],
+                    batch['vp_img_embeds'], batch['vp_masks'], batch['vp_cand_vpids'],
+                    batch['gmap_cand_img_fts'], batch['gmap_cand_mask']
+                )
        
 
 class NavGPT(nn.Module):

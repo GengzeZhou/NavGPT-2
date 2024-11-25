@@ -7,4 +7,4 @@ env:
   # For default users
   # cache_root: "cache"
   # For internal use with persistent storage
-  cache_root: "/path/to/NavGPT-2"
+  cache_root: "/root/autodl-tmp/NavGPT-2"

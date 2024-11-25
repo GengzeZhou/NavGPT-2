@@ -20,7 +20,7 @@ from .agent_base import Seq2SeqAgent
 from .eval_utils import cal_dtw
 
 from models.graph_utils import GraphMap
-from models.NavGPT_model import NavGPT, Critic
+from models.NavGPT_model import NavGPT, Critic, CrossNextPanoLayer
 from models.ops import pad_tensors_wgrad
 
 from .prompt_template import NavGPT_PROMPT
@@ -46,6 +46,16 @@ class GMapNavAgent(Seq2SeqAgent):
         self.prompt = NavGPT_PROMPT
         # buffer
         self.scanvp_cands = {}
+        self.batchvp2img_fts = [{}]*config.batch_size
+        self.scanvp2cand_masks = {}
+
+        self.cross_next_pano = config.cross_next_pano
+
+        # config.use_single2pano_attn = False
+        # config.cross_next_pano = True
+
+        # self.cross_ns_pano = CrossNextPanoLayer(config).to(self.device)
+
 
     def _construct_candidate_dict(self, rel_angles, rel_dists):
         ''' Construct candidate dict. '''
@@ -156,6 +166,10 @@ class GMapNavAgent(Seq2SeqAgent):
         batch_gmap_img_embeds, batch_gmap_step_ids, batch_gmap_pos_fts = [], [], []
         batch_gmap_pair_dists, batch_gmap_visited_masks = [], []
         batch_no_vp_left = []
+
+        if self.cross_next_pano:
+            batch_gmap_cand_img_fts, batch_gmap_cand_mask, batch_gmap_ccand_len = [], [], []
+
         for i, gmap in enumerate(gmaps):
             visited_vpids, unvisited_vpids = [], []                
             for k in gmap.node_positions.keys():
@@ -179,6 +193,12 @@ class GMapNavAgent(Seq2SeqAgent):
 
             gmap_step_ids = [gmap.node_step_ids.get(vp, 0) for vp in gmap_vpids]
             gmap_img_embeds = [gmap.get_node_embed(vp) for vp in gmap_vpids[1:]]
+
+            # get next pano gt img features
+            if self.cross_next_pano:
+                gmap_cand_img_fts = [self.batchvp2img_fts[i][vp]  for vp in gmap_vpids[1:]]
+                gmap_cand_img_fts = torch.cat(gmap_cand_img_fts, dim=0)  # [total, 257, 1408]
+
             gmap_img_embeds = torch.stack(
                 [torch.zeros_like(gmap_img_embeds[0])] + gmap_img_embeds, 0
             )   # cuda
@@ -201,6 +221,10 @@ class GMapNavAgent(Seq2SeqAgent):
             batch_gmap_vpids.append(gmap_vpids)
             batch_gmap_lens.append(len(gmap_vpids))
 
+            if self.cross_next_pano:
+                batch_gmap_cand_img_fts.append(gmap_cand_img_fts)
+                batch_gmap_ccand_len.append(gmap_cand_img_fts.shape[0])
+
         # collate
         batch_gmap_lens = torch.LongTensor(batch_gmap_lens)
         batch_gmap_masks = gen_seq_masks(batch_gmap_lens).to(self.device)
@@ -208,6 +232,10 @@ class GMapNavAgent(Seq2SeqAgent):
         batch_gmap_step_ids = pad_sequence(batch_gmap_step_ids, batch_first=True).to(self.device)
         batch_gmap_pos_fts = pad_tensors(batch_gmap_pos_fts).to(self.device)
         batch_gmap_visited_masks = pad_sequence(batch_gmap_visited_masks, batch_first=True).to(self.device)
+
+        if self.cross_next_pano:
+            batch_gmap_cand_mask = gen_seq_masks(torch.LongTensor(batch_gmap_ccand_len)).to(self.device)
+            batch_gmap_cand_img_fts = pad_tensors_wgrad(batch_gmap_cand_img_fts).to(self.device)
 
         max_gmap_len = max(batch_gmap_lens)
         gmap_pair_dists = torch.zeros(batch_size, max_gmap_len, max_gmap_len).float()
@@ -221,6 +249,8 @@ class GMapNavAgent(Seq2SeqAgent):
             'gmap_visited_masks': batch_gmap_visited_masks, 
             'gmap_pair_dists': gmap_pair_dists, 'gmap_masks': batch_gmap_masks,
             'no_vp_left': batch_no_vp_left,
+            'gmap_cand_mask': batch_gmap_cand_mask,
+            'gmap_cand_img_fts': batch_gmap_cand_img_fts
         }
 
     def _teacher_action(self, obs, vpids, ended, visited_masks=None):
@@ -331,6 +361,15 @@ class GMapNavAgent(Seq2SeqAgent):
                 self.scanvp_cands[scanvp].setdefault(cand['viewpointId'], {})
                 self.scanvp_cands[scanvp][cand['viewpointId']] = cand['pointId']
 
+    def _update_batchvp2img_fts(self, obs):
+        for i, ob in enumerate(obs):
+            self.batchvp2img_fts[i][ob['viewpoint']] = torch.from_numpy(ob['feature'])
+
+            for j, cc in enumerate(ob['candidate']):
+                vp = cc['viewpointId']
+                if vp not in self.batchvp2img_fts[i]:
+                    self.batchvp2img_fts[i][vp] = torch.from_numpy(cc['ccand_feature']) 
+
     # @profile
     def rollout(self, train_ml=None, train_rl=False, reset=True):
         if reset:  # Reset env
@@ -338,6 +377,10 @@ class GMapNavAgent(Seq2SeqAgent):
         else:
             obs = self.env._get_obs()
         self._update_scanvp_cands(obs)
+
+        if self.cross_next_pano:
+            self.batchvp2img_fts = [{}]*len(obs)    # reset
+            self._update_batchvp2img_fts(obs)
 
         batch_size = len(obs)
         # build graph: keep the start viewpoint
@@ -379,10 +422,10 @@ class GMapNavAgent(Seq2SeqAgent):
             # graph representation
             local_inputs = self._local_feature_variable(obs, gmaps, instructions)
 
-            # forward NavGPT thoughts
-            local_outputs = self.NavGPT('thought', local_inputs)
+            # forward NavGPT thoughts   使用T5模型的embeding部分对input进行编码
+            local_outputs = self.NavGPT('thought', local_inputs) 
             view_embeds, instruct_text_embeds, instruct_text_masks = local_outputs["view_embeds"], local_outputs["instruct_text_embeds"], local_outputs["instruct_text_masks"]
-            thoughts, generation_loss = local_outputs["output_text"], local_outputs["loss"]
+            thoughts, generation_loss = local_outputs["output_text"], local_outputs["loss"]    # generation_loss在pretrain的时候用
             local_inputs['text_embeds'] = instruct_text_embeds
             local_inputs['text_masks'] = instruct_text_masks
             local_inputs['view_llm_fts'] = view_embeds
@@ -392,12 +435,35 @@ class GMapNavAgent(Seq2SeqAgent):
             local_inputs['loc_fts'] = pad_tensors_wgrad(split_loc_fts)
 
 
-            # Get node embeddings
+            # Get node embeddings 当前位置所有viewpoint的场景编码
             pano_embeds, pano_masks = self.NavGPT('panorama', local_inputs)
 
             # Use the average of the view_embeds as the visited node embedding
             avg_pano_embeds = torch.sum(pano_embeds * pano_masks.unsqueeze(2), 1) / \
                         torch.sum(pano_masks, 1, keepdim=True)
+            
+            
+            # bt_size = pano_masks.shape[0]
+            # node_num = pano_embeds.shape[1]
+            # weights = torch.zeros(bt_size, node_num)
+
+            # # 对每个 batch 生成相应的 weights
+            # for i in range(bt_size):
+            #     # 获取当前 batch 中的掩码
+            #     mask = pano_masks[i]
+            #     num_true_nodes = mask.size(0)
+            #     if num_true_nodes > 0:
+            #         # 创建递增的权重
+            #         w = torch.tensor([0.5 ** (num_true_nodes - 1 - j) for j in range(num_true_nodes)], dtype=torch.float)
+            #         # 将权重归一化，使其和为 1
+            #         w = w / w.sum()
+                
+            #     # 存储到 weights 中
+            #     weights[i, torch.arange(num_true_nodes)] = w
+            
+            # # 使用加权和作为访问节点的嵌入
+            # avg_pano_embeds = torch.sum(pano_embeds * weights.unsqueeze(2).to(self.device), dim=1)
+
 
             for i, gmap in enumerate(gmaps):
                 if not ended[i]:
@@ -524,6 +590,8 @@ class GMapNavAgent(Seq2SeqAgent):
             # new observation and update graph
             obs = self.env._get_obs()
             self._update_scanvp_cands(obs)
+            if self.cross_next_pano:
+                self._update_batchvp2img_fts(obs)
             for i, ob in enumerate(obs):
                 if not ended[i]:
                     gmaps[i].update_graph(ob)
