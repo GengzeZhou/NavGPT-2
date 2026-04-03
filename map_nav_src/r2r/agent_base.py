@@ -9,6 +9,7 @@ from collections import defaultdict
 
 import torch
 import torch.nn as nn
+import torch.distributed as dist
 from torch import optim
 import torch.nn.functional as F
 from torch.nn.parallel import DistributedDataParallel as DDP
@@ -208,6 +209,14 @@ class Seq2SeqAgent(BaseAgent):
 
             if not self.args.step_update:
                 self.loss.backward()
+            elif self.args.world_size > 1:
+                # Per-step backward passes used no_sync() to avoid mismatched
+                # all-reduce calls across GPUs with different trajectory lengths.
+                # Synchronize the accumulated gradients now that all steps are done.
+                for p in self.NavGPT.parameters():
+                    if p.grad is not None:
+                        dist.all_reduce(p.grad, op=dist.ReduceOp.SUM)
+                        p.grad.div_(self.args.world_size)
 
             torch.nn.utils.clip_grad_norm_(self.NavGPT.parameters(), 40.)
 

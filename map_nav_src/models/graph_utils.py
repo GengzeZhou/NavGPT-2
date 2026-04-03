@@ -116,9 +116,9 @@ class GraphMap(object):
             self.node_embeds[vp] = [embed, 1]
         else:
             if vp in self.node_embeds:
-                # self.node_embeds[vp][0] = self.node_embeds[vp][0] + embed
-                self.node_embeds[vp][0] += embed
-                self.node_embeds[vp][1] += 1
+                # Use non-inplace addition to preserve the autograd graph for
+                # the previously stored tensor when doing multi-step backprop.
+                self.node_embeds[vp] = [self.node_embeds[vp][0] + embed, self.node_embeds[vp][1] + 1]
             else:
                 self.node_embeds[vp] = [embed, 1]
     

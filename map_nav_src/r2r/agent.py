@@ -458,7 +458,13 @@ class GMapNavAgent(Seq2SeqAgent):
                     step_loss += g_loss
                 
                 if self.args.step_update:
-                    step_loss.backward()
+                    # With DDP, suppress per-step all-reduce; gradients will be
+                    # manually synchronized in train() after the full rollout.
+                    if self.args.world_size > 1:
+                        with self.NavGPT.no_sync():
+                            step_loss.backward()
+                    else:
+                        step_loss.backward()
                                                  
             # Determinate the next navigation viewpoint
             if self.feedback == 'teacher':
