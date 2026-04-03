@@ -213,8 +213,13 @@ class Seq2SeqAgent(BaseAgent):
                 # Per-step backward passes used no_sync() to avoid mismatched
                 # all-reduce calls across GPUs with different trajectory lengths.
                 # Synchronize the accumulated gradients now that all steps are done.
+                # Initialize zero grads for any trainable param that didn't receive
+                # a gradient on this GPU, so every GPU calls all_reduce on the same
+                # set of parameters (prevents deadlock from asymmetric calls).
                 for p in self.NavGPT.parameters():
-                    if p.grad is not None:
+                    if p.requires_grad:
+                        if p.grad is None:
+                            p.grad = torch.zeros_like(p)
                         dist.all_reduce(p.grad, op=dist.ReduceOp.SUM)
                         p.grad.div_(self.args.world_size)
 
